@@ -3,13 +3,17 @@ package com.example.bloodplasmabankapp.Models;
 public class BloodDonorModel {
     String name,blood_group,city;
 
+    String phno,mail;
+
     public BloodDonorModel() {
     }
 
-    public BloodDonorModel(String name, String blood_group, String city) {
+    public BloodDonorModel(String name, String blood_group, String city,String p,String m) {
         this.name = name;
         this.blood_group = blood_group;
         this.city = city;
+        this.phno=p;
+        this.mail=m;
     }
 
     public String getName() {
@@ -24,6 +28,14 @@ public class BloodDonorModel {
         return city;
     }
 
+    public String getPhno() {
+        return phno;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -34,5 +46,13 @@ public class BloodDonorModel {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public void setPhno(String phno) {
+        this.phno = phno;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 }

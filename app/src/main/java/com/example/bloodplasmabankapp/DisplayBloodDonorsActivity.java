@@ -28,7 +28,13 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
          */
 
         DBHelper helper = new DBHelper(this);
+        /*
         helper.insertOrder("Khushi","9236473283","O+ve","jay@gmail.com","Bangalore");
+        helper.insertOrder("Jaya","9886724699","O+ve","jay@gmail.com","Bangalore");
+        helper.insertOrder("Khushi","8105199132","O+ve","jay@gmail.com","Bangalore");
+        helper.insertOrder("Ajja","9972920804","O+ve","jay@gmail.com","Bangalore");
+        helper.insertOrder("Mamma","9886724699","O+ve","jay@gmail.com","Bangalore");
+         */
         ArrayList<BloodDonorModel> list = helper.getBloodDonors();
 
         BloodDonorAdapter adapter = new BloodDonorAdapter(list,this);

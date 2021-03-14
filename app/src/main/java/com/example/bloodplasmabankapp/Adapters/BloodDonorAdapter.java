@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bloodplasmabankapp.DisplayBloodDonorsActivity;
 import com.example.bloodplasmabankapp.Models.BloodDonorModel;
 import com.example.bloodplasmabankapp.R;
 
@@ -43,26 +44,25 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
         holder.tv_name.setText(model.getName());
         holder.tv_bloodgrp.setText(model.getBlood_group());
         holder.tv_city.setText(model.getCity());
+        String ph = model.getPhno().toString();
+        String mail = model.getMail().toString();
         holder.call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
+
                 Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:"+"8105199132"));
+                intent.setData(Uri.parse("tel:"+ph));
                 context.startActivity(intent);
-                 */
+
 
             }
         });
         holder.mail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //String p = phone.getText().toString();
-                //String m = msg.getText().toString();
-                //SmsManager sms = SmsManager.getDefault();
-                //sms.sendTextMessage("8105199132",null,"Hello",null,null);
-                //Toast.makeText(MainActivity.this, "Send Message", Toast.LENGTH_SHORT).show();
-
+                SmsManager smsManager = SmsManager.getDefault();
+                smsManager.sendTextMessage(ph, null, "sms message", null, null);
+                Toast.makeText(context, "SMS Sent", Toast.LENGTH_SHORT).show();
 
             }
         });

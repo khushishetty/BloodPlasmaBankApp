@@ -3,6 +3,9 @@ package com.example.bloodplasmabankapp.Models;
 public class BloodDonorModel {
     String name,blood_group,city;
 
+    public BloodDonorModel() {
+    }
+
     public BloodDonorModel(String name, String blood_group, String city) {
         this.name = name;
         this.blood_group = blood_group;

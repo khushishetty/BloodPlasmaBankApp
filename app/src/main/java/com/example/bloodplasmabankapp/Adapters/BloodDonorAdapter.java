@@ -1,10 +1,15 @@
 package com.example.bloodplasmabankapp.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,7 +43,35 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
         holder.tv_name.setText(model.getName());
         holder.tv_bloodgrp.setText(model.getBlood_group());
         holder.tv_city.setText(model.getCity());
+        holder.call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*
+                Intent intent = new Intent(Intent.ACTION_CALL);
+                intent.setData(Uri.parse("tel:"+"8105199132"));
+                context.startActivity(intent);
+                 */
 
+            }
+        });
+        holder.mail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //String p = phone.getText().toString();
+                //String m = msg.getText().toString();
+                //SmsManager sms = SmsManager.getDefault();
+                //sms.sendTextMessage("8105199132",null,"Hello",null,null);
+                //Toast.makeText(MainActivity.this, "Send Message", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
@@ -50,6 +83,7 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
     public class viewholder extends RecyclerView.ViewHolder {
 
         TextView tv_name,tv_bloodgrp,tv_city;
+        ImageButton call,mail;
 
         public viewholder(@NonNull View itemView) {
 
@@ -57,6 +91,8 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
             tv_name = itemView.findViewById(R.id.name_id);
             tv_bloodgrp = itemView.findViewById(R.id.bloodgroup_id);
             tv_city = itemView.findViewById(R.id.city_id);
+            call = itemView.findViewById(R.id.call_btn_id);
+            mail = itemView.findViewById(R.id.mail_btn_id);
         }
     }
 }

@@ -20,9 +20,16 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_blood_donors);
         recyclerView=(RecyclerView)findViewById(R.id.recyclerview_id_1);
 
+
+        /*
         ArrayList<BloodDonorModel>list = new ArrayList<>();
         list.add(new BloodDonorModel("Khushi", "O+ve","Bangalore"));
         list.add(new BloodDonorModel("Jaya","B-ve","Bangalore"));
+         */
+
+        DBHelper helper = new DBHelper(this);
+        helper.insertOrder("Khushi","9236473283","O+ve","jay@gmail.com","Bangalore");
+        ArrayList<BloodDonorModel> list = helper.getBloodDonors();
 
         BloodDonorAdapter adapter = new BloodDonorAdapter(list,this);
         recyclerView.setAdapter(adapter);

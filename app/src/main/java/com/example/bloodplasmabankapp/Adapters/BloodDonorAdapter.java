@@ -1,6 +1,9 @@
 package com.example.bloodplasmabankapp.Adapters;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.telephony.SmsManager;
@@ -45,24 +48,88 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
         holder.tv_bloodgrp.setText(model.getBlood_group());
         holder.tv_city.setText(model.getCity());
         String ph = model.getPhno().toString();
-        String mail = model.getMail().toString();
-        holder.call.setOnClickListener(new View.OnClickListener() {
+        String mail_id = model.getMail().toString();
+
+
+        holder.email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(Intent.ACTION_CALL);
-                intent.setData(Uri.parse("tel:"+ph));
-                context.startActivity(intent);
+                new AlertDialog.Builder(context).setIcon(R.drawable.ic_baseline_email_24)
+                        .setTitle("Email")
+                        .setMessage("Are you sure You want to send the email?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent i = new Intent(Intent.ACTION_SENDTO);
+                                i.setType("text/plain");
+                                i.putExtra(Intent.EXTRA_SUBJECT, "Urgent blood request");
+                                i.putExtra(Intent.EXTRA_TEXT, "In urgent need of blood!!");
+                                i.setData(Uri.parse("mailto:" + mail_id));
+
+                                context.startActivity(i);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).show();
+
 
 
             }
         });
-        holder.mail.setOnClickListener(new View.OnClickListener() {
+        holder.call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SmsManager smsManager = SmsManager.getDefault();
-                smsManager.sendTextMessage(ph, null, "sms message", null, null);
-                Toast.makeText(context, "SMS Sent", Toast.LENGTH_SHORT).show();
+
+                new AlertDialog.Builder(context).setIcon(R.drawable.call_icon)
+                .setTitle("Call")
+                .setMessage("Are you sure You want to call?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(Intent.ACTION_CALL);
+                        intent.setData(Uri.parse("tel:"+ph));
+                        context.startActivity(intent);
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
+
+
+
+
+            }
+        });
+        holder.message.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                new AlertDialog.Builder(context).setIcon(R.drawable.ic_baseline_message_24)
+                        .setTitle("Text Message")
+                        .setMessage("Are you sure You want to send the message?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                SmsManager smsManager = SmsManager.getDefault();
+                                smsManager.sendTextMessage(ph, null, "Urgent Blood Request", null, null);
+                                Toast.makeText(context, "SMS Sent", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).show();
 
             }
         });
@@ -83,7 +150,7 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
     public class viewholder extends RecyclerView.ViewHolder {
 
         TextView tv_name,tv_bloodgrp,tv_city;
-        ImageButton call,mail;
+        ImageButton call,message,email;
 
         public viewholder(@NonNull View itemView) {
 
@@ -92,7 +159,8 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
             tv_bloodgrp = itemView.findViewById(R.id.bloodgroup_id);
             tv_city = itemView.findViewById(R.id.city_id);
             call = itemView.findViewById(R.id.call_btn_id);
-            mail = itemView.findViewById(R.id.mail_btn_id);
+            message = itemView.findViewById(R.id.mail_btn_id);
+            email= itemView.findViewById(R.id.email_btn_id);
         }
     }
 }

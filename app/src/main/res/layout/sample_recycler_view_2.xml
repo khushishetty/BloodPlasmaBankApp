@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/sample_recyclerview_1"
     android:layout_width="match_parent"
     android:layout_height="165dp"
-    android:elevation="10dp">
+    android:elevation="10dp"
+    android:id="@+id/layout2">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="15dp"
+        android:layout_margin="10dp"
         android:padding="20dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp">
@@ -45,11 +46,10 @@
                     android:textStyle="bold|italic" />
 
                 <TextView
-                    android:id="@+id/bloodgroup_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"
-                    android:text="Blood Group"
+                    android:text="Plasma Group"
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:textStyle="bold|italic" />
@@ -103,7 +103,6 @@
                         app:srcCompat="@drawable/gmai_icon_two" />
 
                 </LinearLayout>
-
             </LinearLayout>
         </LinearLayout>
 

@@ -1,6 +1,5 @@
 package com.example.bloodplasmabankapp.Adapters;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bloodplasmabankapp.DisplayBloodDonorsActivity;
 import com.example.bloodplasmabankapp.Models.BloodDonorModel;
 import com.example.bloodplasmabankapp.R;
 
@@ -155,12 +153,12 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
         public viewholder(@NonNull View itemView) {
 
             super(itemView);
-            tv_name = itemView.findViewById(R.id.name_id);
+            tv_name = itemView.findViewById(R.id.plasma_name_id);
             tv_bloodgrp = itemView.findViewById(R.id.bloodgroup_id);
-            tv_city = itemView.findViewById(R.id.city_id);
-            call = itemView.findViewById(R.id.call_btn_id);
-            message = itemView.findViewById(R.id.mail_btn_id);
-            email= itemView.findViewById(R.id.email_btn_id);
+            tv_city = itemView.findViewById(R.id.plasma_city_id);
+            call = itemView.findViewById(R.id.plasma_call_btn_id);
+            message = itemView.findViewById(R.id.plasma_mail_btn_id);
+            email= itemView.findViewById(R.id.plasma_email_btn_id);
         }
     }
 }

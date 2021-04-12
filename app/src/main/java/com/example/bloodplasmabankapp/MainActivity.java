@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
         
         c1 = (CardView)findViewById(R.id.bec_blood_donor_id);
         c2 = (CardView)findViewById(R.id.search_blood_donor_id);
+        c3  =(CardView)findViewById(R.id.search_plasma_donor_id);
         c1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -37,7 +38,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
+        c3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,DisplayPlasmaDonorActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

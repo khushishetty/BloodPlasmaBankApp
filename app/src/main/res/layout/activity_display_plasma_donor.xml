@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e1341e"
+    tools:context=".DisplayPlasmaDonorActivity"
     android:orientation="vertical"
-    tools:context=".DisplayBloodDonorsActivity">
+    android:background="#e1341e">
 
     <TextView
         android:id="@+id/textView"
@@ -17,7 +17,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="10dp"
         android:fontFamily="sans-serif-medium"
-        android:text="BLOOD DONORS"
+        android:text="PLASMA DONORS"
         android:textColor="#FFFFFF"
         android:textSize="36sp"
         android:textStyle="bold" />
@@ -26,5 +26,5 @@
         android:id="@+id/recyclerview_id_2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/sample_recycler_view_1" />
+        tools:listitem="@layout/sample_recycler_view_2" />
 </LinearLayout>

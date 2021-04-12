@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 
 import com.example.bloodplasmabankapp.Adapters.BloodDonorAdapter;
+import com.example.bloodplasmabankapp.DB.DBHelper;
 import com.example.bloodplasmabankapp.Models.BloodDonorModel;
 
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_blood_donors);
-        recyclerView=(RecyclerView)findViewById(R.id.recyclerview_id_1);
+        recyclerView=(RecyclerView)findViewById(R.id.recyclerview_id_2);
 
 
         /*
@@ -29,11 +30,8 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
 
         DBHelper helper = new DBHelper(this);
         /*
-        helper.insertOrder("Khushi","9236473283","O+ve","jay@gmail.com","Bangalore");
-        helper.insertOrder("Jaya","9886724699","O+ve","jay@gmail.com","Bangalore");
-        helper.insertOrder("Khushi","8105199132","O+ve","jay@gmail.com","Bangalore");
-        helper.insertOrder("Ajja","9972920804","O+ve","jay@gmail.com","Bangalore");
-        helper.insertOrder("Mamma","9886724699","O+ve","jay@gmail.com","Bangalore");
+        helper.insertOrder("Khushi","8105199132","O+ve","khushi@gmail.com","Bangalore","None","Female");
+        helper.insertOrder("Rita","9886724699","B+ve","jay@gmail.com","Mangalore","None","Female");
          */
         ArrayList<BloodDonorModel> list = helper.getBloodDonors();
 

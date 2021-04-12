@@ -1,4 +1,4 @@
-package com.example.bloodplasmabankapp;
+package com.example.bloodplasmabankapp.DB;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -15,8 +15,8 @@ import com.example.bloodplasmabankapp.Models.BloodDonorModel;
 import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
-    final static String DBNAME = "PlasmaDB.db";
-    final static int DBVERSION = 4;
+    final static String DBNAME = "NewBloodPlasma.db";
+    final static int DBVERSION = 1;
 
     public DBHelper(@Nullable Context context) {
         super(context, DBNAME, null, DBVERSION);
@@ -32,7 +32,9 @@ public class DBHelper extends SQLiteOpenHelper {
                         "name text ,"+
                         "bloodgroup text,"+
                         "emailaddress text,"+
-                        "address text)"
+                        "address text," +
+                        "ailments text," +
+                        "gender text)"
     );
     }
 
@@ -42,7 +44,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertOrder(String name,String phno,String bgp,String email,String address)
+    public boolean insertOrder(String name,String phno,String bgp,String email,String address,String ailments,String gender)
     {
         SQLiteDatabase database = getReadableDatabase();
         ContentValues values = new ContentValues();
@@ -51,6 +53,8 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put("bloodgroup",bgp);
         values.put("emailaddress",email);
         values.put("address",address);
+        values.put("ailments",ailments);
+        values.put("gender",gender);
         long id = database.insert("donors",null,values);
         if (id<=0){
             return false;
@@ -63,7 +67,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<BloodDonorModel> getBloodDonors(){
         ArrayList<BloodDonorModel> lst = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("select name,bloodgroup,address,phoneno,emailaddress from donors",null);
+        Cursor cursor = database.rawQuery("select name,bloodgroup,address,phoneno,emailaddress,ailments,gender from donors",null);
         if(cursor.moveToFirst()){
             while (cursor.moveToNext()){
                 BloodDonorModel model = new BloodDonorModel();
@@ -72,6 +76,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 model.setCity(cursor.getString(2));
                 model.setPhno(cursor.getString(3));
                 model.setMail(cursor.getString(4));
+                model.setAilments(cursor.getString(5));
+                model.setAilments(cursor.getString(6));
                 lst.add(model);
             }
         }

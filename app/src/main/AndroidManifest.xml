@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BloodPlasmaBankApp">
-        <activity android:name=".DisplayPlasmaDonorActivity"></activity>
+        <activity android:name=".DetailedBloodDonorActivity"></activity>
+        <activity android:name=".DisplayPlasmaDonorActivity" />
         <activity android:name=".DisplayBloodDonorsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -19,8 +20,8 @@
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.SEND_SMS" />
-
     <uses-permission android:name="android.permission.CALL_PHONE" />
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
 </manifest>

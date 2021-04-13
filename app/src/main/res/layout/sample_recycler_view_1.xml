@@ -73,7 +73,7 @@
                     android:orientation="horizontal">
 
                     <ImageButton
-                        android:id="@+id/plasma_call_btn_id"
+                        android:id="@+id/profile_call_btn_id"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:adjustViewBounds="true"
@@ -82,7 +82,7 @@
                         app:srcCompat="@android:drawable/stat_sys_phone_call" />
 
                     <ImageButton
-                        android:id="@+id/plasma_mail_btn_id"
+                        android:id="@+id/profile_mail_btn_id"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="2dp"
@@ -93,7 +93,7 @@
                         app:srcCompat="@android:drawable/ic_dialog_email" />
 
                     <ImageButton
-                        android:id="@+id/plasma_email_btn_id"
+                        android:id="@+id/profile_email_btn_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"

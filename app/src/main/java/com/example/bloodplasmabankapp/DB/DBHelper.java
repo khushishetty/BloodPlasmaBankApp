@@ -113,4 +113,14 @@ public class DBHelper extends SQLiteOpenHelper {
         return database.delete("donors","name = '"+id+"'",null);
 
     }
+
+    public Cursor getBloodDonorByPhone(String ph){
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("Select * from donors where phoneno= '"+ph+"'",null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        return cursor;
+
+    }
 }

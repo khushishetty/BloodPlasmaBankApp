@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bloodplasmabankapp.DetailedBloodDonorActivity;
 import com.example.bloodplasmabankapp.Models.BloodDonorModel;
 import com.example.bloodplasmabankapp.R;
 
@@ -47,7 +48,15 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
         holder.tv_city.setText(model.getCity());
         String ph = model.getPhno().toString();
         String mail_id = model.getMail().toString();
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailedBloodDonorActivity.class);
+                intent.putExtra("phone_no",model.getPhno().toString());
+                intent.putExtra("type",1);
+                context.startActivity(intent);
+            }
+        });
 
         holder.email.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,12 +140,7 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
 
             }
         });
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
-            }
-        });
+
 
     }
 
@@ -156,9 +160,9 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
             tv_name = itemView.findViewById(R.id.plasma_name_id);
             tv_bloodgrp = itemView.findViewById(R.id.bloodgroup_id);
             tv_city = itemView.findViewById(R.id.plasma_city_id);
-            call = itemView.findViewById(R.id.plasma_call_btn_id);
-            message = itemView.findViewById(R.id.plasma_mail_btn_id);
-            email= itemView.findViewById(R.id.plasma_email_btn_id);
+            call = itemView.findViewById(R.id.profile_call_btn_id);
+            message = itemView.findViewById(R.id.profile_mail_btn_id);
+            email= itemView.findViewById(R.id.profile_email_btn_id);
         }
     }
 }

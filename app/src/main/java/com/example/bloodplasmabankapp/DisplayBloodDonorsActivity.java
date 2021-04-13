@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class DisplayBloodDonorsActivity extends AppCompatActivity {
 
     CardView btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8;
-
+    Button display_all;
     RecyclerView recyclerView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +38,7 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
         btn7 = (CardView) findViewById(R.id.o_negative_btn);
         btn8 = (CardView) findViewById(R.id.ab_negative_btn);
 
+        display_all = (Button)findViewById(R.id.all_b_donors_display);
 
         recyclerView=(RecyclerView)findViewById(R.id.recyclerview_id_2);
 
@@ -50,14 +51,16 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
         DBHelper helper = new DBHelper(this);
 
         /*
-        helper.deleteOrder("Khushi");
-        helper.deleteOrder("Rita");
+        helper.deleteOrder("Maithili");
+        helper.deleteOrder("Annie");
+        helper.deleteOrder("Max");
+        helper.deleteOrder("Jack");
         helper.insertOrder("Ram","8105199132","AB+ve","khushi@gmail.com","Delhi","None","Male");
         helper.insertOrder("Sam","9886724699","B+ve","jay@gmail.com","Kerala","None","Female");
-        helper.insertOrder("Maithili","8105199132","O+ve","khushi@gmail.com","Udupi","None","Female");
-        helper.insertOrder("Annie","9886724699","A+ve","jay@gmail.com","Mangalore","None","Female");
-        helper.insertOrder("Max","8105199132","O+ve","khushi@gmail.com","Bangalore","None","Male");
-        helper.insertOrder("Jack","9886724699","A+ve","jay@gmail.com","Mumbai","None","Male");
+        helper.insertOrder("Maithili","9745162635","O+ve","maithili@gmail.com","Udupi","None","Female");
+        helper.insertOrder("Annie","9745216852","A+ve","annie@gmail.com","Mangalore","None","Female");
+        helper.insertOrder("Max","8106213221","O+ve","max@gmail.com","Bangalore","None","Male");
+        helper.insertOrder("Jack","8456744412","A+ve","jack@gmail.com","Mumbai","None","Male");
 
          */
         ArrayList<BloodDonorModel> list = helper.getBloodDonors();
@@ -169,6 +172,20 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
 
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
                 recyclerView.setLayoutManager(linearLayoutManager);
+            }
+        });
+
+        display_all.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<BloodDonorModel> lst = helper.getBloodDonors();
+
+                BloodDonorAdapter adapter = new BloodDonorAdapter(lst,DisplayBloodDonorsActivity.this);
+                recyclerView.setAdapter(adapter);
+
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
+                recyclerView.setLayoutManager(linearLayoutManager);
+
             }
         });
     }

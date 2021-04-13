@@ -31,6 +31,13 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
 
         btn1 = (CardView) findViewById(R.id.a_positive_btn);
         btn2 = (CardView) findViewById(R.id.b_positive_btn);
+        btn3 = (CardView) findViewById(R.id.o_positive_btn);
+        btn4 = (CardView) findViewById(R.id.ab_positive_btn);
+        btn5 = (CardView) findViewById(R.id.a_negative_btn);
+        btn6 = (CardView) findViewById(R.id.b_negative_btn);
+        btn7 = (CardView) findViewById(R.id.o_negative_btn);
+        btn8 = (CardView) findViewById(R.id.ab_negative_btn);
+
 
         recyclerView=(RecyclerView)findViewById(R.id.recyclerview_id_2);
 
@@ -41,9 +48,17 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
          */
 
         DBHelper helper = new DBHelper(this);
+
         /*
-        helper.insertOrder("Khushi","8105199132","O+ve","khushi@gmail.com","Bangalore","None","Female");
-        helper.insertOrder("Rita","9886724699","B+ve","jay@gmail.com","Mangalore","None","Female");
+        helper.deleteOrder("Khushi");
+        helper.deleteOrder("Rita");
+        helper.insertOrder("Ram","8105199132","AB+ve","khushi@gmail.com","Delhi","None","Male");
+        helper.insertOrder("Sam","9886724699","B+ve","jay@gmail.com","Kerala","None","Female");
+        helper.insertOrder("Maithili","8105199132","O+ve","khushi@gmail.com","Udupi","None","Female");
+        helper.insertOrder("Annie","9886724699","A+ve","jay@gmail.com","Mangalore","None","Female");
+        helper.insertOrder("Max","8105199132","O+ve","khushi@gmail.com","Bangalore","None","Male");
+        helper.insertOrder("Jack","9886724699","A+ve","jay@gmail.com","Mumbai","None","Male");
+
          */
         ArrayList<BloodDonorModel> list = helper.getBloodDonors();
 
@@ -56,7 +71,7 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("O+ve");
+                ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("A+ve");
 
                 BloodDonorAdapter adapter = new BloodDonorAdapter(lst,DisplayBloodDonorsActivity.this);
                 recyclerView.setAdapter(adapter);
@@ -70,6 +85,84 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("B+ve");
+
+                BloodDonorAdapter adapter = new BloodDonorAdapter(lst,DisplayBloodDonorsActivity.this);
+                recyclerView.setAdapter(adapter);
+
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
+                recyclerView.setLayoutManager(linearLayoutManager);
+            }
+        });
+
+        btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("O+ve");
+
+                BloodDonorAdapter adapter = new BloodDonorAdapter(lst,DisplayBloodDonorsActivity.this);
+                recyclerView.setAdapter(adapter);
+
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
+                recyclerView.setLayoutManager(linearLayoutManager);
+            }
+        });
+
+        btn4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("AB+ve");
+
+                BloodDonorAdapter adapter = new BloodDonorAdapter(lst,DisplayBloodDonorsActivity.this);
+                recyclerView.setAdapter(adapter);
+
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
+                recyclerView.setLayoutManager(linearLayoutManager);
+            }
+        });
+
+        btn5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("A-ve");
+
+                BloodDonorAdapter adapter = new BloodDonorAdapter(lst,DisplayBloodDonorsActivity.this);
+                recyclerView.setAdapter(adapter);
+
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
+                recyclerView.setLayoutManager(linearLayoutManager);
+            }
+        });
+
+        btn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("B-ve");
+
+                BloodDonorAdapter adapter = new BloodDonorAdapter(lst,DisplayBloodDonorsActivity.this);
+                recyclerView.setAdapter(adapter);
+
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
+                recyclerView.setLayoutManager(linearLayoutManager);
+            }
+        });
+
+        btn7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("O-ve");
+
+                BloodDonorAdapter adapter = new BloodDonorAdapter(lst,DisplayBloodDonorsActivity.this);
+                recyclerView.setAdapter(adapter);
+
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
+                recyclerView.setLayoutManager(linearLayoutManager);
+            }
+        });
+
+        btn8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("AB-ve");
 
                 BloodDonorAdapter adapter = new BloodDonorAdapter(lst,DisplayBloodDonorsActivity.this);
                 recyclerView.setAdapter(adapter);

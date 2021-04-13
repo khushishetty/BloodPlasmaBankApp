@@ -91,7 +91,7 @@ public class DBHelper extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery("select name,bloodgroup,address,phoneno,emailaddress,ailments,gender from donors where bloodgroup = '"+ grp +"'",null);
         if(cursor.moveToFirst()){
-            while (cursor.moveToNext()){
+            do{
                 BloodDonorModel model = new BloodDonorModel();
                 model.setName(cursor.getString(0));
                 model.setBlood_group(cursor.getString(1));
@@ -101,10 +101,16 @@ public class DBHelper extends SQLiteOpenHelper {
                 model.setAilments(cursor.getString(5));
                 model.setAilments(cursor.getString(6));
                 lst.add(model);
-            }
+            }while (cursor.moveToNext());
         }
         cursor.close();
         database.close();
         return lst;
+    }
+
+    public int deleteOrder(String id){
+        SQLiteDatabase database = this.getWritableDatabase();
+        return database.delete("donors","name = '"+id+"'",null);
+
     }
 }

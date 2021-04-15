@@ -4,24 +4,25 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_logo"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.BloodPlasmaBankApp">
-        <activity android:name=".DetailedBloodDonorActivity"></activity>
-        <activity android:name=".DisplayPlasmaDonorActivity" />
-        <activity android:name=".DisplayBloodDonorsActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".DetailedBloodDonorActivity" />
+        <activity android:name=".DisplayPlasmaDonorActivity" />
+        <activity android:name=".DisplayBloodDonorsActivity" />
+        <activity android:name=".MainActivity"></activity>
     </application>
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-
     <uses-permission android:name="android.permission.SEND_SMS" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
 </manifest>

@@ -49,18 +49,18 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
          */
 
         DBHelper helper = new DBHelper(this);
-
         /*
         helper.deleteOrder("Maithili");
         helper.deleteOrder("Annie");
         helper.deleteOrder("Max");
         helper.deleteOrder("Jack");
+        helper.insertOrder("Maithili","9480016150","O+ve","maithili@gmail.com","Udupi","None","Female");
         helper.insertOrder("Ram","8105199132","AB+ve","khushi@gmail.com","Delhi","None","Male");
         helper.insertOrder("Sam","9886724699","B+ve","jay@gmail.com","Kerala","None","Female");
-        helper.insertOrder("Maithili","9745162635","O+ve","maithili@gmail.com","Udupi","None","Female");
         helper.insertOrder("Annie","9745216852","A+ve","annie@gmail.com","Mangalore","None","Female");
         helper.insertOrder("Max","8106213221","O+ve","max@gmail.com","Bangalore","None","Male");
         helper.insertOrder("Jack","8456744412","A+ve","jack@gmail.com","Mumbai","None","Male");
+
 
          */
         ArrayList<BloodDonorModel> list = helper.getBloodDonors();

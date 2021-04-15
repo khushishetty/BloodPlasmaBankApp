@@ -26,7 +26,11 @@ public class DisplayPlasmaDonorActivity extends AppCompatActivity {
         //list.add(new PlasmaDonorModel("Khushi","Ove","Bangalore"));
 
         DB_Plasma_Helper helper = new DB_Plasma_Helper(this);
-        //helper.insertPlasmaDonor("khushi","Bangalore");
+        /*
+        helper.insertPlasmaDonor("Khushi","Bangalore");
+        helper.insertPlasmaDonor("Maithili","Udupi");
+        helper.insertPlasmaDonor("Rita","Mangalore");
+         */
         ArrayList<PlasmaDonorModel> list = helper.getPlasmaDonors();
 
         PlasmaDonorAdapter adapter = new PlasmaDonorAdapter(list,this);

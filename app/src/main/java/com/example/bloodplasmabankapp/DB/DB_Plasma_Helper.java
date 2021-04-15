@@ -57,12 +57,12 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
         SQLiteDatabase database = this.getWritableDatabase();
         Cursor cursor = database.rawQuery("select donor_name,city from plasma_donor",null);
         if(cursor.moveToFirst()){
-            while(cursor.moveToNext()){
+            do{
                 PlasmaDonorModel model = new PlasmaDonorModel();
                 model.setName(cursor.getString(0));
                 model.setCity(cursor.getString(1));
                 donors.add(model);
-            }
+            }while(cursor.moveToNext());
         }
         cursor.close();
         database.close();

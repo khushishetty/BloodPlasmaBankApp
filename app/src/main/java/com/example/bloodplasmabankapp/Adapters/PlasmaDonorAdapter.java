@@ -37,7 +37,7 @@ public class PlasmaDonorAdapter  extends  RecyclerView.Adapter<PlasmaDonorAdapte
         final PlasmaDonorModel model = list.get(position);
         holder.donorName.setText(model.getName());
         holder.donorCity.setText(model.getCity());
-
+        holder.donorPlasma.setText(model.getPlasmagrp());
     }
 
     @Override
@@ -53,6 +53,7 @@ public class PlasmaDonorAdapter  extends  RecyclerView.Adapter<PlasmaDonorAdapte
             super(itemView);
             donorName = itemView.findViewById(R.id.plasma_name_id);
             donorCity = itemView.findViewById(R.id.plasma_city_id);
+            donorPlasma = itemView.findViewById(R.id.plasma_blood_grp_id);
             //donorPlasma = itemView.findViewById(R.id.plasmatypeid);
 
         }

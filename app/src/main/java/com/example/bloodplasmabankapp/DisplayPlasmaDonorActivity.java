@@ -30,6 +30,14 @@ public class DisplayPlasmaDonorActivity extends AppCompatActivity {
         helper.insertPlasmaDonor("Khushi","Bangalore");
         helper.insertPlasmaDonor("Maithili","Udupi");
         helper.insertPlasmaDonor("Rita","Mangalore");
+
+        helper.insertPlasmaDonor("Saritha","9480016150","O+ve","saritha@gmail.com","Udupi","None","Female");
+        helper.insertPlasmaDonor("Raghav","8105199132","AB+ve","raghav@gmail.com","Delhi","Diabities","Male");
+        helper.insertPlasmaDonor("Neeta","9886724699","B-ve","neeta@gmail.com","Kerala","None","Female");
+        helper.insertPlasmaDonor("Rose","9745216852","A+ve","rose@gmail.com","Mangalore","Renal Problems","Female");
+        helper.insertPlasmaDonor("Vinay","8106213221","O+ve","vinay@gmail.com","Bangalore","None","Male");
+        helper.insertPlasmaDonor("Jill","8456744412","A-ve","jill@gmail.com","Mumbai","None","Male");
+
          */
         ArrayList<PlasmaDonorModel> list = helper.getPlasmaDonors();
 

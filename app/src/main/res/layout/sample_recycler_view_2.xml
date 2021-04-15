@@ -46,6 +46,7 @@
                     android:textStyle="bold|italic" />
 
                 <TextView
+                    android:id="@+id/plasma_blood_grp_id"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-medium"

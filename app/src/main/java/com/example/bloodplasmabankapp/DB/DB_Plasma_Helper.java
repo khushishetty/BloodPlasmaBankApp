@@ -13,8 +13,8 @@ import com.example.bloodplasmabankapp.Models.PlasmaDonorModel;
 import java.util.ArrayList;
 
 public class DB_Plasma_Helper extends SQLiteOpenHelper {
-    final static String DBname = "PlasmaDB.db";
-    final static int DBVersion = 6;
+    final static String DBname = "NewPlasmaDB.db";
+    final static int DBVersion = 1;
     public DB_Plasma_Helper(@Nullable Context context) {
 
         super(context, DBname, null , DBVersion);
@@ -26,8 +26,13 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
         db.execSQL(
                 "create table plasma_donor"+
                         "(id integer primary key autoincrement," +
-                        "donor_name text," +
-                        "city text)"
+                        "phoneno text,"+
+                        "name text ,"+
+                        "bloodgroup text,"+
+                        "emailaddress text,"+
+                        "address text," +
+                        "ailments text," +
+                        "gender text)"
         );
     }
 
@@ -38,11 +43,16 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertPlasmaDonor(String n, String city){
+    public boolean insertPlasmaDonor(String name,String phno,String bgp,String email,String address,String ailments,String gender){
         SQLiteDatabase database = getReadableDatabase();
         ContentValues values= new ContentValues();
-        values.put("donor_name",n);
-        values.put("city",city);
+        values.put("phoneno",phno);
+        values.put("name",name);
+        values.put("bloodgroup",bgp);
+        values.put("emailaddress",email);
+        values.put("address",address);
+        values.put("ailments",ailments);
+        values.put("gender",gender);
         long id = database.insert("plasma_donor",null,values);
         if(id<=0){
             return false;
@@ -55,12 +65,13 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
     public ArrayList<PlasmaDonorModel> getPlasmaDonors(){
         ArrayList<PlasmaDonorModel> donors = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("select donor_name,city from plasma_donor",null);
+        Cursor cursor = database.rawQuery("select name,address,bloodgroup from plasma_donor",null);
         if(cursor.moveToFirst()){
             do{
                 PlasmaDonorModel model = new PlasmaDonorModel();
                 model.setName(cursor.getString(0));
                 model.setCity(cursor.getString(1));
+                model.setPlasmagrp(cursor.getString(2));
                 donors.add(model);
             }while(cursor.moveToNext());
         }

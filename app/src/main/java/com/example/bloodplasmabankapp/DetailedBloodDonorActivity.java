@@ -22,7 +22,7 @@ import com.example.bloodplasmabankapp.DB.DBHelper;
 import org.w3c.dom.Text;
 
 public class DetailedBloodDonorActivity extends AppCompatActivity {
-    TextView name,address,bloodgrp,gender;
+    TextView name,address,bloodgrp,gender,ailments;
     String phno,mail;
     ImageView call,message,email;
 
@@ -36,7 +36,7 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
 
         bloodgrp = (TextView)findViewById(R.id.profile_bloodgrp);
         gender = (TextView)findViewById(R.id.profile_gender);
-
+        ailments = (TextView)findViewById(R.id.blood_ailments);
         call = (ImageView) findViewById(R.id.profile_call_btn_id);
         message = (ImageView)findViewById(R.id.profile_mail_btn_id);
         email = (ImageView)findViewById(R.id.profile_email_btn_id);
@@ -50,6 +50,7 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
             address.setText(cursor.getString(5));
             bloodgrp.setText(cursor.getString(3));
             gender.setText(cursor.getString(7));
+            ailments.setText(cursor.getString(6));
             mail = cursor.getString(4);
 
             email.setOnClickListener(new View.OnClickListener() {

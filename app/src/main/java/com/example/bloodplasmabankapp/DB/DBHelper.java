@@ -123,4 +123,48 @@ public class DBHelper extends SQLiteOpenHelper {
         return cursor;
 
     }
+    public ArrayList<BloodDonorModel> getBloodDonorByCity(String city){
+        ArrayList<BloodDonorModel> lst = new ArrayList<>();
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("select name,bloodgroup,address,phoneno,emailaddress,ailments,gender from donors where lower(address) LIKE '"+ city+"'",null);
+        if(cursor.moveToFirst()){
+            do{
+                BloodDonorModel model = new BloodDonorModel();
+                model.setName(cursor.getString(0));
+                model.setBlood_group(cursor.getString(1));
+                model.setCity(cursor.getString(2));
+                model.setPhno(cursor.getString(3));
+                model.setMail(cursor.getString(4));
+                model.setAilments(cursor.getString(5));
+                model.setAilments(cursor.getString(6));
+                lst.add(model);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        database.close();
+        return lst;
+
+    }
+    public ArrayList<BloodDonorModel> getBloodDonorByCity(String city, String bg){
+        ArrayList<BloodDonorModel> lst = new ArrayList<>();
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("select name,bloodgroup,address,phoneno,emailaddress,ailments,gender from donors where bloodgroup = '"+bg+"' and lower(address) LIKE '"+ city+"'",null);
+        if(cursor.moveToFirst()){
+            do{
+                BloodDonorModel model = new BloodDonorModel();
+                model.setName(cursor.getString(0));
+                model.setBlood_group(cursor.getString(1));
+                model.setCity(cursor.getString(2));
+                model.setPhno(cursor.getString(3));
+                model.setMail(cursor.getString(4));
+                model.setAilments(cursor.getString(5));
+                model.setAilments(cursor.getString(6));
+                lst.add(model);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        database.close();
+        return lst;
+
+    }
 }

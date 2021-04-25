@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.bloodplasmabankapp.Adapters.BloodDonorAdapter;
@@ -21,9 +22,13 @@ import java.util.ArrayList;
 
 public class DisplayBloodDonorsActivity extends AppCompatActivity {
 
-    CardView btn1,btn2,btn3,btn4,btn5,btn6,btn7,btn8;
+    CardView btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8;
     Button display_all;
+    EditText et_filterCity;
+    Button btn_filterCity;
     RecyclerView recyclerView;
+    String bloodGrpSet = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +43,12 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
         btn7 = (CardView) findViewById(R.id.o_negative_btn);
         btn8 = (CardView) findViewById(R.id.ab_negative_btn);
 
-        display_all = (Button)findViewById(R.id.all_b_donors_display);
+        display_all = (Button) findViewById(R.id.all_b_donors_display);
 
-        recyclerView=(RecyclerView)findViewById(R.id.recyclerview_id_2);
+        et_filterCity = (EditText) findViewById(R.id.filterByCityBlood);
+        btn_filterCity = (Button) findViewById(R.id.filterByCityBloodBtn);
+
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerview_id_2);
 
         /*
         ArrayList<BloodDonorModel>list = new ArrayList<>();
@@ -65,7 +73,7 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
          */
         ArrayList<BloodDonorModel> list = helper.getBloodDonors();
 
-        BloodDonorAdapter adapter = new BloodDonorAdapter(list,this);
+        BloodDonorAdapter adapter = new BloodDonorAdapter(list, this);
         recyclerView.setAdapter(adapter);
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -74,18 +82,18 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bloodGrpSet = "A+ve";
                 ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("A+ve");
 
-                if(lst.size() == 0){
+                if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    BloodDonorAdapter adapter = new BloodDonorAdapter(lst,DisplayBloodDonorsActivity.this);
+                    BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
                     recyclerView.setAdapter(adapter);
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
                     recyclerView.setLayoutManager(linearLayoutManager);
-                }
+
 
             }
         });
@@ -93,18 +101,18 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bloodGrpSet = "B+ve";
                 ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("B+ve");
 
-                if(lst.size() == 0){
+                if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    BloodDonorAdapter adapter = new BloodDonorAdapter(lst,DisplayBloodDonorsActivity.this);
+                    BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
                     recyclerView.setAdapter(adapter);
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
                     recyclerView.setLayoutManager(linearLayoutManager);
-                }
+
 
             }
         });
@@ -112,128 +120,152 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bloodGrpSet = "O+ve";
                 ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("O+ve");
 
-                if(lst.size() == 0){
+                if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    BloodDonorAdapter adapter = new BloodDonorAdapter(lst,DisplayBloodDonorsActivity.this);
+                    BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
                     recyclerView.setAdapter(adapter);
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
                     recyclerView.setLayoutManager(linearLayoutManager);
-                }
             }
         });
 
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bloodGrpSet = "AB+ve";
                 ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("AB+ve");
 
-                if(lst.size() == 0){
+                if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    BloodDonorAdapter adapter = new BloodDonorAdapter(lst,DisplayBloodDonorsActivity.this);
+                    BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
                     recyclerView.setAdapter(adapter);
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
                     recyclerView.setLayoutManager(linearLayoutManager);
-                }
+
             }
         });
 
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bloodGrpSet = "A-ve";
                 ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("A-ve");
 
-                if(lst.size() == 0){
+                if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    BloodDonorAdapter adapter = new BloodDonorAdapter(lst,DisplayBloodDonorsActivity.this);
+                    BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
                     recyclerView.setAdapter(adapter);
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
                     recyclerView.setLayoutManager(linearLayoutManager);
-                }
+
             }
         });
 
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bloodGrpSet = "B-ve";
                 ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("B-ve");
 
-                if(lst.size() == 0){
+                if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    BloodDonorAdapter adapter = new BloodDonorAdapter(lst,DisplayBloodDonorsActivity.this);
+                    BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
                     recyclerView.setAdapter(adapter);
 
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
                     recyclerView.setLayoutManager(linearLayoutManager);
-                }
+
             }
         });
 
         btn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bloodGrpSet = "O-ve";
                 ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("O-ve");
 
-                if(lst.size() == 0){
+                if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    BloodDonorAdapter adapter = new BloodDonorAdapter(lst,DisplayBloodDonorsActivity.this);
-                    recyclerView.setAdapter(adapter);
+                BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
+                recyclerView.setAdapter(adapter);
 
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
-                    recyclerView.setLayoutManager(linearLayoutManager);
-                }
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
+                recyclerView.setLayoutManager(linearLayoutManager);
+
             }
         });
 
         btn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bloodGrpSet = "AB-ve";
                 ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("AB-ve");
 
-                if(lst.size() == 0){
+                if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    BloodDonorAdapter adapter = new BloodDonorAdapter(lst,DisplayBloodDonorsActivity.this);
-                    recyclerView.setAdapter(adapter);
+                BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
+                recyclerView.setAdapter(adapter);
 
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
-                    recyclerView.setLayoutManager(linearLayoutManager);
-                }
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
+                recyclerView.setLayoutManager(linearLayoutManager);
+
             }
         });
 
         display_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                bloodGrpSet = "";
                 ArrayList<BloodDonorModel> lst = helper.getBloodDonors();
 
-                if(lst.size() == 0){
+                if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
-                else{
-                    BloodDonorAdapter adapter = new BloodDonorAdapter(lst,DisplayBloodDonorsActivity.this);
-                    recyclerView.setAdapter(adapter);
+                BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
+                recyclerView.setAdapter(adapter);
 
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
-                    recyclerView.setLayoutManager(linearLayoutManager);
-                }
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
+                recyclerView.setLayoutManager(linearLayoutManager);
+
 
             }
+        });
+
+        btn_filterCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String city = et_filterCity.getText().toString().toLowerCase();
+                ArrayList<BloodDonorModel> lst;
+                if(bloodGrpSet.isEmpty()){
+                    lst = helper.getBloodDonorByCity(city);
+                }
+                else{
+                    lst = helper.getBloodDonorByCity(city,bloodGrpSet);
+                }
+
+                if (lst.size() == 0) {
+                    Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
+                }
+                BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
+                recyclerView.setAdapter(adapter);
+
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
+                recyclerView.setLayoutManager(linearLayoutManager);
+
+            }
+
         });
     }
 }

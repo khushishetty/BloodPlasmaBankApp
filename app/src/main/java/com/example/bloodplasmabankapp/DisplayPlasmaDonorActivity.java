@@ -5,6 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.SearchView;
 
 import com.example.bloodplasmabankapp.Adapters.PlasmaDonorAdapter;
 import com.example.bloodplasmabankapp.DB.DB_Plasma_Helper;
@@ -16,11 +20,18 @@ public class DisplayPlasmaDonorActivity extends AppCompatActivity {
 
 
     RecyclerView recyclerView;
+    EditText searchCity;
+    Button searchCityBtn,undoSearchBtn;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_plasma_donor);
         recyclerView = (RecyclerView)findViewById(R.id.recyclerview_id_2);
+        searchCity = (EditText) findViewById(R.id.filterByCityPlasma);
+        searchCityBtn = (Button)findViewById(R.id.filterByCityPlasmaBtn);
+        undoSearchBtn = (Button)findViewById(R.id.defilterCityBtn);
 
         //ArrayList<PlasmaDonorModel> list = new ArrayList<>();
         //list.add(new PlasmaDonorModel("Khushi","Ove","Bangalore"));
@@ -48,6 +59,33 @@ public class DisplayPlasmaDonorActivity extends AppCompatActivity {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
+
+        searchCityBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String city = searchCity.getText().toString().toLowerCase();
+                ArrayList<PlasmaDonorModel> list = helper.getPlasmaDonorByCity(city);
+
+                PlasmaDonorAdapter adapter = new PlasmaDonorAdapter(list,DisplayPlasmaDonorActivity.this);
+                recyclerView.setAdapter(adapter);
+
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayPlasmaDonorActivity.this);
+                recyclerView.setLayoutManager(linearLayoutManager);
+            }
+        });
+        undoSearchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<PlasmaDonorModel> list = helper.getPlasmaDonors();
+
+                PlasmaDonorAdapter adapter = new PlasmaDonorAdapter(list,DisplayPlasmaDonorActivity.this);
+                recyclerView.setAdapter(adapter);
+
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayPlasmaDonorActivity.this);
+                recyclerView.setLayoutManager(linearLayoutManager);
+            }
+        });
+
     }
 
 }

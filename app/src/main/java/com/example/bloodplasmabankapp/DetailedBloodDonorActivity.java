@@ -131,6 +131,27 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
                 }
             });
 
+            address.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Toast.makeText(DetailedBloodDonorActivity.this, address.getText(), Toast.LENGTH_SHORT).show();
+                    String source = "Alangar,Moodbidri";
+                    String destination = address.getText().toString();
+                    try{
+                        Uri uri = Uri.parse("https://www.google.co.in/maps/dir/"+source+"/"+destination);
+                        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                        intent.setPackage("com.google.android.apps.maps");
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }catch(Exception e){
+                        Toast.makeText(DetailedBloodDonorActivity.this, "Error", Toast.LENGTH_SHORT).show();
+
+                    }
+
+
+                }
+            });
+
         }
 
         else if(getIntent().getIntExtra("type",0)==2){
@@ -218,7 +239,29 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
                             }).show();
                 }
             });
+
+            address.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //Toast.makeText(DetailedBloodDonorActivity.this, address.getText(), Toast.LENGTH_SHORT).show();
+                    String source = "Alangar,Moodbidri";
+                    String destination = address.getText().toString();
+                    try{
+                        Uri uri = Uri.parse("https://www.google.co.in/maps/dir/"+source+"/"+destination);
+                        Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                        intent.setPackage("com.google.android.apps.maps");
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }catch(Exception e){
+                        Toast.makeText(DetailedBloodDonorActivity.this, "Error", Toast.LENGTH_SHORT).show();
+
+                    }
+
+
+                }
+            });
         }
+
 
 
 

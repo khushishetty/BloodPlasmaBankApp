@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.bloodplasmabankapp.Adapters.PlasmaDonorAdapter;
 import com.example.bloodplasmabankapp.DB.DB_Plasma_Helper;
@@ -64,13 +65,24 @@ public class DisplayPlasmaDonorActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String city = searchCity.getText().toString().toLowerCase();
-                ArrayList<PlasmaDonorModel> list = helper.getPlasmaDonorByCity(city);
+                if(city.equals("")){
+                    Toast.makeText(DisplayPlasmaDonorActivity.this, "Enter a city", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    ArrayList<PlasmaDonorModel> list = helper.getPlasmaDonorByCity(city);
+                    if(list.size() == 0){
+                        Toast.makeText(DisplayPlasmaDonorActivity.this, "No donors found", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        PlasmaDonorAdapter adapter = new PlasmaDonorAdapter(list,DisplayPlasmaDonorActivity.this);
+                        recyclerView.setAdapter(adapter);
 
-                PlasmaDonorAdapter adapter = new PlasmaDonorAdapter(list,DisplayPlasmaDonorActivity.this);
-                recyclerView.setAdapter(adapter);
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayPlasmaDonorActivity.this);
+                        recyclerView.setLayoutManager(linearLayoutManager);
+                    }
 
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayPlasmaDonorActivity.this);
-                recyclerView.setLayoutManager(linearLayoutManager);
+                }
+
             }
         });
         undoSearchBtn.setOnClickListener(new View.OnClickListener() {

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         c1 = (CardView)findViewById(R.id.bec_blood_donor_id);
         c2 = (CardView)findViewById(R.id.search_blood_donor_id);
         c3  =(CardView)findViewById(R.id.search_plasma_donor_id);
+        c4 = (CardView)findViewById(R.id.serach_nearby_hospitals);
+
         c1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +46,24 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,DisplayPlasmaDonorActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        c4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(DetailedBloodDonorActivity.this, address.getText(), Toast.LENGTH_SHORT).show();
+                String source = "Alangar,Moodbidri";
+                try{
+                    Uri uri = Uri.parse("https://www.google.co.in/maps/search/Blood+Bank/"+source);
+                    Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                    intent.setPackage("com.google.android.apps.maps");
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }catch(Exception e){
+                    Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
 

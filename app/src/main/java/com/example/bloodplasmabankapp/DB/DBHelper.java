@@ -126,7 +126,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<BloodDonorModel> getBloodDonorByCity(String city){
         ArrayList<BloodDonorModel> lst = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("select name,bloodgroup,address,phoneno,emailaddress,ailments,gender from donors where lower(address) LIKE '"+ city+"'",null);
+        Cursor cursor = database.rawQuery("select name,bloodgroup,address,phoneno,emailaddress,ailments,gender from donors where lower(address) LIKE '%"+ city+"%'",null);
         if(cursor.moveToFirst()){
             do{
                 BloodDonorModel model = new BloodDonorModel();
@@ -148,7 +148,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<BloodDonorModel> getBloodDonorByCity(String city, String bg){
         ArrayList<BloodDonorModel> lst = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("select name,bloodgroup,address,phoneno,emailaddress,ailments,gender from donors where bloodgroup = '"+bg+"' and lower(address) LIKE '"+ city+"'",null);
+        Cursor cursor = database.rawQuery("select name,bloodgroup,address,phoneno,emailaddress,ailments,gender from donors where bloodgroup = '"+bg+"' and lower(address) LIKE '%"+ city+"%'",null);
         if(cursor.moveToFirst()){
             do{
                 BloodDonorModel model = new BloodDonorModel();

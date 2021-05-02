@@ -27,7 +27,7 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
     EditText et_filterCity;
     Button btn_filterCity;
     RecyclerView recyclerView;
-    String bloodGrpSet = "";
+    String bloodGrpSet = "",bloodGrpPlace="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +57,8 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
          */
 
         DBHelper helper = new DBHelper(this);
-        /*
-
+         /*
+        helper.insertOrder("Padma","9972920804","O-ve","padma@gmail.com","Uliya, Alangar, Marpady, Moodbidri","None","Female");
         helper.insertOrder("Varun","5128456335","O-ve","maithili@gmail.com","Udupi","None","Female");
         helper.insertOrder("Sara","6514788115","O+ve","jay@gmail.com","Kerala","None","Female");
         helper.insertOrder("Laura","9745215112","A-ve","annie@gmail.com","Mangalore","None","Female");
@@ -83,8 +83,20 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bloodGrpSet = "A+ve";
-                ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("A+ve");
+                ArrayList<BloodDonorModel> lst;
+                if(bloodGrpPlace.isEmpty()){
+                    lst = helper.getBloodDonorsGroupWise("A+ve");
+                    lst.addAll(helper.getBloodDonorsGroupWise("A-ve"));
+                    lst.addAll(helper.getBloodDonorsGroupWise("O+ve"));
+                    lst.addAll(helper.getBloodDonorsGroupWise("O-ve"));
 
+                }
+                else{
+                    lst = helper.getBloodDonorByCity(bloodGrpPlace,"A+ve");
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"A-ve"));
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"O+ve"));
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"O-ve"));
+                }
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
@@ -102,8 +114,20 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bloodGrpSet = "B+ve";
-                ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("B+ve");
+                ArrayList<BloodDonorModel> lst;
+                if(bloodGrpPlace.isEmpty()){
+                    lst = helper.getBloodDonorsGroupWise("B+ve");
+                    lst.addAll(helper.getBloodDonorsGroupWise("B-ve"));
+                    lst.addAll(helper.getBloodDonorsGroupWise("O+ve"));
+                    lst.addAll(helper.getBloodDonorsGroupWise("O-ve"));
 
+                }
+                else{
+                    lst = helper.getBloodDonorByCity(bloodGrpPlace,"B+ve");
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"B-ve"));
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"O+ve"));
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"O-ve"));
+                }
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
@@ -121,8 +145,16 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bloodGrpSet = "O+ve";
-                ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("O+ve");
+                ArrayList<BloodDonorModel> lst;
+                if(bloodGrpPlace.isEmpty()){
+                    lst = helper.getBloodDonorsGroupWise("O+ve");
+                    lst.addAll(helper.getBloodDonorsGroupWise("O-ve"));
+                }
+                else{
+                    lst = helper.getBloodDonorByCity(bloodGrpPlace,"O+ve");
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"O-ve"));
 
+                }
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
@@ -138,8 +170,28 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bloodGrpSet = "AB+ve";
-                ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("AB+ve");
+                ArrayList<BloodDonorModel> lst;
+                if(bloodGrpPlace.isEmpty()){
+                    lst = helper.getBloodDonorsGroupWise("AB+ve");
+                    lst.addAll(helper.getBloodDonorsGroupWise("A+ve"));
+                    lst.addAll(helper.getBloodDonorsGroupWise("B+ve"));
+                    lst.addAll(helper.getBloodDonorsGroupWise("O+ve"));
+                    lst.addAll(helper.getBloodDonorsGroupWise("AB-ve"));
+                    lst.addAll(helper.getBloodDonorsGroupWise("A-ve"));
+                    lst.addAll(helper.getBloodDonorsGroupWise("B-ve"));
+                    lst.addAll(helper.getBloodDonorsGroupWise("O-ve"));
+                }
+                else{
+                    lst = helper.getBloodDonorByCity(bloodGrpPlace,"AB+ve");
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"A+ve"));
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"B+ve"));
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"O+ve"));
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"AB-ve"));
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"A-ve"));
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"B-ve"));
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"O-ve"));
 
+                }
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
@@ -156,16 +208,23 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bloodGrpSet = "A-ve";
-                ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("A-ve");
-
+                ArrayList<BloodDonorModel> lst;
+                if(bloodGrpPlace.isEmpty()){
+                    lst = helper.getBloodDonorsGroupWise("A-ve");
+                    lst.addAll(helper.getBloodDonorsGroupWise("O-ve"));
+                }
+                else{
+                    lst = helper.getBloodDonorByCity(bloodGrpPlace,"A-ve");
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"O-ve"));
+                }
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
-                    BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
-                    recyclerView.setAdapter(adapter);
+                BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
+                recyclerView.setAdapter(adapter);
 
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
-                    recyclerView.setLayoutManager(linearLayoutManager);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
+                recyclerView.setLayoutManager(linearLayoutManager);
 
             }
         });
@@ -174,16 +233,24 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bloodGrpSet = "B-ve";
-                ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("B-ve");
+                ArrayList<BloodDonorModel> lst;
+                if(bloodGrpPlace.isEmpty()){
+                    lst = helper.getBloodDonorsGroupWise("B-ve");
+                    lst.addAll(helper.getBloodDonorsGroupWise("O-ve"));
+                }
+                else{
+                    lst = helper.getBloodDonorByCity(bloodGrpPlace,"B-ve");
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"O-ve"));
 
+                }
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
-                    BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
-                    recyclerView.setAdapter(adapter);
+                BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
+                recyclerView.setAdapter(adapter);
 
-                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
-                    recyclerView.setLayoutManager(linearLayoutManager);
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
+                recyclerView.setLayoutManager(linearLayoutManager);
 
             }
         });
@@ -192,8 +259,14 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bloodGrpSet = "O-ve";
-                ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("O-ve");
+                ArrayList<BloodDonorModel> lst;
+                if(bloodGrpPlace.isEmpty()){
+                    lst = helper.getBloodDonorsGroupWise("O-ve");
 
+                }
+                else{
+                    lst = helper.getBloodDonorByCity(bloodGrpPlace,"O-ve");
+                }
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
@@ -210,8 +283,20 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bloodGrpSet = "AB-ve";
-                ArrayList<BloodDonorModel> lst = helper.getBloodDonorsGroupWise("AB-ve");
+                ArrayList<BloodDonorModel> lst;
+                if(bloodGrpPlace.isEmpty()){
+                    lst = helper.getBloodDonorsGroupWise("AB-ve");
+                    lst.addAll(helper.getBloodDonorsGroupWise("A-ve"));
+                    lst.addAll(helper.getBloodDonorsGroupWise("B-ve"));
+                    lst.addAll(helper.getBloodDonorsGroupWise("O-ve"));
+                }
+                else{
+                    lst = helper.getBloodDonorByCity(bloodGrpPlace,"AB-ve");
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"A-ve"));
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"B-ve"));
+                    lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"O-ve"));
 
+                }
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
@@ -228,6 +313,7 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bloodGrpSet = "";
+                bloodGrpPlace = "";
                 ArrayList<BloodDonorModel> lst = helper.getBloodDonors();
 
                 if (lst.size() == 0) {
@@ -247,12 +333,60 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String city = et_filterCity.getText().toString().toLowerCase();
+                bloodGrpPlace = city;
                 ArrayList<BloodDonorModel> lst;
                 if(bloodGrpSet.isEmpty()){
                     lst = helper.getBloodDonorByCity(city);
                 }
                 else{
-                    lst = helper.getBloodDonorByCity(city,bloodGrpSet);
+                    switch (bloodGrpSet){
+                        case "A+ve":
+                            lst = helper.getBloodDonorByCity(city,"A+ve");
+                            lst.addAll(helper.getBloodDonorByCity(city,"A-ve"));
+                            lst.addAll(helper.getBloodDonorByCity(city,"O+ve"));
+                            lst.addAll(helper.getBloodDonorByCity(city,"O-ve"));
+                            break;
+                        case "B+ve":
+                            lst = helper.getBloodDonorByCity(city,"B+ve");
+                            lst.addAll(helper.getBloodDonorByCity(city,"B-ve"));
+                            lst.addAll(helper.getBloodDonorByCity(city,"O+ve"));
+                            lst.addAll(helper.getBloodDonorByCity(city,"O-ve"));
+                            break;
+                        case "O+ve":
+
+                            lst = helper.getBloodDonorByCity(city,"O+ve");
+                            lst.addAll(helper.getBloodDonorByCity(city,"O-ve"));
+                            break;
+                        case "AB+ve":
+                            lst = helper.getBloodDonorByCity(city,"AB+ve");
+                            lst.addAll(helper.getBloodDonorByCity(city,"A+ve"));
+                            lst.addAll(helper.getBloodDonorByCity(city,"B+ve"));
+                            lst.addAll(helper.getBloodDonorByCity(city,"O+ve"));
+                            lst.addAll(helper.getBloodDonorByCity(city,"AB-ve"));
+                            lst.addAll(helper.getBloodDonorByCity(city,"A-ve"));
+                            lst.addAll(helper.getBloodDonorByCity(city,"B-ve"));
+                            lst.addAll(helper.getBloodDonorByCity(city,"O-ve"));
+                            break;
+                        case "A-ve":
+                            lst = helper.getBloodDonorByCity(city,"A-ve");
+                            lst.addAll(helper.getBloodDonorByCity(city,"O-ve"));
+                            break;
+                        case "B-ve":
+                            lst = helper.getBloodDonorByCity(city,"B-ve");
+                            lst.addAll(helper.getBloodDonorByCity(city,"O-ve"));
+                            break;
+                        case "O-ve":
+                            lst = helper.getBloodDonorByCity(city,"O-ve");
+                            break;
+                        case "AB-ve":
+                            lst = helper.getBloodDonorByCity(city,"AB-ve");
+                            lst.addAll(helper.getBloodDonorByCity(city,"A-ve"));
+                            lst.addAll(helper.getBloodDonorByCity(city,"B-ve"));
+                            lst.addAll(helper.getBloodDonorByCity(city,"O-ve"));
+                            break;
+                        default:
+                            lst = helper.getBloodDonors();
+                    }
                 }
 
                 if (lst.size() == 0) {

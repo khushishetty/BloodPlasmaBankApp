@@ -105,7 +105,7 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
     {
         ArrayList<PlasmaDonorModel> donors = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress,ailments,gender from plasma_donor where lower(address) LIKE '"+ city+"'",null);
+        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress,ailments,gender from plasma_donor where lower(address) LIKE '%"+ city+"%'",null);
         if(cursor.moveToFirst()){
             do{
                 PlasmaDonorModel model = new PlasmaDonorModel();

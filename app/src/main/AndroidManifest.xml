@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/appicon"
         android:supportsRtl="true"
         android:theme="@style/Theme.BloodPlasmaBankApp">
+        <activity android:name=".RequestActivity"></activity>
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,10 +20,12 @@
         <activity android:name=".DetailedBloodDonorActivity" />
         <activity android:name=".DisplayPlasmaDonorActivity" />
         <activity android:name=".DisplayBloodDonorsActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
-    <uses-permission android:name="android.permission.SEND_SMS" />
-
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-permission android:name="android.permission.SEND_SMS" />
 
 </manifest>

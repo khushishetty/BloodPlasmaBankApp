@@ -1,12 +1,19 @@
 package com.example.bloodplasmabankapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,8 +26,15 @@ import android.widget.Toast;
 
 import com.example.bloodplasmabankapp.DB.DBHelper;
 import com.example.bloodplasmabankapp.DB.DB_Plasma_Helper;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import org.w3c.dom.Text;
+
+import java.util.List;
+import java.util.Locale;
 
 public class DetailedBloodDonorActivity extends AppCompatActivity {
     TextView name,address,bloodgrp,gender,ailments;
@@ -135,10 +149,41 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     //Toast.makeText(DetailedBloodDonorActivity.this, address.getText(), Toast.LENGTH_SHORT).show();
-                    String source = "Alangar,Moodbidri";
+                    final String[] source = new String[1];
+
+                    FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(DetailedBloodDonorActivity.this);
+                    if(ActivityCompat.checkSelfPermission(DetailedBloodDonorActivity.this,
+                            Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
+                            fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Location> task) {
+                                    Location location = task.getResult();
+                                    if(location!=null){
+                                        Toast.makeText(DetailedBloodDonorActivity.this, "Current Loc "+location, Toast.LENGTH_SHORT).show();
+                                        try{
+                                            Geocoder geocoder = new Geocoder(DetailedBloodDonorActivity.this, Locale.getDefault());
+                                            List<Address> addresses = geocoder.getFromLocation(
+                                                    location.getLatitude(),location.getLongitude(),1
+                                            );
+                                            source[0] = addresses.get(0).getAddressLine(0);
+                                        }
+                                        catch (Exception e){
+
+                                        }
+                                    }
+                                }
+                            });
+                    }
+                    else{
+                        ActivityCompat.requestPermissions(DetailedBloodDonorActivity.this
+                        ,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},44);
+                    }
+
+
+
                     String destination = address.getText().toString();
                     try{
-                        Uri uri = Uri.parse("https://www.google.co.in/maps/dir/"+source+"/"+destination);
+                        Uri uri = Uri.parse("https://www.google.co.in/maps/dir/"+ source[0] +"/"+destination);
                         Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         intent.setPackage("com.google.android.apps.maps");
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

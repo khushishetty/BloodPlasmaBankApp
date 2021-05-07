@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">BloodPlasmaBankApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_request_page">RequestPageActivity</string>
+    <string name="tab_text_1">Blood Requests</string>
+    <string name="tab_text_2">Plasma Requests</string>
+    <string name="title_activity_request">RequestActivity</string>
 </resources>

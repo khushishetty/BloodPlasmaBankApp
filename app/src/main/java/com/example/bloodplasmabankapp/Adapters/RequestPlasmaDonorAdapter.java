@@ -5,74 +5,53 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloodplasmabankapp.Models.RequestBloodDonorModel;
+import com.example.bloodplasmabankapp.Models.RequestPlasmaDonorModel;
 import com.example.bloodplasmabankapp.R;
 
 import java.util.ArrayList;
 
-public class RequestBloodDonorAdapter extends RecyclerView.Adapter<RequestBloodDonorAdapter.viewHolder> {
+public class RequestPlasmaDonorAdapter extends RecyclerView.Adapter<RequestPlasmaDonorAdapter.viewHolder> {
 
-    ArrayList<RequestBloodDonorModel> list;
+    ArrayList<RequestPlasmaDonorModel> list;
     Context context;
 
-    public RequestBloodDonorAdapter() {
+    public RequestPlasmaDonorAdapter() {
     }
 
-    public RequestBloodDonorAdapter(ArrayList<RequestBloodDonorModel> list, Context context) {
+    public RequestPlasmaDonorAdapter(ArrayList<RequestPlasmaDonorModel> list, Context context) {
         this.list = list;
         this.context = context;
     }
-
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.sample_recycler_view_3,parent,false);
+
         return new viewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        final RequestBloodDonorModel model = list.get(position);
+        final RequestPlasmaDonorModel model = list.get(position);
         holder.r_name.setText(model.getName());
         holder.r_bloodgrp.setText(model.getBloodgrp());
         holder.r_address.setText(model.getAddress());
         holder.r_time.setText(model.getTime());
         holder.r_type.setText(model.getType());
         String ph = model.getPhone().toString();
-        holder.call.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                new AlertDialog.Builder(context).setIcon(R.drawable.call_icon)
-                        .setTitle("Call")
-                        .setMessage("Are you sure You want to call?")
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Intent intent = new Intent(Intent.ACTION_CALL);
-                                intent.setData(Uri.parse("tel:"+ph));
-                                context.startActivity(intent);
-                            }
-                        })
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        }).show();
-
-            }
-        });
-
+        
         holder.message.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,12 +106,38 @@ public class RequestBloodDonorAdapter extends RecyclerView.Adapter<RequestBloodD
 
             }
         });
+        holder.call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new AlertDialog.Builder(context).setIcon(R.drawable.call_icon)
+                        .setTitle("Call")
+                        .setMessage("Are you sure You want to call?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(Intent.ACTION_CALL);
+                                intent.setData(Uri.parse("tel:"+ph));
+                                context.startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).show();
+
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return list.size();
     }
+
+
 
     public  class viewHolder extends RecyclerView.ViewHolder{
 

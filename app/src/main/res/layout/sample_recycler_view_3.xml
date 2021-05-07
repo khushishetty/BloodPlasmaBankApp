@@ -52,19 +52,33 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
-                        android:text="A+ve"
+                        android:text="A+ve "
                         android:textColor="#FF0000"
                         android:textSize="14sp"
                         android:textStyle="bold|italic" />
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" " />
+
+                    <TextView
+                        android:id="@+id/requestTypeid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-black"
-                        android:text=" blood donor!"
+                        android:text="blood"
+                        android:textColor="#000000"
+                        android:textStyle="italic" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:text=" donor!"
                         android:textColor="#000000"
                         android:textSize="14sp" />
+
                 </LinearLayout>
 
                 <LinearLayout
@@ -117,15 +131,28 @@
                         android:textStyle="italic" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/request_city_id"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="City"
-                    android:textColor="#000000"
-                    android:textSize="14sp"
-                    android:textStyle="bold|italic" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:text="From : "
+                        android:textColor="#000000" />
+
+                    <TextView
+                        android:id="@+id/request_city_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="City"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:textStyle="bold|italic" />
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="143dp"

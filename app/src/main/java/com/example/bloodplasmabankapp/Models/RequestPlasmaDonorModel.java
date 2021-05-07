@@ -1,20 +1,21 @@
 package com.example.bloodplasmabankapp.Models;
 
-public class RequestBloodDonorModel {
+public class RequestPlasmaDonorModel {
     String name, bloodgrp, address, date, phone, email, time,type;
 
-    public RequestBloodDonorModel() {
+
+    public RequestPlasmaDonorModel() {
     }
 
-    public RequestBloodDonorModel(String name, String blooggrp, String address, String date, String phone, String email, String time) {
+    public RequestPlasmaDonorModel(String name, String bloodgrp, String address, String date, String phone, String email, String time) {
         this.name = name;
-        this.bloodgrp = blooggrp;
+        this.bloodgrp = bloodgrp;
         this.address = address;
         this.date = date;
         this.phone = phone;
         this.email = email;
         this.time = time;
-        this.type = "blood";
+        this.type = "plasma";
     }
 
     public String getName() {
@@ -29,8 +30,8 @@ public class RequestBloodDonorModel {
         return bloodgrp;
     }
 
-    public void setBloodgrp(String blooggrp) {
-        this.bloodgrp = blooggrp;
+    public void setBloodgrp(String bloodgrp) {
+        this.bloodgrp = bloodgrp;
     }
 
     public String getAddress() {

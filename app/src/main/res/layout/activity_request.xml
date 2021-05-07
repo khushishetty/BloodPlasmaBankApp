@@ -11,10 +11,11 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tablayoutid"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:elevation="12dp"
-        app:tabIndicatorColor="#FFFFFF"
-        app:tabSelectedTextColor="#FF0000">
+        app:tabIndicatorColor="#000000"
+        app:tabSelectedTextColor="#FF0000"
+        app:tabRippleColor="#D3D3D3">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -31,5 +32,7 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPagerid"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:background="#e1341e"
+        android:paddingTop="12dp" />
 </LinearLayout>

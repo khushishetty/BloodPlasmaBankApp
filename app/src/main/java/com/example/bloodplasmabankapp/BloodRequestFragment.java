@@ -35,7 +35,7 @@ public class BloodRequestFragment extends Fragment {
 
         Db_Helper_Requests helper = new Db_Helper_Requests(container.getContext());
 
-        //boolean b = helper.insertRequest("Padma","2345678913","B+ve","padma@gmail.com","Mumbai","blood","Yes");
+        //boolean b = helper.insertRequest("Khushi","8105199132","B+ve","khushishetty274@@gmail.com","Mumbai","blood","Yes","khushi");
         //Toast.makeText(container.getContext(), "Status"+b, Toast.LENGTH_SHORT).show();
         ArrayList<RequestBloodDonorModel> list = helper.getBloodRequests();
 

@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView c1,c2,c3,c4;
+    CardView c1,c2,c3,c4,c5,c6;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +22,14 @@ public class MainActivity extends AppCompatActivity {
         c2 = (CardView)findViewById(R.id.search_blood_donor_id);
         c3  =(CardView)findViewById(R.id.search_plasma_donor_id);
         c4 = (CardView)findViewById(R.id.serach_nearby_hospitals);
+        c5 = (CardView)findViewById(R.id.view_requests_id);
+        c6 = (CardView)findViewById(R.id.requestid);
 
         c1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(MainActivity.this, "Become A Donor", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(MainActivity.this, RequestActivity.class);
-                startActivity(intent);
+                Toast.makeText(MainActivity.this, "Become A Donor", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -68,5 +69,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        c5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RequestActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        c6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, RequestLoginActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -6,4 +6,8 @@
     <string name="tab_text_1">Blood Requests</string>
     <string name="tab_text_2">Plasma Requests</string>
     <string name="title_activity_request">RequestActivity</string>
+    <string-array name="type_option">
+        <item>Blood</item>
+        <item>Plasma</item>
+    </string-array>
 </resources>

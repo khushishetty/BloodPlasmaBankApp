@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class Db_Helper_Requests extends SQLiteOpenHelper {
 
-    final static String DBname = "RequestsDB.db";
+    final static String DBname = "Requests2DB.db";
     final static int DBVersion = 1;
 
     public Db_Helper_Requests(@Nullable Context context) {
@@ -36,7 +36,8 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
                         "emailaddress text,"+
                         "address text," +
                         "b_or_p text," +
-                        "urgent text)"
+                        "urgent text," +
+                        "password text)"
         );
     }
 
@@ -47,7 +48,7 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertRequest(String name,String phno,String bgp,String email,String address,String borp,String urgent) {
+    public boolean insertRequest(String name,String phno,String bgp,String email,String address,String borp,String urgent,String pass) {
         SQLiteDatabase database = getReadableDatabase();
         ContentValues values = new ContentValues();
         values.put("phoneno", phno);
@@ -57,7 +58,7 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
         values.put("address", address);
         values.put("b_or_p", borp);
         values.put("urgent", urgent);
-
+        values.put("password",pass);
         SQLiteDatabase d = this.getWritableDatabase();
         Cursor cursor = d.rawQuery("Select * from Request where phoneno= '" + phno + "' and b_or_p='"+ borp+"'", null);
         if (!cursor.moveToFirst()) {
@@ -113,4 +114,27 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
         database.close();
         return requests;
     }
+
+    public int getBloodRequestStatusForLogin(String phno, String password, String choice){
+
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("select phoneno  from Request where phoneno = '"+phno+"' and b_or_p = '"+choice+"'",null);
+        if(cursor.moveToFirst()){
+            cursor = database.rawQuery("select * from Request where phoneno = '"+phno+"' and password = '"+password+"'  and b_or_p = '"+choice+"'",null);
+            if(cursor.moveToFirst())
+            {
+                return 1;
+            }
+            else{
+                return 2;
+            }
+
+
+        }
+        else{
+            return 3;
+        }
+
+    }
+
 }

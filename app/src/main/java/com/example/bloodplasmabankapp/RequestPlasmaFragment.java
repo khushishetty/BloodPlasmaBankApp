@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.bloodplasmabankapp.Adapters.RequestBloodDonorAdapter;
 import com.example.bloodplasmabankapp.Adapters.RequestPlasmaDonorAdapter;
+import com.example.bloodplasmabankapp.DB.Db_Helper_Requests;
 import com.example.bloodplasmabankapp.Models.RequestBloodDonorModel;
 import com.example.bloodplasmabankapp.Models.RequestPlasmaDonorModel;
 
@@ -30,22 +31,9 @@ public class RequestPlasmaFragment extends Fragment {
 
         recyclerView = (RecyclerView)view.findViewById(R.id.request_plasma_rv);
 
-        ArrayList<RequestPlasmaDonorModel> list = new ArrayList<>();
-        list.add(new RequestPlasmaDonorModel("Khushi","B-ve","Bangalore","20/5/20","9886724699","khushi@gmail.com","12:00"));
-        list.add(new RequestPlasmaDonorModel("Jaya","O+ve","Bangalore","20/5/20","9886724699","khushi@gmail.com","12:30"));
-        list.add(new RequestPlasmaDonorModel("Khushi","A+ve","Mangalore","20/5/20","9886724699","khushi@gmail.com","11:23"));
-        list.add(new RequestPlasmaDonorModel("Khushi","B-ve","Bangalore","20/5/20","9886724699","khushi@gmail.com","12:00"));
-        list.add(new RequestPlasmaDonorModel("Jaya","O+ve","Bangalore","20/5/20","9886724699","khushi@gmail.com","12:30"));
-        list.add(new RequestPlasmaDonorModel("Khushi","A+ve","Mangalore","20/5/20","9886724699","khushi@gmail.com","11:23"));
-        list.add(new RequestPlasmaDonorModel("Khushi","B-ve","Bangalore","20/5/20","9886724699","khushi@gmail.com","12:00"));
-        list.add(new RequestPlasmaDonorModel("Jaya","O+ve","Bangalore","20/5/20","9886724699","khushi@gmail.com","12:30"));
-        list.add(new RequestPlasmaDonorModel("Khushi","A+ve","Mangalore","20/5/20","9886724699","khushi@gmail.com","11:23"));
-        list.add(new RequestPlasmaDonorModel("Khushi","B-ve","Bangalore","20/5/20","9886724699","khushi@gmail.com","12:00"));
-        list.add(new RequestPlasmaDonorModel("Jaya","O+ve","Bangalore","20/5/20","9886724699","khushi@gmail.com","12:30"));
-        list.add(new RequestPlasmaDonorModel("Khushi","A+ve","Mangalore","20/5/20","9886724699","khushi@gmail.com","11:23"));
-        list.add(new RequestPlasmaDonorModel("Khushi","B-ve","Bangalore","20/5/20","9886724699","khushi@gmail.com","12:00"));
-        list.add(new RequestPlasmaDonorModel("Jaya","O+ve","Bangalore","20/5/20","9886724699","khushi@gmail.com","12:30"));
-        list.add(new RequestPlasmaDonorModel("Khushi","A+ve","Mangalore","20/5/20","9886724699","khushi@gmail.com","11:23"));
+        Db_Helper_Requests helper = new Db_Helper_Requests(container.getContext());
+
+        ArrayList<RequestPlasmaDonorModel> list = helper.getPlasmaRequests();
 
         RequestPlasmaDonorAdapter adapter = new RequestPlasmaDonorAdapter(list,container.getContext());
         recyclerView.setAdapter(adapter);

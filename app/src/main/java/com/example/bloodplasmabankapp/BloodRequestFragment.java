@@ -10,8 +10,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.bloodplasmabankapp.Adapters.RequestBloodDonorAdapter;
+import com.example.bloodplasmabankapp.DB.Db_Helper_Requests;
 import com.example.bloodplasmabankapp.Models.RequestBloodDonorModel;
 
 import java.util.ArrayList;
@@ -31,10 +33,11 @@ public class BloodRequestFragment extends Fragment {
 
         recyclerView = (RecyclerView)view.findViewById(R.id.request_page_recycler_view);
 
-        ArrayList<RequestBloodDonorModel>list = new ArrayList<>();
-        list.add(new RequestBloodDonorModel("Khushi","B-ve","Bangalore","20/5/20","9886724699","khushi@gmail.com","12:00"));
-        list.add(new RequestBloodDonorModel("Khushi","O+ve","Bangalore","20/5/20","9886724699","khushi@gmail.com","12:00"));
-        list.add(new RequestBloodDonorModel("Khushi","A+ve","Mangalore","20/5/20","9886724699","khushi@gmail.com","12:00"));
+        Db_Helper_Requests helper = new Db_Helper_Requests(container.getContext());
+
+        //boolean b = helper.insertRequest("Padma","2345678913","B+ve","padma@gmail.com","Mumbai","blood","Yes");
+        //Toast.makeText(container.getContext(), "Status"+b, Toast.LENGTH_SHORT).show();
+        ArrayList<RequestBloodDonorModel> list = helper.getBloodRequests();
 
         RequestBloodDonorAdapter adapter = new RequestBloodDonorAdapter(list,container.getContext());
         recyclerView.setAdapter(adapter);

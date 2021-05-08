@@ -84,7 +84,7 @@ public class RequestBloodDonorAdapter extends RecyclerView.Adapter<RequestBloodD
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"+ph));
-                                i.putExtra("sms_body","Plasma found");
+                                i.putExtra("sms_body","Blood found");
                                 context.startActivity(i);
                             }
                         })
@@ -114,7 +114,7 @@ public class RequestBloodDonorAdapter extends RecyclerView.Adapter<RequestBloodD
                                 i.setData(Uri.parse("mailto:"));
                                 i.setType("text/plain");
                                 i.putExtra(Intent.EXTRA_EMAIL, TO);
-                                i.putExtra(Intent.EXTRA_SUBJECT, "In response to the plasma request made.");
+                                i.putExtra(Intent.EXTRA_SUBJECT, "In response to the blood request made.");
                                 context.startActivity(i);
                             }
                         })

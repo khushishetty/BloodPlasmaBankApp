@@ -10,4 +10,15 @@
         <item>Blood</item>
         <item>Plasma</item>
     </string-array>
+
+    <string-array name="blood_grp_option">
+        <item>A+ve</item>
+        <item>B+ve</item>
+        <item>AB+ve</item>
+        <item>O+ve</item>
+        <item>A-ve</item>
+        <item>B-ve</item>
+        <item>AB-ve</item>
+        <item>O-ve</item>
+    </string-array>
 </resources>

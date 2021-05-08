@@ -78,7 +78,7 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
     public ArrayList<RequestBloodDonorModel> getBloodRequests(){
         ArrayList<RequestBloodDonorModel> requests = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress from Request where b_or_p = 'blood'",null);
+        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress from Request where b_or_p Like 'blood'",null);
         if(cursor.moveToFirst()){
             do{
                 RequestBloodDonorModel model = new RequestBloodDonorModel();
@@ -98,7 +98,7 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
     public ArrayList<RequestPlasmaDonorModel> getPlasmaRequests(){
         ArrayList<RequestPlasmaDonorModel> requests = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress from Request where b_or_p = 'plasma'",null);
+        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress from Request where b_or_p LIKE 'plasma'",null);
         if(cursor.moveToFirst()){
             do{
                 RequestPlasmaDonorModel model = new RequestPlasmaDonorModel();
@@ -118,9 +118,9 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
     public int getBloodRequestStatusForLogin(String phno, String password, String choice){
 
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("select phoneno  from Request where phoneno = '"+phno+"' and b_or_p = '"+choice+"'",null);
+        Cursor cursor = database.rawQuery("select phoneno  from Request where phoneno = '"+phno+"' and b_or_p like '"+choice+"'",null);
         if(cursor.moveToFirst()){
-            cursor = database.rawQuery("select * from Request where phoneno = '"+phno+"' and password = '"+password+"'  and b_or_p = '"+choice+"'",null);
+            cursor = database.rawQuery("select * from Request where phoneno = '"+phno+"' and password = '"+password+"'  and b_or_p like '"+choice+"'",null);
             if(cursor.moveToFirst())
             {
                 return 1;

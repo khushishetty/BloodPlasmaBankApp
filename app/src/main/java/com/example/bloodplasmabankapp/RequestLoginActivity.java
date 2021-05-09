@@ -12,7 +12,12 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.bloodplasmabankapp.DB.Db_Helper_Requests;
+
+import kotlin.text.Regex;
 
 public class RequestLoginActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -20,16 +25,24 @@ public class RequestLoginActivity extends AppCompatActivity implements AdapterVi
     EditText ph, password;
     String choice, phno, pass;
     Button btn;
+
+    AwesomeValidation validation;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_login);
+
+
 
         ph = (EditText)findViewById(R.id.req_login_phno);
         password = (EditText)findViewById(R.id.req_login_password);
         btn = (Button)findViewById(R.id.req_login_btn);
 
 
+        validation = new AwesomeValidation(ValidationStyle.BASIC);
+        validation.addValidation(ph, RegexTemplate.NOT_EMPTY, "PLEASE FILL THIS FIELD!!");
+        validation.addValidation(password, RegexTemplate.NOT_EMPTY, "PLEASE FILL THIS FIELD!!");
 
         spinner = (Spinner)findViewById(R.id.typespinner);
         ArrayAdapter<CharSequence>adapter = ArrayAdapter.createFromResource(this,R.array.type_option, android.R.layout.simple_spinner_item);
@@ -43,15 +56,14 @@ public class RequestLoginActivity extends AppCompatActivity implements AdapterVi
             public void onClick(View v) {
                 phno = ph.getText().toString();
                 pass = password.getText().toString();
-                if(phno.equals("") || pass.equals("")){
-                    Toast.makeText(RequestLoginActivity.this, "Please fill in all fields!!", Toast.LENGTH_SHORT).show();
-                }
-                else {
+
+                if(validation.validate()) {
                     Db_Helper_Requests helperRequests = new Db_Helper_Requests(getApplicationContext());
                     int k = helperRequests.getBloodRequestStatusForLogin(phno, pass, choice);
                     if (k == 1) {
                         Intent intent = new Intent(RequestLoginActivity.this, RequestModifyActivity.class);
-                        intent.putExtra("Phno", phno);
+                        intent.putExtra("phno", phno);
+                        intent.putExtra("type", choice);
                         startActivity(intent);
                     }
                     if (k == 2) {
@@ -72,6 +84,6 @@ public class RequestLoginActivity extends AppCompatActivity implements AdapterVi
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-
+        choice = "blood";
     }
 }

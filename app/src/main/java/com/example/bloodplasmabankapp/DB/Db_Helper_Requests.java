@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.strictmode.SqliteObjectLeakedViolation;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -137,4 +138,46 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
 
     }
 
+    public Cursor getRequestsByPhoneAndType(String ph, String type){
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("Select * from Request where phoneno= '"+ph+"' and b_or_p like '"+type+"'",null);
+        if(cursor!=null){
+            cursor.moveToFirst();
+        }
+        return cursor;
+
+    }
+    public boolean updateRequests(String name,String phno,String bgp,String email,String address,String borp,String urgent,String pass, int id){
+        SQLiteDatabase database = getReadableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("phoneno", phno);
+        values.put("name", name);
+        values.put("bloodgroup", bgp);
+        values.put("emailaddress", email);
+        values.put("address", address);
+        values.put("b_or_p", borp);
+        values.put("urgent", urgent);
+        values.put("password",pass);
+
+        SQLiteDatabase d= getWritableDatabase();
+        Cursor cursor = d.rawQuery("Select * from Request where phoneno= '"+phno+"' and b_or_p like '"+borp+"' and id != "+id,null);
+        if(cursor.moveToFirst()){
+            return false;
+        }
+        else{
+            long row = database.update("Request",values, "id = "+id,null);
+            if(row <=0){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+
+    }
+
+    public int deleteRequest(int id){
+        SQLiteDatabase database = this.getWritableDatabase();
+        return  database.delete("Request","id = "+id,null);
+    }
 }

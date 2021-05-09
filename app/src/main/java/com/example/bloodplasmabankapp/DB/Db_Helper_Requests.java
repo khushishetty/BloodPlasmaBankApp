@@ -79,7 +79,7 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
     public ArrayList<RequestBloodDonorModel> getBloodRequests(){
         ArrayList<RequestBloodDonorModel> requests = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress from Request where b_or_p Like 'blood'",null);
+        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress,urgent from Request where b_or_p Like 'blood'",null);
         if(cursor.moveToFirst()){
             do{
                 RequestBloodDonorModel model = new RequestBloodDonorModel();
@@ -88,6 +88,7 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
                 model.setBloodgrp(cursor.getString(2));
                 model.setPhone(cursor.getString(3));
                 model.setEmail(cursor.getString(4));
+                model.setUrgent(cursor.getString(5));
                 requests.add(model);
             }while(cursor.moveToNext());
         }
@@ -99,7 +100,7 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
     public ArrayList<RequestPlasmaDonorModel> getPlasmaRequests(){
         ArrayList<RequestPlasmaDonorModel> requests = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress from Request where b_or_p LIKE 'plasma'",null);
+        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress, urgent from Request where b_or_p LIKE 'plasma'",null);
         if(cursor.moveToFirst()){
             do{
                 RequestPlasmaDonorModel model = new RequestPlasmaDonorModel();
@@ -108,6 +109,7 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
                 model.setBloodgrp(cursor.getString(2));
                 model.setPhone(cursor.getString(3));
                 model.setEmail(cursor.getString(4));
+                model.setUrgent(cursor.getString(5));
                 requests.add(model);
             }while(cursor.moveToNext());
         }

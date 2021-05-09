@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +51,9 @@ public class RequestPlasmaDonorAdapter extends RecyclerView.Adapter<RequestPlasm
         holder.r_address.setText(model.getAddress());
         holder.r_time.setText(model.getTime());
         holder.r_type.setText(model.getType());
+        if(model.getUrgent().equals("Yes")){
+            holder.r_urgent.setVisibility(View.VISIBLE);
+        }
         String ph = model.getPhone().toString();
         
         holder.message.setOnClickListener(new View.OnClickListener() {
@@ -143,6 +147,7 @@ public class RequestPlasmaDonorAdapter extends RecyclerView.Adapter<RequestPlasm
 
         TextView r_bloodgrp, r_name, r_address, r_time, r_type;
         ImageButton call,message,email;
+        LinearLayout r_urgent;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
@@ -155,7 +160,7 @@ public class RequestPlasmaDonorAdapter extends RecyclerView.Adapter<RequestPlasm
             call = itemView.findViewById(R.id.request_call_btn_id);
             message = itemView.findViewById(R.id.request_mail_btn_id);
             email = itemView.findViewById(R.id.request_email_btn_id);
-
+            r_urgent = itemView.findViewById(R.id.request_urgent_layout);
 
         }
     }

@@ -183,7 +183,7 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
 
                     String destination = address.getText().toString();
                     try{
-                        Uri uri = Uri.parse("https://www.google.co.in/maps/dir/"+ source[0] +"/"+destination);
+                        Uri uri = Uri.parse("https://www.google.co.in/maps/dir/"+ "Moodbidri" +"/"+destination);
                         Intent intent = new Intent(Intent.ACTION_VIEW,uri);
                         intent.setPackage("com.google.android.apps.maps");
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

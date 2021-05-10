@@ -50,7 +50,7 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertRequest(String name,String phno,String bgp,String email,String address,String borp,String urgent,String pass, String time) {
+    public int insertRequest(String name,String phno,String bgp,String email,String address,String borp,String urgent,String pass, String time) {
         SQLiteDatabase database = getReadableDatabase();
         ContentValues values = new ContentValues();
         values.put("phoneno", phno);
@@ -67,13 +67,13 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
         if (!cursor.moveToFirst()) {
             long id = database.insert("Request", null, values);
             if (id <= 0) {
-                return false;
+                return 2;
             } else {
-                return true;
+                return 1;
             }
         }
         else{
-            return false;
+            return 3;
         }
 
     }

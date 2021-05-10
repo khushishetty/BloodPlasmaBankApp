@@ -55,7 +55,7 @@
 
                     <Spinner
                         android:id="@+id/req_reg_bloodgrp_id"
-                        android:layout_width="100dp"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content" />
 
                 </LinearLayout>
@@ -73,7 +73,7 @@
 
                     <Spinner
                         android:id="@+id/spinner_type_id"
-                        android:layout_width="100dp"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content" />
 
 

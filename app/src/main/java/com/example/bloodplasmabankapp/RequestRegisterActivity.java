@@ -123,13 +123,16 @@ public class RequestRegisterActivity extends AppCompatActivity  {
                 }
                 if(awesomeValidation.validate()){
                     Db_Helper_Requests helper = new Db_Helper_Requests(getApplicationContext());
-                    boolean b = helper.insertRequest(sname, sphno, choice_bld_grp, semail, saddress, choice_type, surgency, spass, stime);
+                    int b = helper.insertRequest(sname, sphno, choice_bld_grp, semail, saddress, choice_type, surgency, spass, stime);
 
-                    if(b){
+                    if(b == 1){
                         Toast.makeText(RequestRegisterActivity.this, "Request made successfully!!", Toast.LENGTH_SHORT).show();
                     }
-                    else{
+                    else if(b==2){
                         Toast.makeText(RequestRegisterActivity.this, "Request Failed!!", Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(RequestRegisterActivity.this, "The phone number is already registered!!", Toast.LENGTH_SHORT).show();
                     }
                 }
 

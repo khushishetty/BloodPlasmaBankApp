@@ -19,10 +19,13 @@ import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.bloodplasmabankapp.DB.Db_Helper_Requests;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class RequestRegisterActivity extends AppCompatActivity  {
 
     Spinner spinner,spinner_type;
-    String choice_bld_grp,choice_type, sname, sphno, semail, saddress, surgency, spass;
+    String choice_bld_grp,choice_type, sname, sphno, semail, saddress, surgency, spass, stime;
     EditText name, pass, phno, email, address;
     CheckBox urgency;
     Button  submit;
@@ -108,6 +111,10 @@ public class RequestRegisterActivity extends AppCompatActivity  {
                 sphno = phno.getText().toString();
                 saddress = address.getText().toString();
                 semail = email.getText().toString();
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                stime = df.format(c.getTime());
+
                 if(urgency.isChecked()){
                     surgency = "Yes";
                 }
@@ -116,7 +123,7 @@ public class RequestRegisterActivity extends AppCompatActivity  {
                 }
                 if(awesomeValidation.validate()){
                     Db_Helper_Requests helper = new Db_Helper_Requests(getApplicationContext());
-                    boolean b = helper.insertRequest(sname, sphno, choice_bld_grp, semail, saddress, choice_type, surgency, spass);
+                    boolean b = helper.insertRequest(sname, sphno, choice_bld_grp, semail, saddress, choice_type, surgency, spass, stime);
 
                     if(b){
                         Toast.makeText(RequestRegisterActivity.this, "Request made successfully!!", Toast.LENGTH_SHORT).show();

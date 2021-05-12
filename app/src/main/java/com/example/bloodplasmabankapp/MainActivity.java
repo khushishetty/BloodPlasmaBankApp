@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
         c1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Become A Donor", Toast.LENGTH_SHORT).show();
-
+                //Toast.makeText(MainActivity.this, "Become A Donor", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, CheckEligibilityActivity.class));
             }
         });
 

@@ -158,7 +158,7 @@ public class RequestModifyActivity extends AppCompatActivity {
                                 int i = helper.deleteRequest(id);
                                 if(i>0){
                                     Toast.makeText(RequestModifyActivity.this, "Deletion Successfull!!", Toast.LENGTH_SHORT).show();
-                                    Intent intent1 = new Intent(RequestModifyActivity.this, RequestLoginActivity.class);
+                                    Intent intent1 = new Intent(RequestModifyActivity.this, MainActivity.class);
                                     startActivity(intent1);
                                 }
                                 else{

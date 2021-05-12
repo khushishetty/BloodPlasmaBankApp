@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CheckBloodEligibilityFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="25dp"
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp"
+
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:id="@+id/b_check_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:ems="10"
+                android:hint="Age"
+                android:inputType="number" />
+
+            <EditText
+                android:id="@+id/b_check_weight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Weight (in kilograms)"
+                android:inputType="numberDecimal" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gender  :  "
+                    android:textSize="18sp" />
+
+                <Spinner
+                    android:id="@+id/b_check_gender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Please tick the applicable fields"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold|italic" />
+
+            <CheckBox
+                android:id="@+id/chk7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Haemoglobin is less than 12.5 grams." />
+
+            <CheckBox
+                android:id="@+id/chk8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Have had shots for any of the following - Cholera, Typhoid, Diptheria, Tetanus, Plague, Gammaglobulin in last 15 days; Rabies vaccination in last 1 year" />
+
+            <CheckBox
+                android:id="@+id/chk1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Have been treated for malaria in last 3 months or 3 years if residing in endemic areas" />
+
+            <CheckBox
+                android:id="@+id/chk2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Have had Tattoo or Acupuncture in last 12 months." />
+
+            <CheckBox
+                android:id="@+id/chk3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Diabities (only if treated with insulin injections)." />
+
+            <CheckBox
+                android:id="@+id/chk4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Have any form of cancer." />
+
+            <CheckBox
+                android:id="@+id/chk5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Have Hepatitis B, C, Tuberculosis, Leprosy, HIV." />
+
+            <CheckBox
+                android:id="@+id/chk6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Have any heart diseases." />
+
+            <CheckBox
+                android:id="@+id/chk9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Have delivered not more than a year ago."
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/chk_btn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Submit" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

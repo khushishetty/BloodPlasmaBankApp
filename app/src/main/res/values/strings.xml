@@ -6,11 +6,9 @@
     <string name="tab_text_1">Blood Requests</string>
     <string name="tab_text_2">Plasma Requests</string>
     <string name="title_activity_request">RequestActivity</string>
-    <string-array name="type_option">
-        <item>Blood</item>
-        <item>Plasma</item>
-    </string-array>
+    <string name="title_activity_check_eligibility">CheckEligibilityActivity</string>
 
+    <string name="title_activity_main2">MainActivity2</string>
     <string-array name="blood_grp_option">
         <item>A+ve</item>
         <item>B+ve</item>
@@ -20,5 +18,15 @@
         <item>B-ve</item>
         <item>AB-ve</item>
         <item>O-ve</item>
+    </string-array>
+    <string-array name="type_option">
+        <item>Blood</item>
+        <item>Plasma</item>
+    </string-array>
+
+    <string-array name="gender_option">
+        <item>Male</item>
+        <item>Female</item>
+        <item>Other</item>
     </string-array>
 </resources>

@@ -3,12 +3,92 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.CheckPlasmaEligibilityActivity">
+    tools:context=".Fragments.CheckPlasmaEligibilityFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:background="#FAEFEF">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"
+                android:fontFamily="sans-serif-black"
+                android:text="Check your eligibility for Plasma Donation by ticking the applicable fields"
+                android:textColor="#000000"
+                android:textSize="24sp"
+                android:textStyle="bold|italic" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Are atleast 18 years old."
+                android:buttonTint="@color/main_red_theme"/>
+
+            <CheckBox
+                android:id="@+id/checkBox2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Weigh more than 50 kilograms."
+                android:buttonTint="@color/main_red_theme"/>
+
+            <CheckBox
+                android:id="@+id/checkBox3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Have passed a medical examination"
+                android:buttonTint="@color/main_red_theme"/>
+
+            <CheckBox
+                android:id="@+id/checkBox4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Have completed an extensive medical history screening"
+                android:buttonTint="@color/main_red_theme"/>
+
+            <CheckBox
+                android:id="@+id/checkBox5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Are NON-REACTIVE for transmissible viruses including hepatitis and HIV."
+                android:buttonTint="@color/main_red_theme"/>
+
+            <CheckBox
+                android:id="@+id/checkBox6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Are donating after 14 days of a Covid-19 positive report ( if ASYMPTOMATIC ) OR after 14 days of symptom resolution ( IF SYMPTOMATIC )"
+                android:buttonTint="@color/main_red_theme"/>
+
+            <CheckBox
+                android:id="@+id/checkBox7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Are donating 28 days after receiving Covid-19 vaccination"
+                android:buttonTint="@color/main_red_theme"/>
+
+            <Button
+                android:id="@+id/chk_plasma_eligibility_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:drawableStart="@color/main_red_theme"
+                android:drawableEnd="@color/white"
+                android:text="submit" />
+        </LinearLayout>
+    </ScrollView>
 
 </FrameLayout>

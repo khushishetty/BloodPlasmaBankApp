@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,7 +8,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background= "#FAEFEF">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -51,6 +53,7 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -65,7 +68,7 @@
 
                 <Spinner
                     android:id="@+id/b_check_gender"
-                    android:layout_width="120dp"
+                    android:layout_width="140dp"
                     android:layout_height="wrap_content" />
 
             </LinearLayout>
@@ -73,6 +76,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="left"
                 android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="Please tick the applicable fields"
@@ -84,61 +88,80 @@
                 android:id="@+id/chk7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Haemoglobin is less than 12.5 grams." />
+                android:text="Haemoglobin is less than 12.5 grams."
+                android:textColorLink="#CDFFFFFF"
+                android:buttonTint="@color/main_red_theme"/>
 
             <CheckBox
                 android:id="@+id/chk8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Have had shots for any of the following - Cholera, Typhoid, Diptheria, Tetanus, Plague, Gammaglobulin in last 15 days; Rabies vaccination in last 1 year" />
+                android:text="Have had shots for any of the following - Cholera, Typhoid, Diptheria, Tetanus, Plague, Gammaglobulin in last 15 days; Rabies vaccination in last 1 year"
+                android:textColorLink="#CDFFFFFF"
+                android:buttonTint="@color/main_red_theme"/>
 
             <CheckBox
                 android:id="@+id/chk1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Have been treated for malaria in last 3 months or 3 years if residing in endemic areas" />
+                android:text="Have been treated for malaria in last 3 months or 3 years if residing in endemic areas"
+                android:textColorLink="#CDFFFFFF"
+                android:buttonTint="@color/main_red_theme"/>
 
             <CheckBox
                 android:id="@+id/chk2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Have had Tattoo or Acupuncture in last 12 months." />
+                android:text="Have had Tattoo or Acupuncture in last 12 months."
+                android:textColorLink="#CDFFFFFF"
+                android:buttonTint="@color/main_red_theme"/>
 
             <CheckBox
                 android:id="@+id/chk3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Diabities (only if treated with insulin injections)." />
+                android:text="Diabities (only if treated with insulin injections)."
+                android:textColorLink="#CDFFFFFF"
+                android:buttonTint="@color/main_red_theme"/>
 
             <CheckBox
                 android:id="@+id/chk4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Have any form of cancer." />
+                android:text="Have any form of cancer."
+                android:textColorLink="#CDFFFFFF"
+                android:buttonTint="@color/main_red_theme"/>
 
             <CheckBox
                 android:id="@+id/chk5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Have Hepatitis B, C, Tuberculosis, Leprosy, HIV." />
+                android:text="Have Hepatitis B, C, Tuberculosis, Leprosy, HIV."
+                android:textColorLink="#CDFFFFFF"
+                android:buttonTint="@color/main_red_theme"/>
 
             <CheckBox
                 android:id="@+id/chk6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Have any heart diseases." />
+                android:text="Have any heart diseases."
+                android:textColorLink="#CDFFFFFF"
+                android:buttonTint="@color/main_red_theme"/>
 
             <CheckBox
                 android:id="@+id/chk9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Have delivered not more than a year ago."
-                android:visibility="gone" />
+                android:textColorLink="#CDFFFFFF"
+                android:visibility="gone"
+                android:buttonTint="@color/main_red_theme"/>
 
             <Button
                 android:id="@+id/chk_btn1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:text="Submit" />
 
         </LinearLayout>

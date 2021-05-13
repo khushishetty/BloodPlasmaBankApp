@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.bloodplasmabankapp.Fragments.CheckBloodEligibilityFragment;
-import com.example.bloodplasmabankapp.Fragments.CheckPlasmaEligibilityActivity;
+import com.example.bloodplasmabankapp.Fragments.CheckPlasmaEligibilityFragment;
 
 public class FragmentCheckAdapter extends FragmentPagerAdapter {
 
@@ -23,7 +23,7 @@ public class FragmentCheckAdapter extends FragmentPagerAdapter {
             case 0:
                 return new CheckBloodEligibilityFragment();
             case 1:
-                return new CheckPlasmaEligibilityActivity();
+                return new CheckPlasmaEligibilityFragment();
             default:return new CheckBloodEligibilityFragment();
 
         }

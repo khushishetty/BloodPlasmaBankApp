@@ -72,7 +72,7 @@ public class CheckBloodEligibilityFragment extends Fragment  {
                 if(s_gender.equals("Female")){
                     c9.setVisibility(View.VISIBLE);
                 }
-                if(s_gender.equals("Male")){
+                if(s_gender.equals("Male") || s_gender.equals("Other")){
                     c9.setVisibility(View.GONE);
                 }
             }
@@ -96,7 +96,7 @@ public class CheckBloodEligibilityFragment extends Fragment  {
                        // Toast.makeText(container.getContext(), "", Toast.LENGTH_SHORT).show();
                         reason += "* You need to be above 18 years\n";
                     }
-                    if(Integer.parseInt(weight.getText().toString())<40){
+                    if(Float.parseFloat(weight.getText().toString())<40){
                         //Toast.makeText(container.getContext(), "Weight isn't sufficient", Toast.LENGTH_SHORT).show();
                         reason += "* Your weight needs to be above 40 kg\n";
                     }
@@ -112,7 +112,7 @@ public class CheckBloodEligibilityFragment extends Fragment  {
                     }
                     if(c3.isChecked()){
                         //Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
-                        reason += "* Cannot donate if being treated with insulin injections for Diabetics\n";
+                        reason += "* Cannot donate if been treated with insulin injections for Diabetics\n";
                     }
                     if(c4.isChecked()){
                         //Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
@@ -123,20 +123,20 @@ public class CheckBloodEligibilityFragment extends Fragment  {
                         reason += "* Cannot donate if having Hepatitis B, C, Tuberculosis, Leprosy, HIV.\n";
                     }
                     if(c6.isChecked()){
-                        Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
-
+                        //Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
+                        reason += "* Cannot donate with history of heart diseases\n";
                     }
                     if(c7.isChecked()){
-                        Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
                         reason += "* Cannot donate with Hemoglobin less than 12.5 grams\n";
                     }
                     if(c8.isChecked()){
-                        Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
-                        reason += "* Cannot donate with history of heart diseases\n";
+                        //Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
+                        reason += "* Cannot donate if have taken shots in the last 15 days; Rabies vaccination in the last 1 year\n";
                     }
 
                     if(c9.isChecked()){
-                        Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
                         reason += "* Can only donate if you have delivered more than a year ago\n";
                     }
                     if(!reason.equals("")){

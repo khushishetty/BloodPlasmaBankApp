@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.bloodplasmabankapp.BloodRequestFragment;
-import com.example.bloodplasmabankapp.RequestPlasmaFragment;
+import com.example.bloodplasmabankapp.Fragments.BloodRequestFragment;
+import com.example.bloodplasmabankapp.Fragments.RequestPlasmaFragment;
 
 public class FragmentReqAdapter extends FragmentPagerAdapter {
 

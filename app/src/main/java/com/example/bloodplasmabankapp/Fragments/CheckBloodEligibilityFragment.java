@@ -1,5 +1,9 @@
-package com.example.bloodplasmabankapp;
+package com.example.bloodplasmabankapp.Fragments;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -18,13 +22,14 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+import com.example.bloodplasmabankapp.R;
 
 public class CheckBloodEligibilityFragment extends Fragment  {
 
     EditText weight, age;
     Spinner gender;
     CheckBox c1,c2,c3,c4,c5,c6,c7,c8,c9;
-
+    String reason = "";
     String s_gender = null;
     AwesomeValidation awesomeValidation;
     Button btn;
@@ -85,32 +90,37 @@ public class CheckBloodEligibilityFragment extends Fragment  {
             @Override
             public void onClick(View v) {
 
+
                 if(awesomeValidation.validate()){
                     if(Integer.parseInt(age.getText().toString())<18){
-                        Toast.makeText(container.getContext(), "", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(container.getContext(), "", Toast.LENGTH_SHORT).show();
+                        reason += "* You need to be above 18 years\n";
                     }
                     if(Integer.parseInt(weight.getText().toString())<40){
-                        Toast.makeText(container.getContext(), "Weight isn't sufficient", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(container.getContext(), "Weight isn't sufficient", Toast.LENGTH_SHORT).show();
+                        reason += "* Your weight needs to be above 40 kg\n";
                     }
                     if(c1.isChecked()){
-                        Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
+                        reason += "* Cannot donate if being treated with malaria in last 3 months\n";
+
 
                     }
                     if(c2.isChecked()){
-                        Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
-
+                        //Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
+                        reason += "* Cannot donate if had tattoo or acupuncture in the last 3 months\n";
                     }
                     if(c3.isChecked()){
-                        Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
-
+                        //Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
+                        reason += "* Cannot donate if being treated with insulin injections for Diabetics\n";
                     }
                     if(c4.isChecked()){
-                        Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
-
+                        //Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
+                        reason += "* Cannot donate with any form of Cancer\n";
                     }
                     if(c5.isChecked()){
-                        Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
-
+                        //Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
+                        reason += "* Cannot donate if having Hepatitis B, C, Tuberculosis, Leprosy, HIV.\n";
                     }
                     if(c6.isChecked()){
                         Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
@@ -118,12 +128,42 @@ public class CheckBloodEligibilityFragment extends Fragment  {
                     }
                     if(c7.isChecked()){
                         Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
-
+                        reason += "* Cannot donate with Hemoglobin less than 12.5 grams\n";
                     }
                     if(c8.isChecked()){
                         Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
+                        reason += "* Cannot donate with history of heart diseases\n";
+                    }
+
+                    if(c9.isChecked()){
+                        Toast.makeText(container.getContext(), "Not eligible", Toast.LENGTH_SHORT).show();
+                        reason += "* Can only donate if you have delivered more than a year ago\n";
+                    }
+                    if(!reason.equals("")){
+                        new AlertDialog.Builder(container.getContext())
+                                .setTitle("Sorry!! You are not eligible for donation")
+                                .setMessage(reason)
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        reason = "";
+                                        dialog.dismiss();
+                                    }
+                                }).show();
+                    }
+                    else {
+                        new AlertDialog.Builder(container.getContext())
+                                .setTitle("Congratulations!! ")
+                                .setMessage("You are eligible to donate!!")
+                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                }).show();
 
                     }
+
                 }
 
 

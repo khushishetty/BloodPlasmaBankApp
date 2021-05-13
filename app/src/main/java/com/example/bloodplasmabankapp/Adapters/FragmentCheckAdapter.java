@@ -6,8 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.example.bloodplasmabankapp.CheckBloodEligibilityFragment;
-import com.example.bloodplasmabankapp.CheckPlasmaEligibilityActivity;
+import com.example.bloodplasmabankapp.Fragments.CheckBloodEligibilityFragment;
+import com.example.bloodplasmabankapp.Fragments.CheckPlasmaEligibilityActivity;
 
 public class FragmentCheckAdapter extends FragmentPagerAdapter {
 

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.CheckBloodEligibilityFragment">
+    tools:context=".Fragments.CheckBloodEligibilityFragment"
+    android:background= "#FAEFEF">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -14,7 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="25dp"
+            android:padding="20dp"
             android:paddingTop="40dp"
             android:paddingBottom="40dp"
 
@@ -26,6 +27,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:fontFamily="sans-serif-black"
                 android:text="Check your eligibility for Blood Donation by filling the following details "
                 android:textColor="#000000"

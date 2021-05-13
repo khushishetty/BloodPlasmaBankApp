@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:background="#FAEFEF"
     android:orientation="vertical"
-    android:padding="25dp">
+    android:padding="25dp"
+    android:gravity="center|center_horizontal|center_vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,12 +22,14 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
                 android:background="#DA1919"
+                android:fontFamily="sans-serif-black"
                 android:padding="5dp"
                 android:text="Register"
                 android:textAlignment="center"
                 android:textColor="#F3E9E9"
-                android:textSize="28dp"
+                android:textSize="30sp"
                 android:textStyle="bold|italic" />
 
             <EditText
@@ -98,14 +101,18 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:background="#DA1919"
-                android:paddingTop="30dp"
-                android:paddingBottom="30dp"
+                android:fontFamily="sans-serif-black"
+                android:paddingLeft="10dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
                 android:text="Contact Details"
                 android:textAlignment="textStart"
                 android:textColor="#F3E9E9"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textSize="30sp"
+                android:textStyle="bold|italic" />
 
             <EditText
                 android:id="@+id/req_reg_phno_id"
@@ -146,7 +153,7 @@
                 android:id="@+id/req_log_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="40dp"
                 android:fontFamily="sans-serif-black"
                 android:gravity="center"
                 android:text="ALREADY REGISTERED? CLICK HERE TO LOGIN"

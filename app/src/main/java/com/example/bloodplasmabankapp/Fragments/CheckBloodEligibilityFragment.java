@@ -140,7 +140,7 @@ public class CheckBloodEligibilityFragment extends Fragment  {
                         reason += "* Can only donate if you have delivered more than a year ago\n";
                     }
                     if(!reason.equals("")){
-                        new AlertDialog.Builder(container.getContext())
+                        new AlertDialog.Builder(container.getContext()).setIcon(R.drawable.ic_baseline_priority_high_24)
                                 .setTitle("Sorry!! You are not eligible for donation")
                                 .setMessage(reason)
                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -152,7 +152,7 @@ public class CheckBloodEligibilityFragment extends Fragment  {
                                 }).show();
                     }
                     else {
-                        new AlertDialog.Builder(container.getContext())
+                        new AlertDialog.Builder(container.getContext()).setIcon(R.drawable.ic_baseline_done_24)
                                 .setTitle("Congratulations!! ")
                                 .setMessage("You are eligible to donate!!")
                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {

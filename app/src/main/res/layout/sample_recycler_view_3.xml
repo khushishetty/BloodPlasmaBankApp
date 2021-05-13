@@ -104,8 +104,7 @@
                         android:text="Urgent"
                         android:textColor="#FF0000"
                         android:textSize="14sp"
-                        android:textStyle="italic"
-                        />
+                        android:textStyle="bold|italic" />
                 </LinearLayout>
 
                 <LinearLayout

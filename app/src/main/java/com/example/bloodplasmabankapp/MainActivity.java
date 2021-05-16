@@ -25,7 +25,7 @@ import com.google.android.gms.location.LocationServices;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView c1, c2, c3, c4, c5, c6;
+    CardView c1, c2, c3, c4, c5, c6,c7;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +38,13 @@ public class MainActivity extends AppCompatActivity {
         c4 = (CardView) findViewById(R.id.serach_nearby_hospitals);
         c5 = (CardView) findViewById(R.id.view_requests_id);
         c6 = (CardView) findViewById(R.id.requestid);
+        c7 = (CardView)findViewById(R.id.check_eligibility_card) ;
 
         c1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(MainActivity.this, "Become A Donor", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(MainActivity.this, CheckEligibilityActivity.class));
+                Toast.makeText(MainActivity.this, "Become A Donor", Toast.LENGTH_SHORT).show();
+
             }
         });
 
@@ -108,6 +109,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, RequestRegisterActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        c7.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, CheckEligibilityActivity.class));
             }
         });
     }

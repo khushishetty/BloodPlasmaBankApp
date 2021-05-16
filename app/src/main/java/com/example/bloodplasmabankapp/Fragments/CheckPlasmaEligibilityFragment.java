@@ -97,9 +97,11 @@ public class CheckPlasmaEligibilityFragment extends Fragment {
                     reason += "* Must be non-reactive to transmissible viruses\n";
                 }
 
+                /*
                 if(!c8.isChecked()){
                     reason += "* Must have recovered from Covid-19 to donate\n";
                 }
+                 */
                 if(c8.isChecked()){
                     if(!c6.isChecked()){
                         reason += "* Must donate after 14 days of a Covid-19 positive report ( if ASYMPTOMATIC ) OR after 14 days of symptom resolution ( IF SYMPTOMATIC )\n";

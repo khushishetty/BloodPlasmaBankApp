@@ -68,11 +68,12 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Intent i = new Intent(Intent.ACTION_SENDTO);
+                                String[] TO = {mail_id};
+                                Intent i = new Intent(Intent.ACTION_SEND);
+                                i.setData(Uri.parse("mailto:"));
                                 i.setType("text/plain");
-                                i.putExtra(Intent.EXTRA_SUBJECT, "Urgent blood request");
-                                i.putExtra(Intent.EXTRA_TEXT, "In urgent need of blood!!");
-                                i.setData(Uri.parse("mailto:" + mail_id));
+                                i.putExtra(Intent.EXTRA_EMAIL, TO);
+                                i.putExtra(Intent.EXTRA_SUBJECT, "Urgent need of blood.");
 
                                 context.startActivity(i);
                             }
@@ -126,9 +127,9 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                SmsManager smsManager = SmsManager.getDefault();
-                                smsManager.sendTextMessage(ph, null, "Urgent Blood Request", null, null);
-                                Toast.makeText(context, "SMS Sent", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"+ph));
+                                i.putExtra("sms_body","Urgent need of blood.");
+                                context.startActivity(i);
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {

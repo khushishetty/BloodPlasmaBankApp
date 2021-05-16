@@ -3,6 +3,7 @@ package com.example.bloodplasmabankapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -17,6 +18,7 @@ import android.location.Location;
 import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Looper;
 import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
@@ -27,12 +29,16 @@ import android.widget.Toast;
 import com.example.bloodplasmabankapp.DB.DBHelper;
 import com.example.bloodplasmabankapp.DB.DB_Plasma_Helper;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import org.w3c.dom.Text;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
@@ -41,6 +47,7 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
     String phno,mail;
     ImageView call,message,email;
 
+    String dest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +55,7 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
 
         name = (TextView)findViewById(R.id.profile_name_id);
         address = (TextView)findViewById(R.id.profile_address_id);
+
 
         bloodgrp = (TextView)findViewById(R.id.profile_bloodgrp);
         gender = (TextView)findViewById(R.id.profile_gender);
@@ -70,6 +78,7 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
             ailments.setText(cursor.getString(6));
             mail = cursor.getString(4);
 
+            dest = address.getText().toString();
             email.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -80,12 +89,24 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+
+                                    /*
                                     Intent i = new Intent(Intent.ACTION_SENDTO);
                                     i.setType("text/plain");
                                     i.putExtra(Intent.EXTRA_SUBJECT, "Urgent blood request");
                                     i.putExtra(Intent.EXTRA_TEXT, "In urgent need of blood!!");
                                     i.setData(Uri.parse("mailto:" + mail));
 
+                                    startActivity(i);
+
+                                     */
+
+                                    String[] TO = {mail};
+                                    Intent i = new Intent(Intent.ACTION_SEND);
+                                    i.setData(Uri.parse("mailto:"));
+                                    i.setType("text/plain");
+                                    i.putExtra(Intent.EXTRA_EMAIL, TO);
+                                    i.putExtra(Intent.EXTRA_SUBJECT, "Urgent need of blood.");
                                     startActivity(i);
                                 }
                             })
@@ -108,9 +129,11 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent = new Intent(Intent.ACTION_CALL);
-                                    intent.setData(Uri.parse("tel:"+phoneno));
-                                    startActivity(intent);
+                                        Intent intent = new Intent(Intent.ACTION_CALL);
+                                        intent.setData(Uri.parse("tel:"+phoneno));
+                                        startActivity(intent);
+
+
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -131,10 +154,10 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    SmsManager smsManager = SmsManager.getDefault();
-                                    smsManager.sendTextMessage(phoneno, null, "Urgent Blood Request", null, null);
-                                    Toast.makeText(DetailedBloodDonorActivity.this, "SMS Sent", Toast.LENGTH_SHORT).show();
-                                }
+                                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"+phoneno));
+                                    i.putExtra("sms_body","Urgent need of blood.");
+                                    startActivity(i);
+                                   }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
                                 @Override
@@ -149,39 +172,7 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     //Toast.makeText(DetailedBloodDonorActivity.this, address.getText(), Toast.LENGTH_SHORT).show();
-                    final String[] source = new String[1];
-
-                    FusedLocationProviderClient fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(DetailedBloodDonorActivity.this);
-                    if(ActivityCompat.checkSelfPermission(DetailedBloodDonorActivity.this,
-                            Manifest.permission.ACCESS_FINE_LOCATION)== PackageManager.PERMISSION_GRANTED){
-                            fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Location> task) {
-                                    Location location = task.getResult();
-                                    if(location!=null){
-                                        Toast.makeText(DetailedBloodDonorActivity.this, "Current Loc "+location, Toast.LENGTH_SHORT).show();
-                                        try{
-                                            Geocoder geocoder = new Geocoder(DetailedBloodDonorActivity.this, Locale.getDefault());
-                                            List<Address> addresses = geocoder.getFromLocation(
-                                                    location.getLatitude(),location.getLongitude(),1
-                                            );
-                                            source[0] = addresses.get(0).getAddressLine(0);
-                                        }
-                                        catch (Exception e){
-
-                                        }
-                                    }
-                                }
-                            });
-                    }
-                    else{
-                        ActivityCompat.requestPermissions(DetailedBloodDonorActivity.this
-                        ,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},44);
-                    }
-
-
-
-                    String destination = address.getText().toString();
+                    /*
                     try{
                         Uri uri = Uri.parse("https://www.google.co.in/maps/dir/"+ "Moodbidri" +"/"+destination);
                         Intent intent = new Intent(Intent.ACTION_VIEW,uri);
@@ -193,9 +184,23 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
 
                     }
 
+                     */
+
+
+                    if (ContextCompat.checkSelfPermission(
+                            getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(DetailedBloodDonorActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                1);
+                    } else {
+                        getCurrentLocation();
+
+                    }
+
+
 
                 }
             });
+
 
         }
 
@@ -209,7 +214,7 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
             gender.setText(cursor.getString(7));
             ailments.setText(cursor.getString(6));
             mail = cursor.getString(4);
-
+            dest = address.getText().toString();
             email.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -220,12 +225,12 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Intent i = new Intent(Intent.ACTION_SENDTO);
+                                    String[] TO = {mail};
+                                    Intent i = new Intent(Intent.ACTION_SEND);
+                                    i.setData(Uri.parse("mailto:"));
                                     i.setType("text/plain");
-                                    i.putExtra(Intent.EXTRA_SUBJECT, "Urgent blood request");
-                                    i.putExtra(Intent.EXTRA_TEXT, "In urgent need of blood!!");
-                                    i.setData(Uri.parse("mailto:" + mail));
-
+                                    i.putExtra(Intent.EXTRA_EMAIL, TO);
+                                    i.putExtra(Intent.EXTRA_SUBJECT, "Urgent need of plasma.");
                                     startActivity(i);
                                 }
                             })
@@ -271,9 +276,15 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
                             .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
+                                    /*
                                     SmsManager smsManager = SmsManager.getDefault();
                                     smsManager.sendTextMessage(phoneno, null, "Urgent Blood Request", null, null);
                                     Toast.makeText(DetailedBloodDonorActivity.this, "SMS Sent", Toast.LENGTH_SHORT).show();
+
+                                     */
+                                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"+phoneno));
+                                    i.putExtra("sms_body","Urgent need of plasma");
+                                    startActivity(i);
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -289,6 +300,7 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     //Toast.makeText(DetailedBloodDonorActivity.this, address.getText(), Toast.LENGTH_SHORT).show();
+                    /*
                     String source = "Alangar,Moodbidri";
                     String destination = address.getText().toString();
                     try{
@@ -302,6 +314,17 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
 
                     }
 
+                     */
+                    if (ContextCompat.checkSelfPermission(
+                            getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions(DetailedBloodDonorActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                1);
+                    } else {
+                        getCurrentLocation();
+
+                    }
+
+
 
                 }
             });
@@ -309,6 +332,75 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
 
 
 
+
+    }
+
+    private void getCurrentLocation() {
+
+        String result = null;
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setInterval(10000);
+        locationRequest.setFastestInterval(1000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            Toast.makeText(this, "Please turn on location", Toast.LENGTH_SHORT).show();
+            return ;
+        }
+        LocationServices.getFusedLocationProviderClient(DetailedBloodDonorActivity.this)
+                .requestLocationUpdates(locationRequest, new LocationCallback() {
+                    @Override
+                    public void onLocationResult(@NonNull LocationResult locationResult) {
+                        super.onLocationResult(locationResult);
+                        LocationServices.getFusedLocationProviderClient(DetailedBloodDonorActivity.this)
+                                .removeLocationUpdates(this);
+                        if(locationResult !=null && locationResult.getLocations().size()>0){
+                            int latestLocationIndex  = locationResult.getLocations().size()-1;
+                            double latitude =
+                                    locationResult.getLocations().get(latestLocationIndex).getLatitude();
+                            double longitude = locationResult.getLocations().get(latestLocationIndex).getLongitude();
+
+
+
+                            Geocoder geocoder = new Geocoder(DetailedBloodDonorActivity.this, Locale.getDefault());
+                            List<Address> addressList = null;
+                            try {
+                                addressList = geocoder.getFromLocation(latitude, longitude, 1);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            if (addressList != null && addressList.size() > 0) {
+                                Address address = addressList.get(0);
+                                StringBuilder sb = new StringBuilder();
+                                for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
+                                    sb.append(address.getAddressLine(i)); //.append("\n");
+                                }
+
+                                sb.append(address.getAddressLine(0));
+                                String s = sb.toString();
+                                Toast.makeText(DetailedBloodDonorActivity.this, sb.toString(), Toast.LENGTH_LONG).show();
+                                //String destination = address.getText().toString();
+                                try{
+                                    Uri uri = Uri.parse("https://www.google.co.in/maps/dir/"+s+"/"+dest);
+                                    Intent intent = new Intent(Intent.ACTION_VIEW,uri);
+                                    intent.setPackage("com.google.android.apps.maps");
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                }catch(Exception e){
+                                    Toast.makeText(DetailedBloodDonorActivity.this, "Error", Toast.LENGTH_SHORT).show();
+
+                                }
+                            }
+                        }
+
+                    }
+                }, Looper.getMainLooper());
 
     }
 }

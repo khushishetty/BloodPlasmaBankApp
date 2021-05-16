@@ -10,6 +10,8 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -22,6 +24,10 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -146,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            //ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},23);
             return;
         }
         LocationServices.getFusedLocationProviderClient(MainActivity.this)
@@ -161,7 +168,31 @@ public class MainActivity extends AppCompatActivity {
                                     locationResult.getLocations().get(latestLocationIndex).getLatitude();
                             double longitude = locationResult.getLocations().get(latestLocationIndex).getLongitude();
 
-                            Toast.makeText(MainActivity.this, String.format("Lat : "+latitude), Toast.LENGTH_SHORT).show();
+
+
+                            Geocoder geocoder = new Geocoder(MainActivity.this, Locale.getDefault());
+                            String result = null;
+                            List<Address> addressList = null;
+                            try {
+                                addressList = geocoder.getFromLocation(latitude, longitude, 1);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            if (addressList != null && addressList.size() > 0) {
+                                Address address = addressList.get(0);
+                                StringBuilder sb = new StringBuilder();
+                                for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
+                                    sb.append(address.getAddressLine(i)); //.append("\n");
+                                }
+
+                                sb.append(address.getAddressLine(0));
+                                result = sb.toString();
+                                Toast.makeText(MainActivity.this, sb, Toast.LENGTH_LONG).show();
+
+                            }
+
+
+
                             String uri = "geo:"+ latitude + "," + longitude +"?q=hospitals+near+me";
                             startActivity(new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri)));
 

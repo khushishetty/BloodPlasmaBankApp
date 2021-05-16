@@ -185,9 +185,11 @@ public class MainActivity extends AppCompatActivity {
                                     sb.append(address.getAddressLine(i)); //.append("\n");
                                 }
 
+                                /*
                                 sb.append(address.getAddressLine(0));
                                 result = sb.toString();
                                 Toast.makeText(MainActivity.this, sb, Toast.LENGTH_LONG).show();
+                                 */
 
                             }
 

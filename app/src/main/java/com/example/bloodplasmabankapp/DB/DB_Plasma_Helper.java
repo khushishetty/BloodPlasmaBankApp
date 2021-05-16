@@ -123,4 +123,49 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
         database.close();
         return donors;
     }
+
+    public ArrayList<PlasmaDonorModel> getPlasmaDonorByCity(String city, String grp)
+    {
+        ArrayList<PlasmaDonorModel> donors = new ArrayList<>();
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress,ailments,gender from plasma_donor where bloodgroup = '"+grp+"' and lower(address) LIKE '%"+ city+"%'",null);
+        if(cursor.moveToFirst()){
+            do{
+                PlasmaDonorModel model = new PlasmaDonorModel();
+                model.setName(cursor.getString(0));
+                model.setCity(cursor.getString(1));
+                model.setPlasmagrp(cursor.getString(2));
+                model.setPhno(cursor.getString(3));
+                model.setEmail(cursor.getString(4));
+                model.setAilments(cursor.getString(5));
+                model.setGender(cursor.getString(6));
+                donors.add(model);
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        database.close();
+        return donors;
+    }
+
+    public ArrayList<PlasmaDonorModel> getPlasmaDonorsGroupwise(String grp){
+        ArrayList<PlasmaDonorModel> donors = new ArrayList<>();
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress,ailments,gender from plasma_donor where bloodgroup = '"+grp+"'",null);
+        if(cursor.moveToFirst()){
+            do{
+                PlasmaDonorModel model = new PlasmaDonorModel();
+                model.setName(cursor.getString(0));
+                model.setCity(cursor.getString(1));
+                model.setPlasmagrp(cursor.getString(2));
+                model.setPhno(cursor.getString(3));
+                model.setEmail(cursor.getString(4));
+                model.setAilments(cursor.getString(5));
+                model.setGender(cursor.getString(6));
+                donors.add(model);
+            }while(cursor.moveToNext());
+        }
+        cursor.close();
+        database.close();
+        return donors;
+    }
 }

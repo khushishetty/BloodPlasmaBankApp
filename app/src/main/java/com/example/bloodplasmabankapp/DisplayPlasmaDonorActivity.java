@@ -267,7 +267,7 @@ public class DisplayPlasmaDonorActivity extends AppCompatActivity {
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayPlasmaDonorActivity.this);
                     recyclerView.setLayoutManager(linearLayoutManager);
 
-                    Toast.makeText(DisplayPlasmaDonorActivity.this, lst.size() + " donor(s) found", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(DisplayPlasmaDonorActivity.this, lst.size() + " donor(s) found", Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -286,13 +286,14 @@ public class DisplayPlasmaDonorActivity extends AppCompatActivity {
                 if (list.size() == 0) {
                     Toast.makeText(DisplayPlasmaDonorActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
+                searchCity.setText("");
                 PlasmaDonorAdapter adapter = new PlasmaDonorAdapter(list,DisplayPlasmaDonorActivity.this);
                 recyclerView.setAdapter(adapter);
 
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayPlasmaDonorActivity.this);
                 recyclerView.setLayoutManager(linearLayoutManager);
 
-                Toast.makeText(DisplayPlasmaDonorActivity.this, list.size() + " donor(s) found", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(DisplayPlasmaDonorActivity.this, list.size() + " donor(s) found", Toast.LENGTH_SHORT).show();
             }
         });
 

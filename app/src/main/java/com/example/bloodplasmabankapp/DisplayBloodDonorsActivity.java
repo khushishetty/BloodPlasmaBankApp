@@ -319,6 +319,7 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
+                et_filterCity.setText("");
                 BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
                 recyclerView.setAdapter(adapter);
 
@@ -392,6 +393,7 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
+
                 BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
                 recyclerView.setAdapter(adapter);
 

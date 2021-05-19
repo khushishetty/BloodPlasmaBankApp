@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
     final static String DBNAME = "NewBloodPlasma.db";
-    final static int DBVERSION = 1;
+    final static int DBVERSION = 2;
 
     public DBHelper(@Nullable Context context) {
         super(context, DBNAME, null, DBVERSION);
@@ -34,7 +34,8 @@ public class DBHelper extends SQLiteOpenHelper {
                         "emailaddress text,"+
                         "address text," +
                         "ailments text," +
-                        "gender text)"
+                        "gender text," +
+                        "age text)"
     );
     }
 
@@ -44,7 +45,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertOrder(String name,String phno,String bgp,String email,String address,String ailments,String gender)
+    public boolean insertOrder(String name,String phno,String bgp,String email,String address,String ailments,String gender,String age)
     {
         SQLiteDatabase database = getReadableDatabase();
         ContentValues values = new ContentValues();
@@ -55,6 +56,7 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put("address",address);
         values.put("ailments",ailments);
         values.put("gender",gender);
+        values.put("age",age);
         long id = database.insert("donors",null,values);
         if (id<=0){
             return false;
@@ -67,7 +69,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public ArrayList<BloodDonorModel> getBloodDonors(){
         ArrayList<BloodDonorModel> lst = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("select name,bloodgroup,address,phoneno,emailaddress,ailments,gender from donors",null);
+        Cursor cursor = database.rawQuery("select name,bloodgroup,address,phoneno,emailaddress,ailments,gender,age from donors",null);
         if(cursor.moveToFirst()){
             do{
                 BloodDonorModel model = new BloodDonorModel();
@@ -78,6 +80,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 model.setMail(cursor.getString(4));
                 model.setAilments(cursor.getString(5));
                 model.setAilments(cursor.getString(6));
+                model.setAge(cursor.getString(7));
                 lst.add(model);
             }while (cursor.moveToNext());
         }
@@ -100,6 +103,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 model.setMail(cursor.getString(4));
                 model.setAilments(cursor.getString(5));
                 model.setAilments(cursor.getString(6));
+                model.setAge(cursor.getString(7));
                 lst.add(model);
             }while (cursor.moveToNext());
         }

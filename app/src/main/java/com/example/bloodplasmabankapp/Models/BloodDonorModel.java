@@ -4,12 +4,12 @@ public class BloodDonorModel {
     String name,blood_group,city;
 
     String phno,mail;
-    String ailments,gender;
+    String ailments,gender,age;
 
     public BloodDonorModel() {
     }
 
-    public BloodDonorModel(String name, String blood_group, String city,String p,String m,String ail,String gender) {
+    public BloodDonorModel(String name, String blood_group, String city,String p,String m,String ail,String gender,String age) {
         this.name = name;
         this.blood_group = blood_group;
         this.city = city;
@@ -17,6 +17,7 @@ public class BloodDonorModel {
         this.mail=m;
         this.ailments = ail;
         this.gender = gender;
+        this.age = age;
     }
 
     public String getName() {
@@ -73,5 +74,13 @@ public class BloodDonorModel {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public String getAge() {
+        return age;
+    }
+
+    public void setAge(String age) {
+        this.age = age;
     }
 }

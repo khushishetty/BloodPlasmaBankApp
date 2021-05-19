@@ -56,21 +56,22 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
         list.add(new BloodDonorModel("Jaya","B-ve","Bangalore"));
          */
 
+
         DBHelper helper = new DBHelper(this);
-         /*
-        helper.insertOrder("Padma","9972920804","O-ve","padma@gmail.com","Uliya, Alangar, Marpady, Moodbidri","None","Female");
-        helper.insertOrder("Varun","5128456335","O-ve","maithili@gmail.com","Udupi","None","Female");
-        helper.insertOrder("Sara","6514788115","O+ve","jay@gmail.com","Kerala","None","Female");
-        helper.insertOrder("Laura","9745215112","A-ve","annie@gmail.com","Mangalore","None","Female");
-        helper.insertOrder("Maithili","9480016150","O+ve","maithili@gmail.com","Udupi","None","Female");
-        helper.insertOrder("Ram","8105199132","AB+ve","khushi@gmail.com","Delhi","None","Male");
-        helper.insertOrder("Sam","9886724699","B+ve","jay@gmail.com","Kerala","None","Female");
-        helper.insertOrder("Annie","9745216852","A+ve","annie@gmail.com","Mangalore","None","Female");
-        helper.insertOrder("Max","8106213221","O+ve","max@gmail.com","Bangalore","None","Male");
-        helper.insertOrder("Jack","8456744412","A+ve","jack@gmail.com","Mumbai","None","Male");
+/*
+        helper.insertOrder("Padma","9972920804","O-ve","padma@gmail.com","Uliya, Alangar, Marpady, Moodbidri","None","Female","20");
+        helper.insertOrder("Varun","5128456335","O-ve","maithili@gmail.com","Udupi","None","Female","55");
+        helper.insertOrder("Sara","6514788115","O+ve","jay@gmail.com","Kerala","None","Female","30");
+        helper.insertOrder("Laura","9745215112","A-ve","annie@gmail.com","Mangalore","None","Female","23");
+        helper.insertOrder("Maithili","9480016150","O+ve","maithili@gmail.com","Udupi","None","Female","21");
+        helper.insertOrder("Ram","8105199132","AB+ve","khushi@gmail.com","Delhi","None","Male","33");
+        helper.insertOrder("Sam","9886724699","B+ve","jay@gmail.com","Kerala","None","Female","38");
+        helper.insertOrder("Annie","9745216852","A+ve","annie@gmail.com","Mangalore","None","Female","42");
+        helper.insertOrder("Max","8106213221","O+ve","max@gmail.com","Bangalore","None","Male","27");
+        helper.insertOrder("Jack","8456744412","A+ve","jack@gmail.com","Mumbai","None","Male","29");
+*/
 
 
-         */
         ArrayList<BloodDonorModel> list = helper.getBloodDonors();
 
         BloodDonorAdapter adapter = new BloodDonorAdapter(list, this);

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class DB_Plasma_Helper extends SQLiteOpenHelper {
     final static String DBname = "NewPlasmaDB.db";
-    final static int DBVersion = 1;
+    final static int DBVersion = 2;
     public DB_Plasma_Helper(@Nullable Context context) {
 
         super(context, DBname, null , DBVersion);
@@ -32,7 +32,8 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
                         "emailaddress text,"+
                         "address text," +
                         "ailments text," +
-                        "gender text)"
+                        "gender text," +
+                        "age text)"
         );
     }
 
@@ -43,7 +44,7 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertPlasmaDonor(String name,String phno,String bgp,String email,String address,String ailments,String gender){
+    public boolean insertPlasmaDonor(String name,String phno,String bgp,String email,String address,String ailments,String gender,String age){
         SQLiteDatabase database = getReadableDatabase();
         ContentValues values= new ContentValues();
         values.put("phoneno",phno);
@@ -53,6 +54,7 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
         values.put("address",address);
         values.put("ailments",ailments);
         values.put("gender",gender);
+        values.put("age",age);
         long id = database.insert("plasma_donor",null,values);
         if(id<=0){
             return false;
@@ -105,7 +107,7 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
     {
         ArrayList<PlasmaDonorModel> donors = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress,ailments,gender from plasma_donor where lower(address) LIKE '%"+ city+"%'",null);
+        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress,ailments,gender, age from plasma_donor where lower(address) LIKE '%"+ city+"%'",null);
         if(cursor.moveToFirst()){
             do{
                 PlasmaDonorModel model = new PlasmaDonorModel();
@@ -116,6 +118,7 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
                 model.setEmail(cursor.getString(4));
                 model.setAilments(cursor.getString(5));
                 model.setGender(cursor.getString(6));
+                model.setAge(cursor.getString(7));
                 donors.add(model);
             }while(cursor.moveToNext());
         }
@@ -128,7 +131,7 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
     {
         ArrayList<PlasmaDonorModel> donors = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress,ailments,gender from plasma_donor where bloodgroup = '"+grp+"' and lower(address) LIKE '%"+ city+"%'",null);
+        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress,ailments,gender,age from plasma_donor where bloodgroup = '"+grp+"' and lower(address) LIKE '%"+ city+"%'",null);
         if(cursor.moveToFirst()){
             do{
                 PlasmaDonorModel model = new PlasmaDonorModel();
@@ -139,6 +142,7 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
                 model.setEmail(cursor.getString(4));
                 model.setAilments(cursor.getString(5));
                 model.setGender(cursor.getString(6));
+                model.setAge(cursor.getString(7));
                 donors.add(model);
             }while(cursor.moveToNext());
         }
@@ -150,7 +154,7 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
     public ArrayList<PlasmaDonorModel> getPlasmaDonorsGroupwise(String grp){
         ArrayList<PlasmaDonorModel> donors = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress,ailments,gender from plasma_donor where bloodgroup = '"+grp+"'",null);
+        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress,ailments,gender,age from plasma_donor where bloodgroup = '"+grp+"'",null);
         if(cursor.moveToFirst()){
             do{
                 PlasmaDonorModel model = new PlasmaDonorModel();
@@ -161,6 +165,7 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
                 model.setEmail(cursor.getString(4));
                 model.setAilments(cursor.getString(5));
                 model.setGender(cursor.getString(6));
+                model.setAge(cursor.getString(7));
                 donors.add(model);
             }while(cursor.moveToNext());
         }

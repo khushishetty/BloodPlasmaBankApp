@@ -43,7 +43,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class DetailedBloodDonorActivity extends AppCompatActivity {
-    TextView name,address,bloodgrp,gender,ailments;
+    TextView name,address,bloodgrp,gender,ailments,age;
     String phno,mail;
     ImageView call,message,email;
 
@@ -98,6 +98,7 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
         call = (ImageView) findViewById(R.id.profile_call_btn_id);
         message = (ImageView)findViewById(R.id.profile_mail_btn_id);
         email = (ImageView)findViewById(R.id.profile_email_btn_id);
+        age = (TextView)findViewById(R.id.profile_age_id);
 
         final DBHelper dbHelper= new DBHelper(this);
         final DB_Plasma_Helper plasma_helper = new DB_Plasma_Helper(this);
@@ -111,6 +112,7 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
             bloodgrp.setText(cursor.getString(3));
             gender.setText(cursor.getString(7));
             ailments.setText(cursor.getString(6));
+            age.setText(cursor.getString(8));
             mail = cursor.getString(4);
 
             dest = address.getText().toString();
@@ -222,6 +224,7 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
             gender.setText(cursor.getString(7));
             ailments.setText(cursor.getString(6));
             mail = cursor.getString(4);
+            age.setText(cursor.getString(8));
             dest = address.getText().toString();
             email.setOnClickListener(new View.OnClickListener() {
                 @Override

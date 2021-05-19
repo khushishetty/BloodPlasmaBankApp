@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#9E9494"
+    android:background="#FAEFEF"
     android:orientation="vertical"
     android:padding="20dp"
     tools:context=".DetailedBloodDonorActivity">
@@ -196,14 +196,14 @@
                 android:layout_row="1"
                 android:layout_rowWeight="1"
                 android:layout_column="0"
+                android:layout_columnSpan="2"
                 android:layout_columnWeight="1"
                 android:layout_gravity="fill"
                 android:layout_margin="10dp"
                 android:background="#e1341e"
                 android:backgroundTint="#e1341e"
                 app:cardCornerRadius="10dp"
-                app:cardElevation="10dp"
-                android:layout_columnSpan="2">
+                app:cardElevation="10dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"

@@ -1,9 +1,12 @@
 package com.example.bloodplasmabankapp.Adapters;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.telephony.SmsManager;
 import android.view.LayoutInflater;
@@ -14,9 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bloodplasmabankapp.DetailedBloodDonorActivity;
+import com.example.bloodplasmabankapp.MainActivity;
 import com.example.bloodplasmabankapp.Models.BloodDonorModel;
 import com.example.bloodplasmabankapp.R;
 
@@ -31,14 +37,14 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
         this.arrayList = arrayList;
         this.context = context;
     }
-    
+
     @NonNull
     @Override
     public viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.sample_recycler_view_1,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.sample_recycler_view_1, parent, false);
         return new viewholder(view);
     }
-    
+
     @Override
 
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
@@ -52,8 +58,8 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, DetailedBloodDonorActivity.class);
-                intent.putExtra("phone_no",model.getPhno().toString());
-                intent.putExtra("type",1);
+                intent.putExtra("phone_no", model.getPhno().toString());
+                intent.putExtra("type", 1);
                 context.startActivity(intent);
             }
         });
@@ -86,7 +92,6 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
                         }).show();
 
 
-
             }
         });
         holder.call.setOnClickListener(new View.OnClickListener() {
@@ -94,24 +99,22 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
             public void onClick(View v) {
 
                 new AlertDialog.Builder(context).setIcon(R.drawable.call_icon)
-                .setTitle("Call")
-                .setMessage("Are you sure You want to call?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(Intent.ACTION_CALL);
-                        intent.setData(Uri.parse("tel:"+ph));
-                        context.startActivity(intent);
-                    }
-                })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                }).show();
-
-
+                        .setTitle("Call")
+                        .setMessage("Are you sure You want to call?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Intent intent = new Intent(Intent.ACTION_CALL);
+                                intent.setData(Uri.parse("tel:" + ph));
+                                context.startActivity(intent);
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).show();
 
 
             }
@@ -127,8 +130,8 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"+ph));
-                                i.putExtra("sms_body","Urgent need of blood.");
+                                Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + ph));
+                                i.putExtra("sms_body", "Urgent need of blood.");
                                 context.startActivity(i);
                             }
                         })
@@ -152,8 +155,8 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
 
     public class viewholder extends RecyclerView.ViewHolder {
 
-        TextView tv_name,tv_bloodgrp,tv_city;
-        ImageButton call,message,email;
+        TextView tv_name, tv_bloodgrp, tv_city;
+        ImageButton call, message, email;
 
         public viewholder(@NonNull View itemView) {
 
@@ -163,7 +166,7 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
             tv_city = itemView.findViewById(R.id.plasma_city_id);
             call = itemView.findViewById(R.id.profile_call_btn_id);
             message = itemView.findViewById(R.id.profile_mail_btn_id);
-            email= itemView.findViewById(R.id.profile_email_btn_id);
+            email = itemView.findViewById(R.id.profile_email_btn_id);
         }
     }
 }

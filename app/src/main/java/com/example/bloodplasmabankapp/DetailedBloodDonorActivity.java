@@ -48,6 +48,41 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
     ImageView call,message,email;
 
     String dest;
+
+    String globPhone, globtype;
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == 1){
+            if(grantResults.length > 0 && grantResults[grantResults.length-1] == PackageManager.PERMISSION_GRANTED){
+                    phoneCall();
+                }
+            else{
+                Toast.makeText(this, "Permission Denied !!\nPlease change permissions under App Settings!!", Toast.LENGTH_SHORT).show();
+                }
+        }
+        else if(requestCode == 2){
+            if(grantResults.length > 0 && grantResults[grantResults.length-1] == PackageManager.PERMISSION_GRANTED){
+                smsFunc(globtype);
+            }
+            else{
+                Toast.makeText(this, "Permission Denied !!\nPlease change permissions under App Settings!!", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else if(requestCode == 3){
+            if(grantResults.length > 0 && grantResults[grantResults.length-1] == PackageManager.PERMISSION_GRANTED){
+                getCurrentLocation();
+            }
+            else{
+                Toast.makeText(this, "Permission Denied !!\nPlease change permissions under App Settings!!", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,48 +158,21 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
             call.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new AlertDialog.Builder(DetailedBloodDonorActivity.this).setIcon(R.drawable.call_icon)
-                            .setTitle("Call")
-                            .setMessage("Are you sure You want to call?")
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                        Intent intent = new Intent(Intent.ACTION_CALL);
-                                        intent.setData(Uri.parse("tel:"+phoneno));
-                                        startActivity(intent);
+                    globPhone = phoneno;
+                    phoneCall();
 
-
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            }).show();
                 }
+
+
             });
+
 
             message.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new AlertDialog.Builder(DetailedBloodDonorActivity.this).setIcon(R.drawable.ic_baseline_message_24)
-                            .setTitle("Text Message")
-                            .setMessage("Are you sure You want to send the message?")
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"+phoneno));
-                                    i.putExtra("sms_body","Urgent need of blood.");
-                                    startActivity(i);
-                                   }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            }).show();
+                   globPhone = phoneno;
+                   globtype = "Blood";
+                   smsFunc("Blood");
                 }
             });
 
@@ -190,7 +198,7 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
                     if (ContextCompat.checkSelfPermission(
                             getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions(DetailedBloodDonorActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                1);
+                                3);
                     } else {
                         getCurrentLocation();
 
@@ -247,52 +255,17 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
             call.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new AlertDialog.Builder(DetailedBloodDonorActivity.this).setIcon(R.drawable.call_icon)
-                            .setTitle("Call")
-                            .setMessage("Are you sure You want to call?")
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Intent intent = new Intent(Intent.ACTION_CALL);
-                                    intent.setData(Uri.parse("tel:"+phoneno));
-                                    startActivity(intent);
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            }).show();
+                    globPhone = phoneno;
+                    phoneCall();
                 }
             });
 
             message.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new AlertDialog.Builder(DetailedBloodDonorActivity.this).setIcon(R.drawable.ic_baseline_message_24)
-                            .setTitle("Text Message")
-                            .setMessage("Are you sure You want to send the message?")
-                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    /*
-                                    SmsManager smsManager = SmsManager.getDefault();
-                                    smsManager.sendTextMessage(phoneno, null, "Urgent Blood Request", null, null);
-                                    Toast.makeText(DetailedBloodDonorActivity.this, "SMS Sent", Toast.LENGTH_SHORT).show();
-
-                                     */
-                                    Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"+phoneno));
-                                    i.putExtra("sms_body","Urgent need of plasma");
-                                    startActivity(i);
-                                }
-                            })
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    dialog.dismiss();
-                                }
-                            }).show();
+                    globPhone = phoneno;
+                    globtype = "Plasma";
+                    smsFunc("Plasma");
                 }
             });
 
@@ -318,7 +291,7 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
                     if (ContextCompat.checkSelfPermission(
                             getApplicationContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         ActivityCompat.requestPermissions(DetailedBloodDonorActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
-                                1);
+                                3);
                     } else {
                         getCurrentLocation();
 
@@ -335,6 +308,60 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
 
     }
 
+    private void phoneCall() {
+        new AlertDialog.Builder(DetailedBloodDonorActivity.this).setIcon(R.drawable.call_icon)
+                .setTitle("Call")
+                .setMessage("Are you sure You want to call?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(ContextCompat.checkSelfPermission(DetailedBloodDonorActivity.this,
+                                Manifest.permission.CALL_PHONE)!= PackageManager.PERMISSION_GRANTED){
+                            ActivityCompat.requestPermissions(DetailedBloodDonorActivity.this, new String[]{Manifest.permission.CALL_PHONE},1);
+                        }else{
+                            Intent intent = new Intent(Intent.ACTION_CALL);
+                            intent.setData(Uri.parse("tel:"+globPhone));
+                            startActivity(intent);
+                        }
+
+
+
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
+
+    }
+    private void smsFunc(String type){
+        new AlertDialog.Builder(DetailedBloodDonorActivity.this).setIcon(R.drawable.ic_baseline_message_24)
+                .setTitle("Text Message")
+                .setMessage("Are you sure You want to send the message?")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if(ContextCompat.checkSelfPermission(DetailedBloodDonorActivity.this,
+                                Manifest.permission.SEND_SMS)!= PackageManager.PERMISSION_GRANTED){
+                            ActivityCompat.requestPermissions(DetailedBloodDonorActivity.this, new String[]{Manifest.permission.SEND_SMS},2);
+                        }
+                        else{
+                            Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:"+globPhone));
+                            i.putExtra("sms_body","Urgent need of "+ type);
+                            startActivity(i);
+                        }
+
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                }).show();
+    }
     private void getCurrentLocation() {
 
         String result = null;
@@ -350,7 +377,7 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            Toast.makeText(this, "Please turn on location", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "Please turn on location", Toast.LENGTH_SHORT).show();
             return ;
         }
         LocationServices.getFusedLocationProviderClient(DetailedBloodDonorActivity.this)
@@ -384,7 +411,7 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
 
                                 sb.append(address.getAddressLine(0));
                                 String s = sb.toString();
-                                Toast.makeText(DetailedBloodDonorActivity.this, sb.toString(), Toast.LENGTH_LONG).show();
+                                //Toast.makeText(DetailedBloodDonorActivity.this, sb.toString(), Toast.LENGTH_LONG).show();
                                 //String destination = address.getText().toString();
                                 try{
                                     Uri uri = Uri.parse("https://www.google.co.in/maps/dir/"+s+"/"+dest);
@@ -397,6 +424,9 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
 
                                 }
                             }
+                        }
+                        else{
+                            Toast.makeText(DetailedBloodDonorActivity.this, "Turn on location", Toast.LENGTH_SHORT).show();
                         }
 
                     }

@@ -45,7 +45,7 @@ import java.util.Locale;
 public class DetailedBloodDonorActivity extends AppCompatActivity {
     TextView name,address,bloodgrp,gender,ailments,age;
     String phno,mail;
-    ImageView call,message,email;
+    ImageView call,message,email, sharebtn;
 
     String dest;
 
@@ -99,6 +99,7 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
         message = (ImageView)findViewById(R.id.profile_mail_btn_id);
         email = (ImageView)findViewById(R.id.profile_email_btn_id);
         age = (TextView)findViewById(R.id.profile_age_id);
+        sharebtn = (ImageView)findViewById(R.id.share_4);
 
         final DBHelper dbHelper= new DBHelper(this);
         final DB_Plasma_Helper plasma_helper = new DB_Plasma_Helper(this);
@@ -211,6 +212,18 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
                 }
             });
 
+            sharebtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String text = bloodgrp.getText()+" type *Blood* available\nDonor Name : "+name.getText()+"\nAddress : "
+                            + address.getText()+"\nContact No : "+phoneno;
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    intent.putExtra(Intent.EXTRA_TEXT,text);
+                    startActivity(Intent.createChooser(intent,"Share"));
+                }
+            });
+
 
         }
 
@@ -226,6 +239,7 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
             mail = cursor.getString(4);
             age.setText(cursor.getString(8));
             dest = address.getText().toString();
+
             email.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -302,6 +316,18 @@ public class DetailedBloodDonorActivity extends AppCompatActivity {
 
 
 
+                }
+            });
+
+            sharebtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String text = bloodgrp.getText()+" type *Plasma* available\nDonor Name : "+name.getText()+"\nAddress : "
+                            + address.getText()+"\nContact No : "+phoneno;
+                    Intent intent = new Intent(Intent.ACTION_SEND);
+                    intent.setType("text/plain");
+                    intent.putExtra(Intent.EXTRA_TEXT,text);
+                    startActivity(Intent.createChooser(intent,"Share"));
                 }
             });
         }

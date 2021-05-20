@@ -10,6 +10,14 @@
     tools:context=".DetailedBloodDonorActivity">
 
     <ImageView
+        android:id="@+id/share_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:foregroundGravity="right"
+        app:srcCompat="@drawable/ic_baseline_share_24" />
+
+    <ImageView
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="250dp"

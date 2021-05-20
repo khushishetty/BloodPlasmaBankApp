@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -129,6 +130,12 @@ public class RequestRegisterActivity extends AppCompatActivity  {
 
                     if(b == 1){
                         Toast.makeText(RequestRegisterActivity.this, "Request made successfully!!", Toast.LENGTH_SHORT).show();
+
+                        /*
+                        SmsManager manager = SmsManager.getDefault();
+                        manager.sendTextMessage(sphno, null, "Your request has been successfully made!",null, null);
+
+                         */
                     }
                     else if(b==2){
                         Toast.makeText(RequestRegisterActivity.this, "Request Failed!!", Toast.LENGTH_SHORT).show();

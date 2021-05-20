@@ -25,8 +25,8 @@ import java.util.Calendar;
 public class RequestRegisterActivity extends AppCompatActivity  {
 
     Spinner spinner,spinner_type;
-    String choice_bld_grp,choice_type, sname, sphno, semail, saddress, surgency, spass, stime;
-    EditText name, pass, phno, email, address;
+    String choice_bld_grp,choice_type, sname, sphno, semail, saddress, surgency, spass, stime, sage;
+    EditText name, pass, phno, email, address, age;
     CheckBox urgency;
     Button  submit;
     TextView login;
@@ -45,7 +45,7 @@ public class RequestRegisterActivity extends AppCompatActivity  {
         phno = (EditText)findViewById(R.id.req_reg_phno_id);
         email = (EditText)findViewById(R.id.req_reg_email_id);
         address = (EditText)findViewById(R.id.req_reg_address_id);
-
+        age = (EditText)findViewById(R.id.req_reg_age_id);
         urgency = (CheckBox)findViewById(R.id.req_reg_urgent_id);
         login = (TextView) findViewById(R.id.req_log_btn);
         submit = (Button)findViewById(R.id.req_reg_btn);
@@ -111,6 +111,8 @@ public class RequestRegisterActivity extends AppCompatActivity  {
                 sphno = phno.getText().toString();
                 saddress = address.getText().toString();
                 semail = email.getText().toString();
+                sage = age.getText().toString();
+
                 Calendar c = Calendar.getInstance();
                 SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                 stime = df.format(c.getTime());
@@ -123,7 +125,7 @@ public class RequestRegisterActivity extends AppCompatActivity  {
                 }
                 if(awesomeValidation.validate()){
                     Db_Helper_Requests helper = new Db_Helper_Requests(getApplicationContext());
-                    int b = helper.insertRequest(sname, sphno, choice_bld_grp, semail, saddress, choice_type, surgency, spass, stime);
+                    int b = helper.insertRequest(sname, sphno, choice_bld_grp, semail, saddress, choice_type, surgency, spass, stime, sage);
 
                     if(b == 1){
                         Toast.makeText(RequestRegisterActivity.this, "Request made successfully!!", Toast.LENGTH_SHORT).show();

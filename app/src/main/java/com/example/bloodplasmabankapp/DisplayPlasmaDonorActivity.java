@@ -97,6 +97,9 @@ public class DisplayPlasmaDonorActivity extends AppCompatActivity {
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayPlasmaDonorActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
+                else{
+                    Toast.makeText(DisplayPlasmaDonorActivity.this, lst.size()+" donors found!", Toast.LENGTH_SHORT).show();
+                }
                 PlasmaDonorAdapter adapter = new PlasmaDonorAdapter(lst,DisplayPlasmaDonorActivity.this);
                 recyclerView.setAdapter(adapter);
 
@@ -128,6 +131,9 @@ public class DisplayPlasmaDonorActivity extends AppCompatActivity {
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayPlasmaDonorActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
+                else{
+                    Toast.makeText(DisplayPlasmaDonorActivity.this, lst.size()+" donors found!", Toast.LENGTH_SHORT).show();
+                }
                 PlasmaDonorAdapter adapter = new PlasmaDonorAdapter(lst, DisplayPlasmaDonorActivity.this);
                 recyclerView.setAdapter(adapter);
 
@@ -154,6 +160,9 @@ public class DisplayPlasmaDonorActivity extends AppCompatActivity {
                 }
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayPlasmaDonorActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(DisplayPlasmaDonorActivity.this, lst.size()+" donors found!", Toast.LENGTH_SHORT).show();
                 }
                 PlasmaDonorAdapter adapter = new PlasmaDonorAdapter(lst, DisplayPlasmaDonorActivity.this);
                 recyclerView.setAdapter(adapter);
@@ -193,6 +202,9 @@ public class DisplayPlasmaDonorActivity extends AppCompatActivity {
                 }
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayPlasmaDonorActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(DisplayPlasmaDonorActivity.this, lst.size()+" donors found!", Toast.LENGTH_SHORT).show();
                 }
                 PlasmaDonorAdapter adapter = new PlasmaDonorAdapter(lst, DisplayPlasmaDonorActivity.this);
                 recyclerView.setAdapter(adapter);
@@ -262,6 +274,8 @@ public class DisplayPlasmaDonorActivity extends AppCompatActivity {
 
                     if(list.size() == 0){
                         Toast.makeText(DisplayPlasmaDonorActivity.this, "No donors found", Toast.LENGTH_SHORT).show();
+                    }else{
+                        Toast.makeText(DisplayPlasmaDonorActivity.this, lst.size()+" donors found!", Toast.LENGTH_SHORT).show();
                     }
 
                     PlasmaDonorAdapter adapter = new PlasmaDonorAdapter(lst,DisplayPlasmaDonorActivity.this);
@@ -288,6 +302,8 @@ public class DisplayPlasmaDonorActivity extends AppCompatActivity {
 
                 if (list.size() == 0) {
                     Toast.makeText(DisplayPlasmaDonorActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(DisplayPlasmaDonorActivity.this, list.size()+" donors found!", Toast.LENGTH_SHORT).show();
                 }
                 searchCity.setText("");
                 PlasmaDonorAdapter adapter = new PlasmaDonorAdapter(list,DisplayPlasmaDonorActivity.this);

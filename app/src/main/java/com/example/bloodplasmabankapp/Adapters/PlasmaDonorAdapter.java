@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -142,6 +143,18 @@ public class PlasmaDonorAdapter  extends  RecyclerView.Adapter<PlasmaDonorAdapte
             }
         });
 
+        holder.sharebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = model.getPlasmagrp()+" type *Plasma* available\nDonor Name : "+model.getName()+"\nAddress : "
+                        + model.getCity()+"\nContact No : "+model.getPhno();
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT,text);
+                context.startActivity(Intent.createChooser(intent,"Share"));
+            }
+        });
+
     }
 
     @Override
@@ -153,6 +166,7 @@ public class PlasmaDonorAdapter  extends  RecyclerView.Adapter<PlasmaDonorAdapte
 
         TextView donorName,donorCity,donorPlasma;
         ImageButton call,message,email;
+        ImageView sharebtn;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
@@ -163,6 +177,7 @@ public class PlasmaDonorAdapter  extends  RecyclerView.Adapter<PlasmaDonorAdapte
             call = itemView.findViewById(R.id.profile_call_btn_id);
             message = itemView.findViewById(R.id.profile_mail_btn_id);
             email= itemView.findViewById(R.id.profile_email_btn_id);
+            sharebtn = itemView.findViewById(R.id.share_2);
 
         }
     }

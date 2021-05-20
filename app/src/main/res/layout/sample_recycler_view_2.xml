@@ -22,7 +22,7 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="180dp"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/profile_icon_black" />
 
@@ -107,43 +107,56 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="143dp"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="0dp"
-                    android:layout_marginTop="5dp"
-                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <ImageButton
-                        android:id="@+id/profile_call_btn_id"
+                    <LinearLayout
+                        android:layout_width="143dp"
+                        android:layout_height="35dp"
+                        android:layout_marginLeft="0dp"
+                        android:layout_marginTop="5dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageButton
+                            android:id="@+id/profile_call_btn_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:adjustViewBounds="true"
+                            android:backgroundTint="#4CAF50"
+                            android:cropToPadding="false"
+                            app:srcCompat="@android:drawable/stat_sys_phone_call" />
+
+                        <ImageButton
+                            android:id="@+id/profile_mail_btn_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="2dp"
+                            android:adjustViewBounds="true"
+                            android:backgroundTint="#2196F3"
+                            android:cropToPadding="false"
+                            android:scaleType="centerInside"
+                            app:srcCompat="@android:drawable/ic_dialog_email" />
+
+                        <ImageButton
+                            android:id="@+id/profile_email_btn_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:backgroundTint="#85F44336"
+                            android:cropToPadding="true"
+                            android:scaleType="centerCrop"
+                            app:srcCompat="@drawable/gmai_icon_two" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/share_2"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:adjustViewBounds="true"
-                        android:backgroundTint="#4CAF50"
-                        android:cropToPadding="false"
-                        app:srcCompat="@android:drawable/stat_sys_phone_call" />
-
-                    <ImageButton
-                        android:id="@+id/profile_mail_btn_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginLeft="2dp"
-                        android:adjustViewBounds="true"
-                        android:backgroundTint="#2196F3"
-                        android:cropToPadding="false"
-                        android:scaleType="centerInside"
-                        app:srcCompat="@android:drawable/ic_dialog_email" />
-
-                    <ImageButton
-                        android:id="@+id/profile_email_btn_id"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:adjustViewBounds="true"
-                        android:backgroundTint="#85F44336"
-                        android:cropToPadding="true"
-                        android:scaleType="centerCrop"
-                        app:srcCompat="@drawable/gmai_icon_two" />
-
+                        android:layout_gravity="center"
+                        app:srcCompat="@drawable/ic_baseline_share_24" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

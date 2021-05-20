@@ -20,7 +20,7 @@ import java.util.ArrayList;
 public class Db_Helper_Requests extends SQLiteOpenHelper {
 
     final static String DBname = "Requests3DB.db";
-    final static int DBVersion = 1;
+    final static int DBVersion = 2;
 
     public Db_Helper_Requests(@Nullable Context context) {
         super(context, DBname, null , DBVersion);;
@@ -39,7 +39,8 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
                         "b_or_p text," +
                         "urgent text," +
                         "password text," +
-                        "time text)"
+                        "time text," +
+                        "age text)"
         );
     }
 
@@ -50,7 +51,7 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public int insertRequest(String name,String phno,String bgp,String email,String address,String borp,String urgent,String pass, String time) {
+    public int insertRequest(String name,String phno,String bgp,String email,String address,String borp,String urgent,String pass, String time,String age) {
         SQLiteDatabase database = getReadableDatabase();
         ContentValues values = new ContentValues();
         values.put("phoneno", phno);
@@ -62,6 +63,7 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
         values.put("urgent", urgent);
         values.put("password",pass);
         values.put("time",time);
+        values.put("age",age);
         SQLiteDatabase d = this.getWritableDatabase();
         Cursor cursor = d.rawQuery("Select * from Request where phoneno= '" + phno + "' and b_or_p='"+ borp+"'", null);
         if (!cursor.moveToFirst()) {
@@ -81,7 +83,7 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
     public ArrayList<RequestBloodDonorModel> getBloodRequests(){
         ArrayList<RequestBloodDonorModel> requests = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress,urgent, time from Request where b_or_p Like 'blood' and urgent like 'Yes'",null);
+        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress,urgent, time,b_or_p,age from Request where b_or_p Like 'blood' and urgent like 'Yes'",null);
         if(cursor.moveToFirst()){
             do{
                 RequestBloodDonorModel model = new RequestBloodDonorModel();
@@ -92,10 +94,12 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
                 model.setEmail(cursor.getString(4));
                 model.setUrgent(cursor.getString(5));
                 model.setTime(cursor.getString(6));
+                model.setType(cursor.getString(7));
+                model.setAge(cursor.getString(8));
                 requests.add(model);
             }while(cursor.moveToNext());
         }
-        cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress,urgent, time from Request where b_or_p Like 'blood' and urgent LIKE 'no'",null);
+        cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress,urgent, time,b_or_p, age from Request where b_or_p Like 'blood' and urgent LIKE 'no'",null);
         if(cursor.moveToFirst()){
             do{
                 RequestBloodDonorModel model = new RequestBloodDonorModel();
@@ -106,6 +110,9 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
                 model.setEmail(cursor.getString(4));
                 model.setUrgent(cursor.getString(5));
                 model.setTime(cursor.getString(6));
+                model.setType(cursor.getString(7));
+                model.setAge(cursor.getString(8));
+
                 requests.add(model);
             }while(cursor.moveToNext());
         }
@@ -117,7 +124,7 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
     public ArrayList<RequestPlasmaDonorModel> getPlasmaRequests(){
         ArrayList<RequestPlasmaDonorModel> requests = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress, urgent, time from Request where b_or_p LIKE 'plasma' and urgent like 'yes'",null);
+        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress, urgent, time,b_or_p, age from Request where b_or_p LIKE 'plasma' and urgent like 'yes'",null);
         if(cursor.moveToFirst()){
             do{
                 RequestPlasmaDonorModel model = new RequestPlasmaDonorModel();
@@ -128,10 +135,12 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
                 model.setEmail(cursor.getString(4));
                 model.setUrgent(cursor.getString(5));
                 model.setTime(cursor.getString(6));
+                model.setType(cursor.getString(7));
+                model.setAge(cursor.getString(8));
                 requests.add(model);
             }while(cursor.moveToNext());
         }
-        cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress, urgent, time from Request where b_or_p LIKE 'plasma' and urgent like 'no'",null);
+        cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress, urgent, time,b_or_p,age from Request where b_or_p LIKE 'plasma' and urgent like 'no'",null);
         if(cursor.moveToFirst()){
             do{
                 RequestPlasmaDonorModel model = new RequestPlasmaDonorModel();
@@ -142,6 +151,8 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
                 model.setEmail(cursor.getString(4));
                 model.setUrgent(cursor.getString(5));
                 model.setTime(cursor.getString(6));
+                model.setType(cursor.getString(7));
+                model.setAge(cursor.getString(8));
                 requests.add(model);
             }while(cursor.moveToNext());
         }
@@ -181,7 +192,7 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
         return cursor;
 
     }
-    public boolean updateRequests(String name,String phno,String bgp,String email,String address,String borp,String urgent,String pass, int id){
+    public boolean updateRequests(String name,String phno,String bgp,String email,String address,String borp,String urgent,String pass, int id,String age){
         SQLiteDatabase database = getReadableDatabase();
         ContentValues values = new ContentValues();
         values.put("phoneno", phno);
@@ -192,6 +203,7 @@ public class Db_Helper_Requests extends SQLiteOpenHelper {
         values.put("b_or_p", borp);
         values.put("urgent", urgent);
         values.put("password",pass);
+        values.put("age",age);
 
         SQLiteDatabase d= getWritableDatabase();
         Cursor cursor = d.rawQuery("Select * from Request where phoneno= '"+phno+"' and b_or_p like '"+borp+"' and id != "+id,null);

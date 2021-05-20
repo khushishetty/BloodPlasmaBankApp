@@ -26,9 +26,9 @@ import com.example.bloodplasmabankapp.DB.Db_Helper_Requests;
 public class RequestModifyActivity extends AppCompatActivity {
 
     Spinner spinner,spinner_type;
-    String choice_bld_grp,choice_type, sname, sphno, semail, saddress, surgency, spass;
+    String choice_bld_grp,choice_type, sname, sphno, semail, saddress, surgency, spass, sage;
     int id;
-    EditText name, pass, phno, email, address;
+    EditText name, pass, phno, email, address,age;
     CheckBox urgency;
     Button delete, update;
 
@@ -55,7 +55,7 @@ public class RequestModifyActivity extends AppCompatActivity {
         phno = (EditText)findViewById(R.id.req_modify_phno_id);
         email = (EditText)findViewById(R.id.req_modify_email_id);
         address = (EditText)findViewById(R.id.req_modify_address_id);
-
+        age = (EditText)findViewById(R.id.req_modify_age_id);
         urgency = (CheckBox)findViewById(R.id.req_modify_urgent_id);
         update = (Button) findViewById(R.id.req_modify_btn);
         delete = (Button)findViewById(R.id.reg_delete_btn);
@@ -100,6 +100,7 @@ public class RequestModifyActivity extends AppCompatActivity {
         spinner.setSelection(adapter1.getPosition(cursor.getString(3)));
         spinner_type.setSelection(adapter.getPosition(choice_type));
         id = cursor.getInt(0);
+        age.setText(cursor.getString(10));
 
         update.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,6 +116,7 @@ public class RequestModifyActivity extends AppCompatActivity {
                                 sphno = phno.getText().toString();
                                 saddress = address.getText().toString();
                                 semail = email.getText().toString();
+                                sage = age.getText().toString();
                                 if(urgency.isChecked()){
                                     surgency = "Yes";
                                 }
@@ -123,7 +125,7 @@ public class RequestModifyActivity extends AppCompatActivity {
                                 }
                                 if(awesomeValidation.validate()){
                                     Db_Helper_Requests helper = new Db_Helper_Requests(getApplicationContext());
-                                    boolean b = helper.updateRequests(sname, sphno, choice_bld_grp, semail, saddress, choice_type, surgency, spass,id);
+                                    boolean b = helper.updateRequests(sname, sphno, choice_bld_grp, semail, saddress, choice_type, surgency, spass,id,sage);
                                     if(b){
                                         Toast.makeText(RequestModifyActivity.this, "Update Successful!!", Toast.LENGTH_SHORT).show();
                                     }

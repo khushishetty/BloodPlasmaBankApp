@@ -101,6 +101,9 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
+                else{
+                    Toast.makeText(DisplayBloodDonorsActivity.this, lst.size()+" donors found!", Toast.LENGTH_SHORT).show();
+                }
                     BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
                     recyclerView.setAdapter(adapter);
 
@@ -132,6 +135,9 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
+                else{
+                    Toast.makeText(DisplayBloodDonorsActivity.this, lst.size()+" donors found!", Toast.LENGTH_SHORT).show();
+                }
                     BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
                     recyclerView.setAdapter(adapter);
 
@@ -158,6 +164,9 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
                 }
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(DisplayBloodDonorsActivity.this, lst.size()+" donors found!", Toast.LENGTH_SHORT).show();
                 }
                     BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
                     recyclerView.setAdapter(adapter);
@@ -194,7 +203,10 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
 
                 }
                 if (lst.size() == 0) {
-                    Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DisplayBloodDonorsActivity.this, " No donors found.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(DisplayBloodDonorsActivity.this, lst.size()+"donors found!", Toast.LENGTH_SHORT).show();
                 }
                     BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
                     recyclerView.setAdapter(adapter);
@@ -219,7 +231,10 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
                     lst.addAll(helper.getBloodDonorByCity(bloodGrpPlace,"O-ve"));
                 }
                 if (lst.size() == 0) {
-                    Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DisplayBloodDonorsActivity.this, " No donors found.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(DisplayBloodDonorsActivity.this, lst.size()+"donors found!", Toast.LENGTH_SHORT).show();
                 }
                 BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
                 recyclerView.setAdapter(adapter);
@@ -247,6 +262,9 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
+                else{
+                    Toast.makeText(DisplayBloodDonorsActivity.this, lst.size()+" donors found!", Toast.LENGTH_SHORT).show();
+                }
                 BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
                 recyclerView.setAdapter(adapter);
 
@@ -270,6 +288,9 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
                 }
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(DisplayBloodDonorsActivity.this, lst.size()+" donors found!", Toast.LENGTH_SHORT).show();
                 }
                 BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
                 recyclerView.setAdapter(adapter);
@@ -301,6 +322,9 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
+                else{
+                    Toast.makeText(DisplayBloodDonorsActivity.this, lst.size()+" donors found!", Toast.LENGTH_SHORT).show();
+                }
                 BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
                 recyclerView.setAdapter(adapter);
 
@@ -319,6 +343,9 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
 
                 if (lst.size() == 0) {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(DisplayBloodDonorsActivity.this, lst.size()+" donors found!", Toast.LENGTH_SHORT).show();
                 }
                 et_filterCity.setText("");
                 BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
@@ -395,6 +422,9 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
                     Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
                 }
 
+                else{
+                    Toast.makeText(DisplayBloodDonorsActivity.this, lst.size()+" donors found!", Toast.LENGTH_SHORT).show();
+                }
                 BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
                 recyclerView.setAdapter(adapter);
 

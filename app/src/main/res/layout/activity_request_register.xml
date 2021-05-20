@@ -84,6 +84,14 @@
             </LinearLayout>
 
             <EditText
+                android:id="@+id/req_reg_age_id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Age"
+                android:inputType="text" />
+
+            <EditText
                 android:id="@+id/req_reg_pass_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

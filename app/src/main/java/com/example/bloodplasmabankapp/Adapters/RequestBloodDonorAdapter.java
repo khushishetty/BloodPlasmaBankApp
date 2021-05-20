@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -48,6 +49,7 @@ public class RequestBloodDonorAdapter extends RecyclerView.Adapter<RequestBloodD
         holder.r_address.setText(model.getAddress());
         holder.r_time.setText(model.getTime());
         holder.r_type.setText(model.getType());
+        holder.r_age.setText(model.getAge());
         if(model.getUrgent().equals("Yes")){
             holder.r_urgent.setVisibility(View.VISIBLE);
         }
@@ -131,6 +133,18 @@ public class RequestBloodDonorAdapter extends RecyclerView.Adapter<RequestBloodD
 
             }
         });
+
+        holder.sharebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = model.getBloodgrp()+" type "+ model.getType()+" needed.\nRecipient Name : "+model.getName()+"\nAge : "+model.getAge()+"\nAddress : "
+                        + model.getAddress()+"\nContact No : "+model.getPhone();
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT,text);
+                context.startActivity(Intent.createChooser(intent,"Share"));
+            }
+        });
     }
 
     @Override
@@ -140,9 +154,10 @@ public class RequestBloodDonorAdapter extends RecyclerView.Adapter<RequestBloodD
 
     public  class viewHolder extends RecyclerView.ViewHolder{
 
-        TextView r_bloodgrp, r_name, r_address, r_time, r_type;
+        TextView r_bloodgrp, r_name, r_address, r_time, r_type, r_age;
         ImageButton call,message,email;
         LinearLayout r_urgent;
+        ImageView sharebtn;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
@@ -157,6 +172,8 @@ public class RequestBloodDonorAdapter extends RecyclerView.Adapter<RequestBloodD
             email = itemView.findViewById(R.id.request_email_btn_id);
 
             r_urgent = itemView.findViewById(R.id.request_urgent_layout);
+            r_age = itemView.findViewById(R.id.request_age_id);
+            sharebtn = itemView.findViewById(R.id.share_3);
 
 
         }

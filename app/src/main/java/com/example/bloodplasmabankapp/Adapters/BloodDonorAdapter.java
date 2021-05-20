@@ -3,6 +3,7 @@ package com.example.bloodplasmabankapp.Adapters;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -144,6 +146,17 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
 
             }
         });
+        holder.sharebtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String text = model.getBlood_group()+" type *Blood* available\nDonor Name : "+model.getName()+"\nAddress : "
+                        + model.getCity()+"\nContact No : "+model.getPhno();
+                Intent intent = new Intent(Intent.ACTION_SEND);
+                intent.setType("text/plain");
+                intent.putExtra(Intent.EXTRA_TEXT,text);
+                context.startActivity(Intent.createChooser(intent,"Share"));
+            }
+        });
 
 
     }
@@ -157,6 +170,7 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
 
         TextView tv_name, tv_bloodgrp, tv_city;
         ImageButton call, message, email;
+        ImageView sharebtn;
 
         public viewholder(@NonNull View itemView) {
 
@@ -167,6 +181,7 @@ public class BloodDonorAdapter extends RecyclerView.Adapter<BloodDonorAdapter.vi
             call = itemView.findViewById(R.id.profile_call_btn_id);
             message = itemView.findViewById(R.id.profile_mail_btn_id);
             email = itemView.findViewById(R.id.profile_email_btn_id);
+            sharebtn = itemView.findViewById(R.id.share_1);
         }
     }
 }

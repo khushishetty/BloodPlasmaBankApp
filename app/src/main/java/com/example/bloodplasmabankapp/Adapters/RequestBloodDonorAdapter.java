@@ -16,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bloodplasmabankapp.DetailedBloodDonorActivity;
 import com.example.bloodplasmabankapp.Models.RequestBloodDonorModel;
 import com.example.bloodplasmabankapp.R;
 
@@ -54,6 +55,15 @@ public class RequestBloodDonorAdapter extends RecyclerView.Adapter<RequestBloodD
             holder.r_urgent.setVisibility(View.VISIBLE);
         }
         String ph = model.getPhone().toString();
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, DetailedBloodDonorActivity.class);
+                intent.putExtra("phone_no", model.getPhone().toString());
+                intent.putExtra("type", 3);
+                context.startActivity(intent);
+            }
+        });
         holder.call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

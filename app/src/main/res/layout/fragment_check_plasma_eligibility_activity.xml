@@ -96,15 +96,15 @@
                 android:buttonTint="@color/main_red_theme"
                 android:enabled="false"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/chk_plasma_eligibility_id"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="30dp"
-                android:drawableStart="@color/main_red_theme"
-                android:drawableEnd="@color/white"
-                android:text="submit" />
+                android:layout_marginTop="40dp"
+                android:fontFamily="sans-serif-black"
+                android:background="@drawable/button_bg"
+                android:text="Check Eligibility" />
         </LinearLayout>
     </ScrollView>
 

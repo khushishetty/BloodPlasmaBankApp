@@ -7,6 +7,7 @@
     android:background="#FAEFEF"
     android:orientation="vertical"
     android:padding="25dp"
+    android:paddingBottom="40dp"
     android:gravity="center|center_horizontal|center_vertical">
 
     <ScrollView
@@ -109,7 +110,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="12dp"
                 android:layout_marginBottom="20dp"
                 android:background="#DA1919"
                 android:fontFamily="sans-serif-black"
@@ -146,16 +147,17 @@
                 android:hint="Address"
                 android:inputType="textPostalAddress" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/req_reg_btn"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/button_bg"
                 android:text="REGISTER"
-                android:textColor="#F3E9E9"
-                android:textStyle="bold" />
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-black"/>
 
             <TextView
                 android:id="@+id/req_log_btn"

@@ -159,12 +159,16 @@
                 android:visibility="gone"
                 android:buttonTint="@color/main_red_theme"/>
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/chk_btn1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="Submit" />
+                android:background="@drawable/button_bg"
+                android:text="Check eligibility"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-black">
+            </androidx.appcompat.widget.AppCompatButton>
 
         </LinearLayout>
     </ScrollView>

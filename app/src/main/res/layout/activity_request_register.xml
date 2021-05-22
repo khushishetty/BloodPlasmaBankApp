@@ -12,34 +12,46 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:scrollbarSize="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="25dp"
-                android:background="#DA1919"
-                android:fontFamily="sans-serif-black"
-                android:padding="5dp"
-                android:text="Register"
-                android:textAlignment="center"
-                android:textColor="#F3E9E9"
-                android:textSize="30sp"
-                android:textStyle="bold|italic" />
 
-            <EditText
-                android:id="@+id/req_reg_name_id"
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:background="#DA1919"
+                    android:fontFamily="sans-serif-black"
+                    android:padding="5dp"
+                    android:text="Register"
+                    android:textAlignment="center"
+                    android:textColor="#F3E9E9"
+                    android:textSize="30sp"
+                    android:textStyle="bold|italic"
+                    />
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Name"
-                android:inputType="textPersonName" />
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/req_reg_name_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Name"
+                    android:background="#FAEFEF"
+                    android:inputType="textPersonName" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -84,21 +96,37 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/req_reg_age_id"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Age"
-                android:inputType="text" />
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/req_reg_pass_id"
+                <EditText
+                    android:id="@+id/req_reg_age_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Age"
+                    android:background="#FAEFEF"
+                    android:inputType="text" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Password"
-                android:inputType="textPersonName|textPassword" />
+                android:background="#FAEFEF"
+                android:hint="Password">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/req_reg_pass_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:background="#FAEFEF"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <CheckBox
                 android:id="@+id/req_reg_urgent_id"
@@ -121,32 +149,49 @@
                 android:text="Contact Details"
                 android:textAlignment="textStart"
                 android:textColor="#F3E9E9"
-                android:textSize="30sp"
+                android:textSize="24sp"
                 android:textStyle="bold|italic" />
 
-            <EditText
-                android:id="@+id/req_reg_phno_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Phone Number"
-                android:inputType="phone" />
 
-            <EditText
-                android:id="@+id/req_reg_email_id"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Email"
-                android:inputType="textEmailAddress" />
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/req_reg_address_id"
+                <EditText
+                    android:id="@+id/req_reg_phno_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Phone Number"
+                    android:background="#FAEFEF"
+                    android:inputType="phone" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Address"
-                android:inputType="textPostalAddress" />
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/req_reg_email_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:background="#FAEFEF"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/req_reg_address_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:background="#FAEFEF"
+                    android:hint="Address"
+                    android:inputType="textPostalAddress" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/req_reg_btn"

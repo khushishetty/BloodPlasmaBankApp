@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,6 +23,8 @@ import com.example.bloodplasmabankapp.DB.Db_Helper_Requests;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RequestRegisterActivity extends AppCompatActivity  {
 
@@ -32,6 +35,16 @@ public class RequestRegisterActivity extends AppCompatActivity  {
     Button  submit;
     TextView login;
     AwesomeValidation awesomeValidation;
+    private static final Pattern PASSWORD_PATTERN =
+            Pattern.compile("^"+
+                    "(?=.*[0-9])" +                 //At least one digit.
+                    "(?=.*[a-z])" +         //at least 1 lower case letter
+                    "(?=.*[A-Z])" +         //at least 1 upper case letter
+                    "(?=.*[a-zA-Z])" +              //any letter
+                    "(?=\\S+$)" +           //no white spaces
+                    ".{6,}" +               //at least 4 characters
+                    "$");
+
 
 
     @Override
@@ -124,7 +137,7 @@ public class RequestRegisterActivity extends AppCompatActivity  {
                 else{
                     surgency = "No";
                 }
-                if(awesomeValidation.validate()){
+                if(awesomeValidation.validate() && validateMobile(sphno) && validateEmail(semail) && validatePassword(spass)){
                     Db_Helper_Requests helper = new Db_Helper_Requests(getApplicationContext());
                     int b = helper.insertRequest(sname, sphno, choice_bld_grp, semail, saddress, choice_type, surgency, spass, stime, sage);
 
@@ -143,11 +156,35 @@ public class RequestRegisterActivity extends AppCompatActivity  {
                     else{
                         Toast.makeText(RequestRegisterActivity.this, "The phone number is already registered!!", Toast.LENGTH_SHORT).show();
                     }
+                }if(!validateMobile(sphno)){
+                    phno.setError("Invalid phone number !!");
+                }
+                if(!validateEmail(semail)){
+                    email.setError("Invalid email !!");
+                }if(!validatePassword(spass)){
+                    pass.setError("Weak Password!!");
                 }
 
                 
             }
         });
+    }
+
+    boolean validateMobile(String input){
+        Pattern p = Pattern.compile("[6-9][0-9]{9}");
+        Matcher m = p.matcher(input);
+        return m.matches();
+    }
+    boolean validateEmail(String mail){
+        return Patterns.EMAIL_ADDRESS.matcher(mail).matches();
+    }
+
+    boolean validatePassword(String p1){
+        /*
+        if(!PASSWORD_PATTERN.matcher(p1).matches()){
+            pass.setError("Password too weak !!");
+        }*/
+        return PASSWORD_PATTERN.matcher(p1).matches();
     }
 
     

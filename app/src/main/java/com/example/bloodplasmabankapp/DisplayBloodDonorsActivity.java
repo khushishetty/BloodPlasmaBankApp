@@ -362,74 +362,75 @@ public class DisplayBloodDonorsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String city = et_filterCity.getText().toString().toLowerCase();
-                bloodGrpPlace = city;
-                ArrayList<BloodDonorModel> lst;
-                if(bloodGrpSet.isEmpty()){
-                    lst = helper.getBloodDonorByCity(city);
-                }
-                else{
-                    switch (bloodGrpSet){
-                        case "A+ve":
-                            lst = helper.getBloodDonorByCity(city,"A+ve");
-                            lst.addAll(helper.getBloodDonorByCity(city,"A-ve"));
-                            lst.addAll(helper.getBloodDonorByCity(city,"O+ve"));
-                            lst.addAll(helper.getBloodDonorByCity(city,"O-ve"));
-                            break;
-                        case "B+ve":
-                            lst = helper.getBloodDonorByCity(city,"B+ve");
-                            lst.addAll(helper.getBloodDonorByCity(city,"B-ve"));
-                            lst.addAll(helper.getBloodDonorByCity(city,"O+ve"));
-                            lst.addAll(helper.getBloodDonorByCity(city,"O-ve"));
-                            break;
-                        case "O+ve":
+                if(city.isEmpty()){
+                    et_filterCity.setError("Field Empty");
+                }else {
+                    bloodGrpPlace = city;
+                    ArrayList<BloodDonorModel> lst;
+                    if (bloodGrpSet.isEmpty()) {
+                        lst = helper.getBloodDonorByCity(city);
+                    } else {
+                        switch (bloodGrpSet) {
+                            case "A+ve":
+                                lst = helper.getBloodDonorByCity(city, "A+ve");
+                                lst.addAll(helper.getBloodDonorByCity(city, "A-ve"));
+                                lst.addAll(helper.getBloodDonorByCity(city, "O+ve"));
+                                lst.addAll(helper.getBloodDonorByCity(city, "O-ve"));
+                                break;
+                            case "B+ve":
+                                lst = helper.getBloodDonorByCity(city, "B+ve");
+                                lst.addAll(helper.getBloodDonorByCity(city, "B-ve"));
+                                lst.addAll(helper.getBloodDonorByCity(city, "O+ve"));
+                                lst.addAll(helper.getBloodDonorByCity(city, "O-ve"));
+                                break;
+                            case "O+ve":
 
-                            lst = helper.getBloodDonorByCity(city,"O+ve");
-                            lst.addAll(helper.getBloodDonorByCity(city,"O-ve"));
-                            break;
-                        case "AB+ve":
-                            lst = helper.getBloodDonorByCity(city,"AB+ve");
-                            lst.addAll(helper.getBloodDonorByCity(city,"A+ve"));
-                            lst.addAll(helper.getBloodDonorByCity(city,"B+ve"));
-                            lst.addAll(helper.getBloodDonorByCity(city,"O+ve"));
-                            lst.addAll(helper.getBloodDonorByCity(city,"AB-ve"));
-                            lst.addAll(helper.getBloodDonorByCity(city,"A-ve"));
-                            lst.addAll(helper.getBloodDonorByCity(city,"B-ve"));
-                            lst.addAll(helper.getBloodDonorByCity(city,"O-ve"));
-                            break;
-                        case "A-ve":
-                            lst = helper.getBloodDonorByCity(city,"A-ve");
-                            lst.addAll(helper.getBloodDonorByCity(city,"O-ve"));
-                            break;
-                        case "B-ve":
-                            lst = helper.getBloodDonorByCity(city,"B-ve");
-                            lst.addAll(helper.getBloodDonorByCity(city,"O-ve"));
-                            break;
-                        case "O-ve":
-                            lst = helper.getBloodDonorByCity(city,"O-ve");
-                            break;
-                        case "AB-ve":
-                            lst = helper.getBloodDonorByCity(city,"AB-ve");
-                            lst.addAll(helper.getBloodDonorByCity(city,"A-ve"));
-                            lst.addAll(helper.getBloodDonorByCity(city,"B-ve"));
-                            lst.addAll(helper.getBloodDonorByCity(city,"O-ve"));
-                            break;
-                        default:
-                            lst = helper.getBloodDonors();
+                                lst = helper.getBloodDonorByCity(city, "O+ve");
+                                lst.addAll(helper.getBloodDonorByCity(city, "O-ve"));
+                                break;
+                            case "AB+ve":
+                                lst = helper.getBloodDonorByCity(city, "AB+ve");
+                                lst.addAll(helper.getBloodDonorByCity(city, "A+ve"));
+                                lst.addAll(helper.getBloodDonorByCity(city, "B+ve"));
+                                lst.addAll(helper.getBloodDonorByCity(city, "O+ve"));
+                                lst.addAll(helper.getBloodDonorByCity(city, "AB-ve"));
+                                lst.addAll(helper.getBloodDonorByCity(city, "A-ve"));
+                                lst.addAll(helper.getBloodDonorByCity(city, "B-ve"));
+                                lst.addAll(helper.getBloodDonorByCity(city, "O-ve"));
+                                break;
+                            case "A-ve":
+                                lst = helper.getBloodDonorByCity(city, "A-ve");
+                                lst.addAll(helper.getBloodDonorByCity(city, "O-ve"));
+                                break;
+                            case "B-ve":
+                                lst = helper.getBloodDonorByCity(city, "B-ve");
+                                lst.addAll(helper.getBloodDonorByCity(city, "O-ve"));
+                                break;
+                            case "O-ve":
+                                lst = helper.getBloodDonorByCity(city, "O-ve");
+                                break;
+                            case "AB-ve":
+                                lst = helper.getBloodDonorByCity(city, "AB-ve");
+                                lst.addAll(helper.getBloodDonorByCity(city, "A-ve"));
+                                lst.addAll(helper.getBloodDonorByCity(city, "B-ve"));
+                                lst.addAll(helper.getBloodDonorByCity(city, "O-ve"));
+                                break;
+                            default:
+                                lst = helper.getBloodDonors();
+                        }
                     }
-                }
 
-                if (lst.size() == 0) {
-                    Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
-                }
+                    if (lst.size() == 0) {
+                        Toast.makeText(DisplayBloodDonorsActivity.this, "No donors found.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(DisplayBloodDonorsActivity.this, lst.size() + " donors found!", Toast.LENGTH_SHORT).show();
+                    }
+                    BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
+                    recyclerView.setAdapter(adapter);
 
-                else{
-                    Toast.makeText(DisplayBloodDonorsActivity.this, lst.size()+" donors found!", Toast.LENGTH_SHORT).show();
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
+                    recyclerView.setLayoutManager(linearLayoutManager);
                 }
-                BloodDonorAdapter adapter = new BloodDonorAdapter(lst, DisplayBloodDonorsActivity.this);
-                recyclerView.setAdapter(adapter);
-
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DisplayBloodDonorsActivity.this);
-                recyclerView.setLayoutManager(linearLayoutManager);
 
             }
 

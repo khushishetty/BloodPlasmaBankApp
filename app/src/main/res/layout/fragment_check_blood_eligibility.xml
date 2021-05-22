@@ -35,22 +35,33 @@
                 android:textSize="24sp"
                 android:textStyle="bold|italic" />
 
-            <EditText
-                android:id="@+id/b_check_age"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:hint="Age"
-                android:inputType="number" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/b_check_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:ems="10"
+                    android:hint="Age"
+                    android:inputType="number"
+                    android:background="#FAEFEF"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/b_check_weight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Weight (in kilograms)"
-                android:inputType="numberDecimal" />
+                <EditText
+                    android:id="@+id/b_check_weight"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:background="#FAEFEF"
+                    android:hint="Weight (in kilograms)"
+                    android:inputType="numberDecimal" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"

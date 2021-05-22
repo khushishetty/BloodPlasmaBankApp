@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,6 +24,9 @@ import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.bloodplasmabankapp.DB.Db_Helper_Requests;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RequestModifyActivity extends AppCompatActivity {
 
     Spinner spinner,spinner_type;
@@ -33,6 +37,17 @@ public class RequestModifyActivity extends AppCompatActivity {
     Button delete, update;
 
     AwesomeValidation awesomeValidation;
+
+    private static final Pattern PASSWORD_PATTERN =
+            Pattern.compile("^"+
+                    "(?=.*[0-9])" +                 //At least one digit.
+                    "(?=.*[a-z])" +         //at least 1 lower case letter
+                    "(?=.*[A-Z])" +         //at least 1 upper case letter
+                    "(?=.*[a-zA-Z])" +              //any letter
+                    "(?=\\S+$)" +           //no white spaces
+                    ".{6,}" +               //at least 4 characters
+                    "$");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,7 +138,7 @@ public class RequestModifyActivity extends AppCompatActivity {
                                 else{
                                     surgency = "No";
                                 }
-                                if(awesomeValidation.validate()){
+                                if(awesomeValidation.validate() && validateMobile(sphno) && validateEmail(semail) && validatePassword(spass)){
                                     Db_Helper_Requests helper = new Db_Helper_Requests(getApplicationContext());
                                     boolean b = helper.updateRequests(sname, sphno, choice_bld_grp, semail, saddress, choice_type, surgency, spass,id,sage);
                                     if(b){
@@ -132,6 +147,14 @@ public class RequestModifyActivity extends AppCompatActivity {
                                     else{
                                         Toast.makeText(RequestModifyActivity.this, "Sorry!! Couldn't update.", Toast.LENGTH_SHORT).show();
                                     }
+                                }
+                                if(!validateMobile(sphno)){
+                                    phno.setError("Invalid phone number !!");
+                                }
+                                if(!validateEmail(semail)){
+                                    email.setError("Invalid email !!");
+                                }if(!validatePassword(spass)){
+                                    pass.setError("Weak Password!!");
                                 }
                             }
                         })
@@ -205,5 +228,22 @@ public class RequestModifyActivity extends AppCompatActivity {
 
 
 
+    }
+
+    boolean validateMobile(String input){
+        Pattern p = Pattern.compile("[6-9][0-9]{9}");
+        Matcher m = p.matcher(input);
+        return m.matches();
+    }
+    boolean validateEmail(String mail){
+        return Patterns.EMAIL_ADDRESS.matcher(mail).matches();
+    }
+
+    boolean validatePassword(String p1){
+        /*
+        if(!PASSWORD_PATTERN.matcher(p1).matches()){
+            pass.setError("Password too weak !!");
+        }*/
+        return PASSWORD_PATTERN.matcher(p1).matches();
     }
 }

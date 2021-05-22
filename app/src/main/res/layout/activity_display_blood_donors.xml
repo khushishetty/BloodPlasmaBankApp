@@ -283,15 +283,25 @@
             android:orientation="horizontal"
             android:padding="10dp">
 
-            <EditText
-                android:id="@+id/filterByCityBlood"
-                android:layout_width="180dp"
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:backgroundTint="#000000"
-                android:ems="10"
-                android:hint="Enter Place"
-                android:inputType="textPersonName" />
+                android:textColorHint="@color/black"
+                app:hintTextColor="@color/black"
+                app:boxStrokeColor="@color/black">
+
+                <EditText
+                    android:id="@+id/filterByCityBlood"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:background="@color/main_red_theme"
+                    android:ems="10"
+                    android:hint="Enter Place"
+                    android:inputType="textPersonName" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <Button
                 android:id="@+id/filterByCityBloodBtn"

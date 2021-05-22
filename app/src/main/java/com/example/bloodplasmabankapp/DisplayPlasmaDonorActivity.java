@@ -225,8 +225,8 @@ public class DisplayPlasmaDonorActivity extends AppCompatActivity {
                 String city = searchCity.getText().toString().toLowerCase();
                 bloodGrpPlace = city;
                 ArrayList<PlasmaDonorModel> lst;
-                if(city.equals("")){
-                    Toast.makeText(DisplayPlasmaDonorActivity.this, "Enter a city", Toast.LENGTH_LONG).show();
+                if(city.isEmpty()){
+                    searchCity.setError("Field Empty");
                 }
                 else{
 

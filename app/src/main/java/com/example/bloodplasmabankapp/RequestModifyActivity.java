@@ -34,7 +34,7 @@ public class RequestModifyActivity extends AppCompatActivity {
     int id;
     EditText name, pass, phno, email, address,age;
     CheckBox urgency;
-    Button delete, update;
+    Button delete, update, logout;
 
     AwesomeValidation awesomeValidation;
 
@@ -74,7 +74,7 @@ public class RequestModifyActivity extends AppCompatActivity {
         urgency = (CheckBox)findViewById(R.id.req_modify_urgent_id);
         update = (Button) findViewById(R.id.req_modify_btn);
         delete = (Button)findViewById(R.id.reg_delete_btn);
-
+        logout = (Button)findViewById(R.id.request_logout_btn);
         spinner = (Spinner)findViewById(R.id.req_modify_bloodgrp_id);
         spinner_type = (Spinner)findViewById(R.id.spinner_modify_type_id);
 
@@ -199,6 +199,26 @@ public class RequestModifyActivity extends AppCompatActivity {
                         }).show();
 
 
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(RequestModifyActivity.this)
+                        .setTitle("Logout")
+                        .setMessage("Are you sure you want to log out?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(RequestModifyActivity.this, MainActivity.class));
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).show();
             }
         });
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

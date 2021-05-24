@@ -33,7 +33,7 @@ public class DonationModifyActivity extends AppCompatActivity {
     Spinner spinner, gender;
     String choice_bld_grp,choice_type, sname, sphno, semail, saddress, spass, sage, sailments, sgender;
     EditText name, pass, phno, email, address, age, ailments;
-    Button  submit, delete;
+    Button  submit, delete, logout;
     AwesomeValidation awesomeValidation;
     int id;
 
@@ -78,7 +78,7 @@ public class DonationModifyActivity extends AppCompatActivity {
         submit = (Button)findViewById(R.id.donate_modify_btn);
         ailments = (EditText)findViewById(R.id.donate_modify_ailments_id);
         spinner = (Spinner)findViewById(R.id.donate_modify_bloodgrp_id);
-
+        logout = (Button)findViewById(R.id.donate_logout_btn);
         gender = (Spinner)findViewById(R.id.donate_modify_gender_id);
         delete = (Button)findViewById(R.id.donate_delete_btn);
 
@@ -234,6 +234,26 @@ public class DonationModifyActivity extends AppCompatActivity {
                             }
                         }).show();
 
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new AlertDialog.Builder(DonationModifyActivity.this)
+                        .setTitle("Logout")
+                        .setMessage("Are you sure you want to log out?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                startActivity(new Intent(DonationModifyActivity.this, MainActivity.class));
+                            }
+                        })
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        }).show();
             }
         });
     }

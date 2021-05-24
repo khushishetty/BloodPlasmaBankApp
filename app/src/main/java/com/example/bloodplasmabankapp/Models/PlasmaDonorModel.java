@@ -2,12 +2,12 @@ package com.example.bloodplasmabankapp.Models;
 
 public class PlasmaDonorModel {
     String name,plasmagrp,city,phno;
-    String email,ailments,gender,age;
+    String email,ailments,gender,age,password;
 
     public PlasmaDonorModel() {
     }
 
-    public PlasmaDonorModel(String name, String plasmagrp, String city, String phno, String email, String ailments, String gender, String age) {
+    public PlasmaDonorModel(String name, String plasmagrp, String city, String phno, String email, String ailments, String gender, String age,String pass) {
         this.name = name;
         this.plasmagrp = plasmagrp;
         this.city = city;
@@ -16,6 +16,7 @@ public class PlasmaDonorModel {
         this.ailments = ailments;
         this.gender = gender;
         this.age = age;
+        this.password = pass;
     }
 
     public String getName() {
@@ -80,5 +81,13 @@ public class PlasmaDonorModel {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

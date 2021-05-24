@@ -17,6 +17,9 @@ import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.bloodplasmabankapp.DB.Db_Helper_Requests;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import kotlin.text.Regex;
 
 public class RequestLoginActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -57,7 +60,7 @@ public class RequestLoginActivity extends AppCompatActivity implements AdapterVi
                 phno = ph.getText().toString();
                 pass = password.getText().toString();
 
-                if(validation.validate()) {
+                if(validation.validate() && validateMobile(phno)) {
                     Db_Helper_Requests helperRequests = new Db_Helper_Requests(getApplicationContext());
                     int k = helperRequests.getBloodRequestStatusForLogin(phno, pass, choice);
                     if (k == 1) {
@@ -67,11 +70,13 @@ public class RequestLoginActivity extends AppCompatActivity implements AdapterVi
                         startActivity(intent);
                     }
                     if (k == 2) {
-                        Toast.makeText(RequestLoginActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RequestLoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                     }
                     if (k == 3) {
-                        Toast.makeText(RequestLoginActivity.this, "No entries found", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(RequestLoginActivity.this, "This number is not registered!", Toast.LENGTH_SHORT).show();
                     }
+                }else if(!validateMobile(phno)){
+                    ph.setError("Invalid phone number!!");
                 }
             }
         });
@@ -85,5 +90,11 @@ public class RequestLoginActivity extends AppCompatActivity implements AdapterVi
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         choice = "blood";
+    }
+
+    boolean validateMobile(String input){
+        Pattern p = Pattern.compile("[6-9][0-9]{9}");
+        Matcher m = p.matcher(input);
+        return m.matches();
     }
 }

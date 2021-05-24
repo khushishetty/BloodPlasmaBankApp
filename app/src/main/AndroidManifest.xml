@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.bloodplasmabankapp">
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-<uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
-    <uses-permission android:name="android.permission.SEND_SMS"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -14,7 +9,11 @@
         android:roundIcon="@mipmap/appicon"
         android:supportsRtl="true"
         android:theme="@style/Theme.BloodPlasmaBankApp">
-        <activity android:name=".CheckEligibilityActivity"></activity>
+        <activity android:name=".DonationModifyActivity"></activity>
+        <activity android:name=".DonationLoginActivity" />
+        <activity android:name=".DonationRegisterActivity" />
+        <activity android:name=".InformationPageActivity" />
+        <activity android:name=".CheckEligibilityActivity" />
         <activity android:name=".RequestRegisterActivity" />
         <activity android:name=".RequestModifyActivity" />
         <activity android:name=".RequestLoginActivity" />
@@ -31,6 +30,11 @@
         <activity android:name=".DisplayBloodDonorsActivity" />
         <activity android:name=".MainActivity" />
     </application>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

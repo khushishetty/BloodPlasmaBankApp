@@ -16,7 +16,7 @@ import java.util.ArrayList;
 
 public class DBHelper extends SQLiteOpenHelper {
     final static String DBNAME = "NewBloodPlasma.db";
-    final static int DBVERSION = 2;
+    final static int DBVERSION = 3;
 
     public DBHelper(@Nullable Context context) {
         super(context, DBNAME, null, DBVERSION);
@@ -35,7 +35,8 @@ public class DBHelper extends SQLiteOpenHelper {
                         "address text," +
                         "ailments text," +
                         "gender text," +
-                        "age text)"
+                        "age text," +
+                        "password text)"
     );
     }
 
@@ -45,7 +46,7 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertOrder(String name,String phno,String bgp,String email,String address,String ailments,String gender,String age)
+    public int insertBloodDonation(String name,String phno,String bgp,String email,String address,String ailments,String gender,String age,String password)
     {
         SQLiteDatabase database = getReadableDatabase();
         ContentValues values = new ContentValues();
@@ -57,19 +58,27 @@ public class DBHelper extends SQLiteOpenHelper {
         values.put("ailments",ailments);
         values.put("gender",gender);
         values.put("age",age);
-        long id = database.insert("donors",null,values);
-        if (id<=0){
-            return false;
+        values.put("password",password);
+
+        SQLiteDatabase d = this.getWritableDatabase();
+        Cursor cursor = d.rawQuery("Select * from donors where phoneno= '" + phno + "'", null);
+        if (!cursor.moveToFirst()) {
+            long id = database.insert("donors",null,values);
+            if (id <= 0) {
+                return 2;
+            } else {
+                return 1;
+            }
         }
         else{
-            return true;
+            return 3;
         }
 
     }
     public ArrayList<BloodDonorModel> getBloodDonors(){
         ArrayList<BloodDonorModel> lst = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("select name,bloodgroup,address,phoneno,emailaddress,ailments,gender,age from donors",null);
+        Cursor cursor = database.rawQuery("select name,bloodgroup,address,phoneno,emailaddress,ailments,gender,age, password from donors",null);
         if(cursor.moveToFirst()){
             do{
                 BloodDonorModel model = new BloodDonorModel();
@@ -81,6 +90,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 model.setAilments(cursor.getString(5));
                 model.setAilments(cursor.getString(6));
                 model.setAge(cursor.getString(7));
+                model.setPassword(cursor.getString(8));
                 lst.add(model);
             }while (cursor.moveToNext());
         }
@@ -112,9 +122,9 @@ public class DBHelper extends SQLiteOpenHelper {
         return lst;
     }
 
-    public int deleteOrder(String id){
+    public int deleteBloodDonor(int id){
         SQLiteDatabase database = this.getWritableDatabase();
-        return database.delete("donors","name = '"+id+"'",null);
+        return database.delete("donors","id = '"+id+"'",null);
 
     }
 
@@ -169,6 +179,57 @@ public class DBHelper extends SQLiteOpenHelper {
         cursor.close();
         database.close();
         return lst;
+
+    }
+
+    public boolean updateBloodDonor(String name,String phno,String bgp,String email,String address,String ailments,String gender,String age,String pass, int id){
+        SQLiteDatabase database = getReadableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("phoneno",phno);
+        values.put("name",name);
+        values.put("bloodgroup",bgp);
+        values.put("emailaddress",email);
+        values.put("address",address);
+        values.put("ailments",ailments);
+        values.put("gender",gender);
+        values.put("age",age);
+        values.put("password",pass);
+        SQLiteDatabase d= getWritableDatabase();
+        Cursor cursor = d.rawQuery("Select * from donors where phoneno= '"+phno+"' and id != "+id,null);
+        if(cursor.moveToFirst()){
+            return false;
+        }
+        else{
+            long row = database.update("donors",values, "id = "+id,null);
+            if(row <=0){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+
+    }
+
+    public int getBloodDonationStatusForLogin(String phno, String password){
+
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("select phoneno  from donors where phoneno = '"+phno+"' ",null);
+        if(cursor.moveToFirst()){
+            cursor = database.rawQuery("select * from donors where phoneno = '"+phno+"' and password = '"+password+"' ",null);
+            if(cursor.moveToFirst())
+            {
+                return 1;
+            }
+            else{
+                return 2;
+            }
+
+
+        }
+        else{
+            return 3;
+        }
 
     }
 }

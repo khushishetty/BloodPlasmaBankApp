@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class DB_Plasma_Helper extends SQLiteOpenHelper {
     final static String DBname = "NewPlasmaDB.db";
-    final static int DBVersion = 2;
+    final static int DBVersion = 3;
     public DB_Plasma_Helper(@Nullable Context context) {
 
         super(context, DBname, null , DBVersion);
@@ -33,7 +33,8 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
                         "address text," +
                         "ailments text," +
                         "gender text," +
-                        "age text)"
+                        "age text," +
+                        "password text)"
         );
     }
 
@@ -44,7 +45,7 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertPlasmaDonor(String name,String phno,String bgp,String email,String address,String ailments,String gender,String age){
+    public int insertPlasmaDonor(String name,String phno,String bgp,String email,String address,String ailments,String gender,String age, String pass){
         SQLiteDatabase database = getReadableDatabase();
         ContentValues values= new ContentValues();
         values.put("phoneno",phno);
@@ -55,19 +56,30 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
         values.put("ailments",ailments);
         values.put("gender",gender);
         values.put("age",age);
-        long id = database.insert("plasma_donor",null,values);
-        if(id<=0){
-            return false;
+        values.put("password",pass);
+
+        SQLiteDatabase d = this.getWritableDatabase();
+        Cursor cursor = d.rawQuery("Select * from plasma_donor where phoneno= '" + phno + "'", null);
+
+        if(!cursor.moveToFirst()){
+            long id = database.insert("plasma_donor",null,values);
+            if(id<=0){
+                return 2;
+            }
+            else{
+                return 1;
+            }
         }
         else{
-            return true;
+            return 3;
         }
+
     }
 
     public ArrayList<PlasmaDonorModel> getPlasmaDonors(){
         ArrayList<PlasmaDonorModel> donors = new ArrayList<>();
         SQLiteDatabase database = this.getWritableDatabase();
-        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress,ailments,gender from plasma_donor",null);
+        Cursor cursor = database.rawQuery("select name,address,bloodgroup,phoneno,emailaddress,ailments,gender, password,age from plasma_donor",null);
         if(cursor.moveToFirst()){
             do{
                 PlasmaDonorModel model = new PlasmaDonorModel();
@@ -78,6 +90,8 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
                 model.setEmail(cursor.getString(4));
                 model.setAilments(cursor.getString(5));
                 model.setGender(cursor.getString(6));
+                model.setPassword(cursor.getString(7));
+                model.setAge(cursor.getString(8));
                 donors.add(model);
             }while(cursor.moveToNext());
         }
@@ -96,9 +110,9 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
 
     }
 
-    public int deletePlasmaDonor(String id){
+    public int deletePlasmaDonor(int id){
         SQLiteDatabase database = this.getWritableDatabase();
-        return database.delete("plasma_donor","name = '"+id+"'",null);
+        return database.delete("plasma_donor","id = '"+id+"'",null);
 
     }
 
@@ -172,5 +186,57 @@ public class DB_Plasma_Helper extends SQLiteOpenHelper {
         cursor.close();
         database.close();
         return donors;
+    }
+
+    public boolean updatePlasmaDonor(String name,String phno,String bgp,String email,String address,String ailments,String gender,String age,String pass, int id){
+        SQLiteDatabase database = getReadableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("phoneno",phno);
+        values.put("name",name);
+        values.put("bloodgroup",bgp);
+        values.put("emailaddress",email);
+        values.put("address",address);
+        values.put("ailments",ailments);
+        values.put("gender",gender);
+        values.put("age",age);
+        values.put("password", pass);
+
+        SQLiteDatabase d= getWritableDatabase();
+        Cursor cursor = d.rawQuery("Select * from plasma_donor where phoneno= '"+phno+"' and id != "+id,null);
+        if(cursor.moveToFirst()){
+            return false;
+        }
+        else{
+            long row = database.update("plasma_donor",values, "id = "+id,null);
+            if(row <=0){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+
+    }
+
+    public int getPlasmaDonationStatusForLogin(String phno, String password){
+
+        SQLiteDatabase database = this.getWritableDatabase();
+        Cursor cursor = database.rawQuery("select phoneno  from plasma_donor where phoneno = '"+phno+"' ",null);
+        if(cursor.moveToFirst()){
+            cursor = database.rawQuery("select * from plasma_donor where phoneno = '"+phno+"' and password = '"+password+"' ",null);
+            if(cursor.moveToFirst())
+            {
+                return 1;
+            }
+            else{
+                return 2;
+            }
+
+
+        }
+        else{
+            return 3;
+        }
+
     }
 }

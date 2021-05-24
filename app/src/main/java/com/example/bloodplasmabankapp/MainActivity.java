@@ -31,7 +31,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView c1, c2, c3, c4, c5, c6,c7;
+    CardView c1, c2, c3, c4, c5, c6,c7,c8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +45,13 @@ public class MainActivity extends AppCompatActivity {
         c5 = (CardView) findViewById(R.id.view_requests_id);
         c6 = (CardView) findViewById(R.id.requestid);
         c7 = (CardView)findViewById(R.id.check_eligibility_card) ;
+        c8 = (CardView)findViewById(R.id.info_page);
 
         c1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Become A Donor", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, "Become A Donor", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, DonationRegisterActivity.class));
 
             }
         });

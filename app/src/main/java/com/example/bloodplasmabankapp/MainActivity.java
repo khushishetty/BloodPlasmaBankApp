@@ -31,7 +31,7 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    CardView c1, c2, c3, c4, c5, c6,c7,c8;
+    CardView c1, c2, c3, c4, c5, c6,c7,c8,c9;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         c6 = (CardView) findViewById(R.id.requestid);
         c7 = (CardView)findViewById(R.id.check_eligibility_card) ;
         c8 = (CardView)findViewById(R.id.info_page);
+        c9 = (CardView)findViewById(R.id.bec_plasma_donor_id);
 
         c1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        c9.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, DonationPlasmaRegisterActivity.class));
+            }
+        });
 
         c2.setOnClickListener(new View.OnClickListener() {
             @Override

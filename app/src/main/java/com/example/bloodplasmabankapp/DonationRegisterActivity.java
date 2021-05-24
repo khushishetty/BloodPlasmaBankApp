@@ -2,6 +2,8 @@ package com.example.bloodplasmabankapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
@@ -21,6 +23,8 @@ import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.example.bloodplasmabankapp.DB.DBHelper;
 import com.example.bloodplasmabankapp.DB.DB_Plasma_Helper;
 import com.example.bloodplasmabankapp.DB.Db_Helper_Requests;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 import org.w3c.dom.Text;
 
@@ -31,10 +35,11 @@ import java.util.regex.Pattern;
 
 public class DonationRegisterActivity extends AppCompatActivity {
 
-    Spinner spinner,spinner_type, gender;
-    String choice_bld_grp,choice_type, sname, sphno, semail, saddress, spass, sage, sailments, sgender;
-    EditText name, pass, phno, email, address, age, ailments;
-    CheckBox diabetes;
+    Spinner spinner, gender;
+    String choice_bld_grp, sname, sphno, semail, saddress, spass, sage, sailments, sgender, srepass;
+    EditText name, pass, phno, email, address, age, ailments,repass_et;
+    TextInputLayout repass;
+    CheckBox diabetes, hemoglobin, diseases;
     Button  submit;
     AwesomeValidation awesomeValidation;
     TextView btn;
@@ -68,21 +73,20 @@ public class DonationRegisterActivity extends AppCompatActivity {
         submit = (Button)findViewById(R.id.donate_reg_btn);
         ailments = (EditText)findViewById(R.id.donate_reg_ailments_id);
         spinner = (Spinner)findViewById(R.id.donate_reg_bloodgrp_id);
-        spinner_type = (Spinner)findViewById(R.id.donate_spinner_type_id);
+        repass = (TextInputLayout) findViewById(R.id.donate_reg_re_pass_lay_id);
+        repass_et = (TextInputEditText)findViewById(R.id.donate_reg_re_pass_id);
         gender = (Spinner)findViewById(R.id.donate_gender_id);
+        hemoglobin = (CheckBox)findViewById(R.id.donate_reg_hemoglobin_id);
+        diseases = (CheckBox)findViewById(R.id.donate_reg_diseases_id);
 
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(this,R.array.blood_grp_option, android.R.layout.simple_spinner_item);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         spinner.setAdapter(adapter1);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.type_option, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        spinner_type.setAdapter(adapter);
 
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,R.array.gender_option, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         gender.setAdapter(adapter2);
 
@@ -94,7 +98,6 @@ public class DonationRegisterActivity extends AppCompatActivity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                choice_bld_grp = "blood";
             }
         });
 
@@ -109,17 +112,7 @@ public class DonationRegisterActivity extends AppCompatActivity {
                 sgender = "Female";
             }
         });
-        spinner_type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                choice_type = parent.getItemAtPosition(position).toString();
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                choice_type = "Blood";
-            }
-        });
 
         btn = (TextView)findViewById(R.id.bbbbb);
         btn.setOnClickListener(new View.OnClickListener() {
@@ -133,6 +126,7 @@ public class DonationRegisterActivity extends AppCompatActivity {
         awesomeValidation.addValidation( name, RegexTemplate.NOT_EMPTY," PLEASE FILL THIS FIELD");
         awesomeValidation.addValidation(phno,RegexTemplate.NOT_EMPTY,"PLEASE FILL THIS FIELD");
         awesomeValidation.addValidation( pass, RegexTemplate.NOT_EMPTY," PLEASE FILL THIS FIELD");
+        awesomeValidation.addValidation( repass_et, RegexTemplate.NOT_EMPTY," PLEASE FILL THIS FIELD");
         awesomeValidation.addValidation(email,RegexTemplate.NOT_EMPTY,"PLEASE FILL THIS FIELD");
         awesomeValidation.addValidation( address, RegexTemplate.NOT_EMPTY," PLEASE FILL THIS FIELD");
         awesomeValidation.addValidation(ailments, RegexTemplate.NOT_EMPTY,"Please fill this field");
@@ -148,16 +142,15 @@ public class DonationRegisterActivity extends AppCompatActivity {
                 semail = email.getText().toString();
                 sage = age.getText().toString();
                 sailments = ailments.getText().toString();
+                srepass = repass_et.getText().toString();
+                int num_age = Integer.parseInt(sage);
 
-                if(awesomeValidation.validate() && validateMobile(sphno) && validateEmail(semail) && validatePassword(spass) && !diabetes.isChecked()){
+                if(awesomeValidation.validate() && validateMobile(sphno) && validateEmail(semail) && validatePassword(spass) && !diabetes.isChecked() && srepass.equals(spass) && num_age>17
+                && !diseases.isChecked() && !hemoglobin.isChecked()){
                     int b;
-                    if(choice_type.equals("Blood")){
-                        DBHelper helper = new DBHelper(getApplicationContext());
-                        b = helper.insertBloodDonation(sname, sphno, choice_bld_grp, semail, saddress,  sailments, sgender, sage, spass);
-                    }else{
-                        DB_Plasma_Helper helper2 = new DB_Plasma_Helper(getApplicationContext());
-                        b = helper2.insertPlasmaDonor(sname, sphno, choice_bld_grp, semail, saddress,  sailments, sgender, sage, spass);
-                    }
+                    DBHelper helper = new DBHelper(getApplicationContext());
+                    b = helper.insertBloodDonation(sname, sphno, choice_bld_grp, semail, saddress,  sailments, sgender, sage, spass);
+
 
                     if(b == 1){
                         Toast.makeText(DonationRegisterActivity.this, "Request made successfully!!", Toast.LENGTH_SHORT).show();
@@ -181,8 +174,20 @@ public class DonationRegisterActivity extends AppCompatActivity {
                     email.setError("Invalid email !!");
                 }if(!validatePassword(spass)){
                     pass.setError("Weak Password!!");
-                }if(diabetes.isChecked()){
-                    Toast.makeText(DonationRegisterActivity.this, "Sorry! Cannot donate due to history of diabetes or malaria.", Toast.LENGTH_SHORT).show();
+                }if(!srepass.equals(spass)){
+                    repass_et.setError("Password does not match");
+                }
+                if(num_age<=17 || diseases.isChecked() || hemoglobin.isChecked() || diabetes.isChecked()){
+                    new AlertDialog.Builder(DonationRegisterActivity.this)
+                            .setTitle("Blood Donation")
+                            .setMessage("Sorry! Not eligible to donate")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            }).show();
+
                 }
 
             }

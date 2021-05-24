@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/appicon"
         android:supportsRtl="true"
         android:theme="@style/Theme.BloodPlasmaBankApp">
-        <activity android:name=".DonationModifyActivity"></activity>
+        <activity android:name=".DonationPlasmaRegisterActivity"></activity>
+        <activity android:name=".DonationModifyActivity" />
         <activity android:name=".DonationLoginActivity" />
         <activity android:name=".DonationRegisterActivity" />
         <activity android:name=".InformationPageActivity" />

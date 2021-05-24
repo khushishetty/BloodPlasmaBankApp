@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DonationRegisterActivity"
+    tools:context=".DonationPlasmaRegisterActivity"
     android:background="#FAEFEF"
     android:orientation="vertical"
     android:padding="25dp"
@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
-                    android:id="@+id/donate_reg_name_id"
+                    android:id="@+id/donate_reg_name_id2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -72,7 +72,7 @@
                         android:text="Select a blood group" />
 
                     <Spinner
-                        android:id="@+id/donate_reg_bloodgrp_id"
+                        android:id="@+id/donate_reg_bloodgrp_id2"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content" />
 
@@ -90,7 +90,7 @@
                         android:text="Gender" />
 
                     <Spinner
-                        android:id="@+id/donate_gender_id"
+                        android:id="@+id/donate_gender_id2"
                         android:layout_width="150dp"
                         android:layout_height="wrap_content" />
 
@@ -104,7 +104,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/donate_reg_age_id"
+                    android:id="@+id/donate_reg_age_id2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -120,16 +120,11 @@
                 android:layout_height="wrap_content"
                 android:background="#FAEFEF"
                 android:hint="Password"
-                app:passwordToggleEnabled="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 app:helperTextEnabled="true"
-                app:helperText="Password must have minimum 6 characters with at least 1 upper case letter and at least 1 digit">
+                app:helperText="Password must have minimum 6 characters with at least 1 upper case letter and at least 1 digit">>
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/donate_reg_pass_id"
+                    android:id="@+id/donate_reg_pass_id2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -138,14 +133,14 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/donate_reg_re_pass_lay_id"
+                android:id="@+id/donate_reg_re_pass_lay_id2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FAEFEF"
                 android:hint="Re-enter password">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/donate_reg_re_pass_id"
+                    android:id="@+id/donate_reg_re_pass_id2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -155,30 +150,18 @@
 
 
             <CheckBox
-                android:id="@+id/donate_reg_diabetes_id"
+                android:id="@+id/donate_reg_diabetes_id2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginVertical="15dp"
                 android:buttonTint="@color/main_red_theme"
                 android:text="Any history of diabetes or malaria?" />
-            <CheckBox
-                android:id="@+id/donate_reg_hemoglobin_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/main_red_theme"
-                android:text="Hemoglobin less than 12.5 grams?" />
-            <CheckBox
-                android:id="@+id/donate_reg_diseases_id"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:buttonTint="@color/main_red_theme"
-                android:text="Suffering from any transmittable diseases?" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
-                    android:id="@+id/donate_reg_ailments_id"
+                    android:id="@+id/donate_reg_ailments_id2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -211,7 +194,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/donate_reg_phno_id"
+                    android:id="@+id/donate_reg_phno_id2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -224,7 +207,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/donate_reg_email_id"
+                    android:id="@+id/donate_reg_email_id2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -237,7 +220,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/donate_reg_address_id"
+                    android:id="@+id/donate_reg_address_id2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -247,7 +230,7 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/donate_reg_btn"
+                android:id="@+id/donate_reg_btn2"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
@@ -259,7 +242,7 @@
                 android:fontFamily="sans-serif-black"/>
 
             <TextView
-                android:id="@+id/bbbbb"
+                android:id="@+id/bbbbb2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -272,6 +255,4 @@
 
 
     </ScrollView>
-
-
 </LinearLayout>

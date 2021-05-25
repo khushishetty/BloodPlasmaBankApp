@@ -120,7 +120,6 @@
                 android:layout_height="wrap_content"
                 android:background="#FAEFEF"
                 android:hint="Password"
-                app:passwordToggleEnabled="true"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

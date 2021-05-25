@@ -31,7 +31,7 @@ public class DonationPlasmaRegisterActivity extends AppCompatActivity {
     Spinner spinner, gender;
     String choice_bld_grp, sname, sphno, semail, saddress, spass, sage, sailments, sgender, srepass;
     EditText name, pass, phno, email, address, age, ailments, repass;
-    CheckBox diabetes;
+    CheckBox diabetes, diabetes2;
     Button submit;
     AwesomeValidation awesomeValidation;
     TextView btn;
@@ -62,6 +62,7 @@ public class DonationPlasmaRegisterActivity extends AppCompatActivity {
         address = (EditText)findViewById(R.id.donate_reg_address_id2);
         age = (EditText)findViewById(R.id.donate_reg_age_id2);
         diabetes = (CheckBox)findViewById(R.id.donate_reg_diabetes_id2);
+        diabetes2 = (CheckBox)findViewById(R.id.donate_reg_diabetes2_id2);
         submit = (Button)findViewById(R.id.donate_reg_btn2);
         ailments = (EditText)findViewById(R.id.donate_reg_ailments_id2);
         spinner = (Spinner)findViewById(R.id.donate_reg_bloodgrp_id2);
@@ -135,7 +136,7 @@ public class DonationPlasmaRegisterActivity extends AppCompatActivity {
                 srepass = repass.getText().toString();
                 int num_age =  Integer.parseInt(sage);
 
-                if(awesomeValidation.validate() && validateMobile(sphno) && validateEmail(semail) && validatePassword(spass) && !diabetes.isChecked() && srepass.equals(spass) && num_age<18){
+                if(awesomeValidation.validate() && validateMobile(sphno) && validateEmail(semail) && validatePassword(spass) && !diabetes.isChecked() && srepass.equals(spass) && num_age>17 && !diabetes2.isChecked()){
                     int b;
 
                     DB_Plasma_Helper helper2 = new DB_Plasma_Helper(getApplicationContext());
@@ -166,7 +167,7 @@ public class DonationPlasmaRegisterActivity extends AppCompatActivity {
                     pass.setError("Weak Password!!");
                 }if(!srepass.equals(spass)){
                     repass.setError("Password does not match");
-                }if(num_age<=17 || diabetes.isChecked() || diabetes.isChecked()){
+                }if(num_age<=17 || diabetes.isChecked() || diabetes.isChecked() || diabetes2.isChecked()){
                     new AlertDialog.Builder(DonationPlasmaRegisterActivity.this)
                             .setTitle("Blood Donation")
                             .setMessage("Sorry! Not eligible to donate")

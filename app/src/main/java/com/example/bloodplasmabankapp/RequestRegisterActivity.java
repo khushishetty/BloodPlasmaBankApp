@@ -151,6 +151,8 @@ public class RequestRegisterActivity extends AppCompatActivity  {
                         manager.sendTextMessage(sphno, null, "Your request has been successfully made!",null, null);
 
                          */
+                        SmsManager manager = SmsManager.getDefault();
+                        manager.sendTextMessage(sphno, null, "Your request has been made successfully!!",null, null);
                     }
                     else if(b==2){
                         Toast.makeText(RequestRegisterActivity.this, "Request Failed!!", Toast.LENGTH_SHORT).show();

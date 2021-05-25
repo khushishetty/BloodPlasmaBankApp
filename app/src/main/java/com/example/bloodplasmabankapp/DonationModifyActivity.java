@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
@@ -174,6 +175,8 @@ public class DonationModifyActivity extends AppCompatActivity {
                                         manager.sendTextMessage(sphno, null, "Your request has been successfully made!",null, null);
 
                                          */
+                                        SmsManager manager = SmsManager.getDefault();
+                                        manager.sendTextMessage(sphno, null, "Your details for "+choice_type+" donation have been updated successfully!!",null, null);
                                     }
                                     else{
                                         Toast.makeText(DonationModifyActivity.this, "Update has failed!", Toast.LENGTH_SHORT).show();
@@ -217,6 +220,8 @@ public class DonationModifyActivity extends AppCompatActivity {
                                     b = helper2.deletePlasmaDonor(id);
                                 }
                                 if(b>0){
+                                    SmsManager manager = SmsManager.getDefault();
+                                    manager.sendTextMessage(phno.getText().toString(), null, "Your account has been deleted succesfully!!",null, null);
                                     Toast.makeText(DonationModifyActivity.this, "Deletion Successfull!!", Toast.LENGTH_SHORT).show();
                                     Intent intent1 = new Intent(DonationModifyActivity.this, MainActivity.class);
                                     startActivity(intent1);

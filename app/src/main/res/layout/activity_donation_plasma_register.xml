@@ -153,9 +153,15 @@
                 android:id="@+id/donate_reg_diabetes_id2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="15dp"
                 android:buttonTint="@color/main_red_theme"
-                android:text="Any history of diabetes or malaria?" />
+                android:layout_marginTop="25dp"
+                android:text="Have not passed a medical examination?" />
+            <CheckBox
+                android:id="@+id/donate_reg_diabetes2_id2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/main_red_theme"
+                android:text="Weight is below 50 kilograms?" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"

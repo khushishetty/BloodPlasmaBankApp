@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,6 +36,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class DonationRegisterActivity extends AppCompatActivity {
+
 
     Spinner spinner, gender;
     String choice_bld_grp, sname, sphno, semail, saddress, spass, sage, sailments, sgender, srepass;
@@ -155,11 +158,25 @@ public class DonationRegisterActivity extends AppCompatActivity {
                     if(b == 1){
                         Toast.makeText(DonationRegisterActivity.this, "Request made successfully!!", Toast.LENGTH_SHORT).show();
 
-                        /*
+
                         SmsManager manager = SmsManager.getDefault();
-                        manager.sendTextMessage(sphno, null, "Your request has been successfully made!",null, null);
+                        manager.sendTextMessage(sphno, null, "Your Registration for blood donation is made successfully!!",null, null);
+                        /*
+
+                        GMailSender sender = new GMailSender("khushishetty274@gmail.com","jayhar274");
+                        String body = "You have successfully registered as a Donor!";
+                        String subject = "Elixer Donor Registration";
+                        String recipient =  semail;
+                        try{
+                            sender.sendMail(subject, body, "sweetcookie274@gmail.com",recipient);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Toast.makeText(DonationRegisterActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                        }
 
                          */
+
+
                     }
                     else if(b==2){
                         Toast.makeText(DonationRegisterActivity.this, "Request Failed!!", Toast.LENGTH_SHORT).show();

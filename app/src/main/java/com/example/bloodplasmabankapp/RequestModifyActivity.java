@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.AdapterView;
@@ -142,6 +143,8 @@ public class RequestModifyActivity extends AppCompatActivity {
                                     Db_Helper_Requests helper = new Db_Helper_Requests(getApplicationContext());
                                     boolean b = helper.updateRequests(sname, sphno, choice_bld_grp, semail, saddress, choice_type, surgency, spass,id,sage);
                                     if(b){
+                                        SmsManager manager = SmsManager.getDefault();
+                                        manager.sendTextMessage(sphno, null, "Your details for "+choice_type+" request has been updated successfully!!",null, null);
                                         Toast.makeText(RequestModifyActivity.this, "Update Successful!!", Toast.LENGTH_SHORT).show();
                                     }
                                     else{
@@ -182,6 +185,8 @@ public class RequestModifyActivity extends AppCompatActivity {
                                 Db_Helper_Requests helper = new Db_Helper_Requests(getApplicationContext());
                                 int i = helper.deleteRequest(id);
                                 if(i>0){
+                                    SmsManager manager = SmsManager.getDefault();
+                                    manager.sendTextMessage(phno.getText().toString(), null, "Your "+choice_type+" request is deleted successfully!!",null, null);
                                     Toast.makeText(RequestModifyActivity.this, "Deletion Successfull!!", Toast.LENGTH_SHORT).show();
                                     Intent intent1 = new Intent(RequestModifyActivity.this, MainActivity.class);
                                     startActivity(intent1);

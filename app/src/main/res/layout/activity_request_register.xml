@@ -118,7 +118,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FAEFEF"
-                android:hint="Password">
+                android:hint="Password"
+                app:hintEnabled="true"
+                app:helperText="Password must have minimum 6 characters with at least 1 upper case letter and at least 1 digit">> >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/req_reg_pass_id"
@@ -133,7 +135,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FAEFEF"
-                android:hint="Re enter password">
+                android:hint="Re enter password"
+                android:layout_marginTop="5dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/req_reg_repass_id"

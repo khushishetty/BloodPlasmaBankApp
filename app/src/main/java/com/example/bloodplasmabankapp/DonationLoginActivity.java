@@ -67,7 +67,7 @@ public class DonationLoginActivity extends AppCompatActivity implements AdapterV
                             startActivity(intent);
                         }
                         if (k == 2) {
-                            Toast.makeText(DonationLoginActivity.this, "Invalid password", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DonationLoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
                         }
                         if (k == 3) {
                             Toast.makeText(DonationLoginActivity.this, "No entries found", Toast.LENGTH_SHORT).show();

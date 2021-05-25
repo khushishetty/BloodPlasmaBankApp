@@ -133,6 +133,13 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, CheckEligibilityActivity.class));
             }
         });
+
+        c8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, InformationPageActivity.class));
+            }
+        });
     }
 
     @Override

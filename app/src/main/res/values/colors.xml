@@ -9,4 +9,19 @@
     <color name="white">#FFFFFFFF</color>
     <color name="toolbar_color">#5c777f</color>
     <color name = "main_red_theme">#e1341e</color>
+
+
+    <color name="colorPrimary">#f58484</color>
+    <color name="address">#E67773</color>
+    <color name="followers">#F52720</color>
+    <color name="headings">#F5918E</color>
+
+    <color name="solidCircle">#CEC5C5</color>
+    <color name="circleBorder">#FFFFFF</color>
+    <color name="gradEnd">#E7AFAF</color>
+
+    <color name="gradStart">#E74040</color>
+    <color name="followersBg">#DB5151</color>
+    <color name="followingBg">#E33939</color>
+    <color name="grey">#E5E5E5</color>
 </resources>
